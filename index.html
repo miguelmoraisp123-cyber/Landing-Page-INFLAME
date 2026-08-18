@@ -52,7 +52,7 @@
   </div>
 
   <!-- ABOUT / CONCEPT -->
-  <div style="background:#F4EAD8;color:#1C1712;padding:80px 24px;">
+  <div ref="{{ aboutRef }}" style="{{ aboutStyle }}">
     <div style="max-width:640px;margin:0 auto;text-align:center;">
       <div style="width:24px;height:24px;margin:0 auto 24px;position:relative;">
         <div style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:4px;height:24px;background:#BD5533;"></div>
@@ -65,7 +65,7 @@
   </div>
 
   <!-- PRICING -->
-  <div style="background:#1C1712;padding:80px 24px;">
+  <div ref="{{ pricingRef }}" style="{{ pricingStyle }}">
     <div style="max-width:720px;margin:0 auto;">
       <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;margin-bottom:12px;">Ingressos</div>
       <div style="text-align:center;font-size:14px;color:#DDC9A8;margin-bottom:48px;">Vagas limitadas por lote</div>
@@ -97,7 +97,7 @@
   </div>
 
   <!-- PROGRAMAÇÃO -->
-  <div style="background:#F4EAD8;color:#1C1712;padding:80px 24px;">
+  <div ref="{{ programRef }}" style="{{ programStyle }}">
     <div style="max-width:640px;margin:0 auto;">
       <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Programação</div>
       <div style="text-align:center;font-size:13px;color:#5b4d3d;margin-bottom:40px;">Horários sujeitos a confirmação</div>
@@ -124,7 +124,7 @@
 
   <!-- PALESTRANTES -->
   <sc-if value="{{ showSpeakers }}" hint-placeholder-val="{{ true }}">
-  <div style="background:#1C1712;padding:80px 24px;">
+  <div ref="{{ speakersRef }}" style="{{ speakersStyle }}">
     <div style="max-width:720px;margin:0 auto;">
       <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;margin-bottom:8px;">Palestrantes</div>
       <div style="text-align:center;font-size:13px;color:#DDC9A8;margin-bottom:44px;">Line-up completo em breve</div>
@@ -176,7 +176,7 @@
   </sc-if>
 
   <!-- CAMISAS -->
-  <div style="background:#1C1712;padding:80px 24px;">
+  <div ref="{{ shirtsRef }}" style="{{ shirtsStyle }}">
     <div style="max-width:720px;margin:0 auto;">
       <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;margin-bottom:8px;">Camisas</div>
       <div style="text-align:center;font-size:13px;color:#DDC9A8;margin-bottom:44px;">Incluída no 1º lote ou avulsa por R$80</div>
@@ -202,7 +202,7 @@
   </div>
 
   <!-- LOCAL -->
-  <div style="background:#F4EAD8;color:#1C1712;padding:80px 24px;">
+  <div ref="{{ localRef }}" style="{{ localStyle }}">
     <div style="max-width:640px;margin:0 auto;">
       <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;margin-bottom:32px;">Local</div>
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.470525932702!2d-46.915769999999995!3d-23.153021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf21b930a4c8cd%3A0x782c0649460f794!2sVerbo%20da%20Vida%20Jundia%C3%AD!5e0!3m2!1spt-BR!2sbr!4v1787015060622!5m2!1spt-BR!2sbr" width="100%" height="260" style="border:0;display:block;margin-bottom:20px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
@@ -212,7 +212,7 @@
   </div>
 
   <!-- FAQ -->
-  <div style="background:#DDC9A8;color:#1C1712;padding:80px 24px;">
+  <div ref="{{ faqRef }}" style="{{ faqStyle }}">
     <div style="max-width:640px;margin:0 auto;">
       <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;margin-bottom:44px;">Perguntas Frequentes</div>
       <div style="display:flex;flex-direction:column;gap:1px;">
@@ -232,7 +232,7 @@
   </div>
 
   <!-- FINAL CTA -->
-  <div style="background:#BD5533;padding:64px 24px;text-align:center;">
+  <div ref="{{ ctaRef }}" style="{{ ctaStyle }}">
     <div style="max-width:640px;margin:0 auto;">
       <div style="font-family:'Anton',sans-serif;font-size:clamp(38px,9vw,60px);line-height:0.95;letter-spacing:0.5px;text-transform:uppercase;color:#1C1712;margin-bottom:20px;">Não fique<br>de fora.</div>
       <div style="font-family:'Roboto',sans-serif;font-size:16px;line-height:1.6;color:#1C1712;margin-bottom:32px;max-width:420px;margin-left:auto;margin-right:auto;">Três dias de louvor, palavra e presença de Deus. As vagas de cada lote são limitadas.</div>
@@ -251,13 +251,53 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:900},&quot;ctaUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://tiketo.com.br/evento/5912&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.instagram.com/verbodavidajundiai/&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showSpeakers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
-  state = { now: Date.now(), openFaq: 0, activeDay: 0 };
+  state = { now: Date.now(), openFaq: 0, activeDay: 0, revealed: {} };
+  _elMap = {};
+  _elToKey = new Map();
+  _refs = {};
 
   componentDidMount() {
     this._t = setInterval(() => this.setState({ now: Date.now() }), 1000);
+    requestAnimationFrame(() => this._initReveal());
   }
   componentWillUnmount() {
     clearInterval(this._t);
+    if (this._io) this._io.disconnect();
+  }
+
+  refFor(key) {
+    if (!this._refs[key]) {
+      this._refs[key] = (el) => {
+        if (el) { this._elToKey.set(el, key); this._elMap[key] = el; }
+      };
+    }
+    return this._refs[key];
+  }
+
+  _initReveal() {
+    const keys = Object.keys(this._elMap);
+    if (!keys.length) return;
+    if (!('IntersectionObserver' in window)) {
+      this.setState(s => ({ revealed: keys.reduce((acc, k) => { acc[k] = true; return acc; }, { ...s.revealed }) }));
+      return;
+    }
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const key = this._elToKey.get(entry.target);
+          if (key) {
+            this.setState(s => ({ revealed: { ...s.revealed, [key]: true } }));
+            this._io.unobserve(entry.target);
+          }
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    keys.forEach(k => this._io.observe(this._elMap[k]));
+  }
+
+  _revealStyle(key, base) {
+    const shown = !!this.state.revealed[key];
+    return base + 'transition:opacity .8s ease,transform .8s ease;' + (shown ? 'opacity:1;transform:none;' : 'opacity:0;transform:translateY(32px);');
   }
 
   renderVals() {
@@ -335,7 +375,7 @@ class Component extends DCLogic {
       { q: 'Para quem é a conferência?', a: 'O INFLAME é voltado a jovens que querem buscar a Deus com profundidade e sem meio-termo.' },
       { q: 'O ingresso dá direito a quantos dias?', a: 'O ingresso dá acesso às três noites do evento, de 11 a 13 de dezembro.' },
       { q: 'Posso comprar a camisa separada?', a: 'Sim, a camisa está disponível avulsa por R$80, além das opções combinadas com ingresso no 1º lote.' },
-{ q: 'Onde vai acontecer?', a: 'Na Verbo da Vida Jundiaí — Av. Prof. Pedro Clarismundo Fornari, 190, Engordadouro, Jundiaí - SP, 13214-660.' },
+      { q: 'Onde vai acontecer?', a: 'Na Verbo da Vida Jundiaí — Av. Prof. Pedro Clarismundo Fornari, 190, Engordadouro, Jundiaí - SP, 13214-660.' },
       { q: 'Como garanto meu ingresso?', a: 'Pelos links desta página, enquanto durarem as vagas de cada lote.' },
     ];
     const faqs = faqData.map((f, i) => ({
@@ -354,6 +394,22 @@ class Component extends DCLogic {
       showSpeakers: this.props.showSpeakers ?? true,
       ctaHref: this.props.ctaUrl ?? 'https://tiketo.com.br/evento/5912',
       instagramHref: this.props.instagramUrl ?? '#',
+      aboutRef: this.refFor('about'),
+      aboutStyle: this._revealStyle('about', 'background:#F4EAD8;color:#1C1712;padding:80px 24px;'),
+      pricingRef: this.refFor('pricing'),
+      pricingStyle: this._revealStyle('pricing', 'background:#1C1712;padding:80px 24px;'),
+      programRef: this.refFor('program'),
+      programStyle: this._revealStyle('program', 'background:#F4EAD8;color:#1C1712;padding:80px 24px;'),
+      speakersRef: this.refFor('speakers'),
+      speakersStyle: this._revealStyle('speakers', 'background:#1C1712;padding:80px 24px;'),
+      shirtsRef: this.refFor('shirts'),
+      shirtsStyle: this._revealStyle('shirts', 'background:#1C1712;padding:80px 24px;'),
+      localRef: this.refFor('local'),
+      localStyle: this._revealStyle('local', 'background:#F4EAD8;color:#1C1712;padding:80px 24px;'),
+      faqRef: this.refFor('faq'),
+      faqStyle: this._revealStyle('faq', 'background:#DDC9A8;color:#1C1712;padding:80px 24px;'),
+      ctaRef: this.refFor('cta'),
+      ctaStyle: this._revealStyle('cta', 'background:#BD5533;padding:64px 24px;text-align:center;'),
     };
   }
 }
