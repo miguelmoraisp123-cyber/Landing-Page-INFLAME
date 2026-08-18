@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Roboto:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#1C1712; }
+  a { color:#BD5533; }
+  a:hover { color:#DDC9A8; }
+  ::selection { background:#BD5533; color:#F4EAD8; }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="font-family:'Roboto',sans-serif;background:#1C1712;color:#F4EAD8;width:100%;overflow:hidden;">
+
+  <!-- STICKY HEADER -->
+  <div style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:#1C1712;border-bottom:1px solid #33291F;">
+    <img src="assets/fogo-icon.png" alt="INFLAME" style="height:32px;width:auto;display:block;">
+    <a href="{{ ctaHref }}" target="_blank" rel="noopener" style="font-family:'Roboto',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.5px;text-transform:uppercase;background:#BD5533;color:#F4EAD8;padding:10px 18px;border-radius:2px;text-decoration:none;">Ingresso</a>
+  </div>
+
+  <!-- HERO -->
+  <div style="position: relative; padding: 72px 24px 64px; text-align: center; overflow: hidden; min-height: 520px">
+    <div style="position: absolute; inset: 0; z-index: 0; background-image: url('assets/textura-riscos.png'); background-size: cover; background-position: center; opacity: 0.05"></div>
+    <div style="position: absolute; inset: 0; z-index: 1; background: radial-gradient(ellipse at 50% 20%, rgba(189,85,51,0.25), rgba(28,23,18,0.9) 70%); pointer-events: none; opacity: 0.88"></div>
+    <div style="position:relative;z-index:2;max-width:720px;margin:0 auto;">
+      <div style="font-size:13px;font-weight:700;letter-spacing:3px;color:#DDC9A8;text-transform:uppercase;margin-bottom:24px;">11 – 13 de Dezembro · 2026</div>
+      <img src="assets/logo-inflame.png" alt="INFLAME Conferência" style="width:100%;max-width:520px;height:auto;margin-bottom:28px;">
+      <div style="width:36px;height:2px;background:#BD5533;margin:0 auto 28px;"></div>
+      <div style="font-size:15px;font-weight:700;letter-spacing:2px;color:#F4EAD8;text-transform:uppercase;line-height:1.8;margin-bottom:8px;">Ele vê. Ele ouve. Ele responde.</div>
+      <div style="font-size:12px;letter-spacing:2px;color:#DDC9A8;text-transform:uppercase;margin-bottom:40px;">Mateus 6:6</div>
+
+      <a href="{{ ctaHref }}" target="_blank" rel="noopener" style="display:inline-block;font-family:'Roboto',sans-serif;font-weight:700;font-size:15px;letter-spacing:0.5px;text-transform:uppercase;background:#BD5533;color:#F4EAD8;padding:18px 40px;border-radius:2px;text-decoration:none;margin-bottom:48px;">Garantir meu ingresso</a>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:420px;margin:0 auto;">
+        <sc-for list="{{ countdownItems }}" as="item" hint-placeholder-count="4">
+          <div style="background:#DDC9A8;border-radius:2px;padding:14px 4px;">
+            <div style="font-family:'Anton',sans-serif;font-size:clamp(22px,6vw,32px);color:#1C1712;line-height:1;">{{ item.value }}</div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#1C1712;text-transform:uppercase;margin-top:6px;">{{ item.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT / CONCEPT -->
+  <div style="background:#F4EAD8;color:#1C1712;padding:80px 24px;">
+    <div style="max-width:640px;margin:0 auto;text-align:center;">
+      <div style="width:24px;height:24px;margin:0 auto 24px;position:relative;">
+        <div style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:4px;height:24px;background:#BD5533;"></div>
+        <div style="position:absolute;top:50%;left:0;transform:translateY(-50%);width:24px;height:4px;background:#BD5533;"></div>
+      </div>
+      <div style="font-family:'Anton',sans-serif;font-size:clamp(30px,6vw,44px);letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;">O Lugar Secreto</div>
+      <p style="font-size:17px;line-height:1.75;margin:0 0 20px;">INFLAME é uma conferência para jovens construída sobre uma promessa: buscar a Deus em segredo para ser respondido em público.</p>
+      <p style="font-size:17px;line-height:1.75;margin:0;color:#1C1712;">Uma mensagem de consagração e entrega, individual e coletiva, na presença de Deus — buscando esse lugar secreto de intimidade com Ele.</p>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div style="background:#1C1712;padding:80px 24px;">
+    <div style="max-width:720px;margin:0 auto;">
+      <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;margin-bottom:12px;">Ingressos</div>
+      <div style="text-align:center;font-size:14px;color:#DDC9A8;margin-bottom:48px;">Vagas limitadas por lote</div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:20px;">
+        <div style="background:#DDC9A8;border-radius:2px;padding:28px 20px;color:#1C1712;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#BD5533;margin-bottom:10px;">Pré-venda · Pioneiros</div>
+          <div style="font-family:'Anton',sans-serif;font-size:36px;margin-bottom:6px;">R$100</div>
+          <div style="font-size:13px;line-height:1.5;">Ingresso + kit pioneiro</div>
+          <div style="font-size:12px;color:#5b4d3d;margin-top:8px;">50 vagas</div>
+        </div>
+        <div style="background:#DDC9A8;border-radius:2px;padding:28px 20px;color:#1C1712;border:2px solid #BD5533;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#BD5533;margin-bottom:10px;">1º Lote</div>
+          <div style="font-family:'Anton',sans-serif;font-size:36px;margin-bottom:6px;">R$140</div>
+          <div style="font-size:13px;line-height:1.5;">Ingresso + camisa</div>
+          <div style="font-size:12px;color:#5b4d3d;margin-top:8px;">70 vagas</div>
+        </div>
+        <div style="background:#DDC9A8;border-radius:2px;padding:28px 20px;color:#1C1712;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#BD5533;margin-bottom:10px;">2º Lote</div>
+          <div style="font-family:'Anton',sans-serif;font-size:36px;margin-bottom:6px;">R$120</div>
+          <div style="font-size:13px;line-height:1.5;">Ingresso</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:14px;color:#DDC9A8;margin-bottom:32px;">Camisa avulsa: <span style="color:#F4EAD8;font-weight:700;">R$80</span></div>
+      <div style="text-align:center;">
+        <a href="{{ ctaHref }}" target="_blank" rel="noopener" style="display:inline-block;font-family:'Roboto',sans-serif;font-weight:700;font-size:15px;letter-spacing:0.5px;text-transform:uppercase;background:#BD5533;color:#F4EAD8;padding:18px 40px;border-radius:2px;text-decoration:none;">Garantir meu ingresso</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRAMAÇÃO -->
+  <div style="background:#F4EAD8;color:#1C1712;padding:80px 24px;">
+    <div style="max-width:640px;margin:0 auto;">
+      <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Programação</div>
+      <div style="text-align:center;font-size:13px;color:#5b4d3d;margin-bottom:40px;">Horários sujeitos a confirmação</div>
+
+      <div style="display:flex;gap:8px;justify-content:center;margin-bottom:32px;flex-wrap:wrap;">
+        <sc-for list="{{ dayTabs }}" as="day" hint-placeholder-count="3">
+          <button onClick="{{ day.onClick }}" style="{{ day.tabStyle }}">
+            <div style="font-family:'Anton',sans-serif;font-size:18px;">{{ day.label }}</div>
+            <div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;">{{ day.sub }}</div>
+          </button>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1px;background:#c9b696;">
+        <sc-for list="{{ activeItems }}" as="slot" hint-placeholder-count="4">
+          <div style="display:flex;gap:20px;background:#F4EAD8;padding:18px 16px;align-items:baseline;">
+            <div style="font-family:'Anton',sans-serif;font-size:16px;color:#BD5533;min-width:56px;">{{ slot.time }}</div>
+            <div style="font-size:15px;">{{ slot.title }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- PALESTRANTES -->
+  <sc-if value="{{ showSpeakers }}" hint-placeholder-val="{{ true }}">
+  <div style="background:#1C1712;padding:80px 24px;">
+    <div style="max-width:720px;margin:0 auto;">
+      <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;margin-bottom:8px;">Palestrantes</div>
+      <div style="text-align:center;font-size:13px;color:#DDC9A8;margin-bottom:44px;">Line-up completo em breve</div>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+
+        <div style="display:flex;background:#241D16;border-radius:2px;overflow:hidden;">
+          <div style="position:relative;width:38%;min-width:160px;flex-shrink:0;align-self:stretch;">
+            <img src="assets/elias-pessoa.jpg" alt="Elias Pessoa" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;">
+            <div style="position:absolute;top:12px;left:12px;background:rgba(28,23,18,0.85);color:#F4EAD8;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;">Ministro</div>
+          </div>
+          <div style="min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px;">
+            <div style="font-family:'Anton',sans-serif;font-size:30px;letter-spacing:0.5px;color:#F4EAD8;text-transform:uppercase;line-height:1.05;margin-bottom:6px;">Elias Pessoa</div>
+            <div style="font-size:13px;color:#BD5533;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Pastor da Igreja Verbo da Vida Jundiaí</div>
+            <a href="https://www.instagram.com/eliasepessoa" style="font-size:13px;color:#DDC9A8;text-decoration:none;display:inline-block;margin-bottom:16px;">@eliasepessoa</a>
+            <div style="border-top:1px solid #3a2f24;padding-top:16px;">
+              <p style="font-size:14px;line-height:1.7;color:#c9bda9;margin:0;">Coordena a Igreja Verbo da Vida Jundiaí como pastor, ao lado de seu pai, Sérgio Pessoa, pastor presidente. Idealizador do projeto INFLAME, iniciado há muitos anos e que já reuniu mais de 200 jovens em conferências passadas. Casado com Amanda Cristina, é professor no Centro de Treinamento Bíblico Rhema e ministro, filho de Deus de caráter firmado.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;background:#241D16;border-radius:2px;overflow:hidden;">
+          <div style="position:relative;width:38%;min-width:160px;flex-shrink:0;align-self:stretch;">
+            <img src="assets/isaac-guimaraes.jpg" alt="Isaac Guimarães" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;">
+            <div style="position:absolute;top:12px;left:12px;background:rgba(28,23,18,0.85);color:#F4EAD8;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;">Ministro</div>
+          </div>
+          <div style="min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px;">
+            <div style="font-family:'Anton',sans-serif;font-size:30px;letter-spacing:0.5px;color:#F4EAD8;text-transform:uppercase;line-height:1.05;margin-bottom:6px;">Isaac Guimarães</div>
+            <div style="font-size:13px;color:#BD5533;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Líder da supervisão de jovens e adolescentes do Ministério Verbo da Vida</div>
+            <a href="https://www.instagram.com/isaacguimaraes" style="font-size:13px;color:#DDC9A8;text-decoration:none;display:inline-block;margin-bottom:16px;">@isaacguimaraes</a>
+            <div style="border-top:1px solid #3a2f24;padding-top:16px;">
+              <p style="font-size:14px;line-height:1.7;color:#c9bda9;margin:0;">Isaac tem hoje sua vida dedicada ao ministério, espalhando o evangelho por vários países e povos — vindo diretamente de Campina Grande, PB, para pregar a Palavra de Deus ao mundo. Cresce e aviva jovens a cada dia por meio do projeto evangelístico "Avanço", levado não apenas para fora do país, mas para todos os lugares.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;background:#241D16;border-radius:2px;overflow:hidden;">
+          <div style="position:relative;width:38%;min-width:160px;flex-shrink:0;align-self:stretch;background:repeating-linear-gradient(45deg, #BD5533, #BD5533 10px, #1C1712 10px, #1C1712 20px);"></div>
+          <div style="min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px;">
+            <div style="font-family:'Anton',sans-serif;font-size:30px;letter-spacing:0.5px;color:#8a8074;text-transform:uppercase;line-height:1.05;margin-bottom:16px;">A anunciar</div>
+            <div style="border-top:1px solid #3a2f24;padding-top:16px;">
+              <p style="font-size:14px;line-height:1.7;color:#c9bda9;margin:0;">O terceiro ministro será revelado em breve nas redes do evento.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- CAMISAS -->
+  <div style="background:#1C1712;padding:80px 24px;">
+    <div style="max-width:720px;margin:0 auto;">
+      <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;margin-bottom:8px;">Camisas</div>
+      <div style="text-align:center;font-size:13px;color:#DDC9A8;margin-bottom:44px;">Incluída no 1º lote ou avulsa por R$80</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
+        <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#F4EAD8;">
+          <img src="assets/camisa-branca-frente.png" alt="Camisa branca, frente" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;left:16px;bottom:16px;font-family:'Anton',sans-serif;font-size:16px;letter-spacing:0.5px;color:#1C1712;text-transform:uppercase;">Branca — Frente</div>
+        </div>
+        <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#F4EAD8;">
+          <img src="assets/camisa-branca-costas.png" alt="Camisa branca, costas" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;left:16px;bottom:16px;font-family:'Anton',sans-serif;font-size:16px;letter-spacing:0.5px;color:#1C1712;text-transform:uppercase;">Branca — Costas</div>
+        </div>
+        <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#1C1712;">
+          <img src="assets/camisa-preta-frente.png" alt="Camisa preta, frente" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;left:16px;bottom:16px;font-family:'Anton',sans-serif;font-size:16px;letter-spacing:0.5px;color:#F4EAD8;text-transform:uppercase;">Preta — Frente</div>
+        </div>
+        <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#1C1712;">
+          <img src="assets/camisa-preta-costas.png" alt="Camisa preta, costas" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;left:16px;bottom:16px;font-family:'Anton',sans-serif;font-size:16px;letter-spacing:0.5px;color:#F4EAD8;text-transform:uppercase;">Preta — Costas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOCAL -->
+  <div style="background:#F4EAD8;color:#1C1712;padding:80px 24px;">
+    <div style="max-width:640px;margin:0 auto;">
+      <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;margin-bottom:32px;">Local</div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.470525932702!2d-46.915769999999995!3d-23.153021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf21b930a4c8cd%3A0x782c0649460f794!2sVerbo%20da%20Vida%20Jundia%C3%AD!5e0!3m2!1spt-BR!2sbr!4v1787015060622!5m2!1spt-BR!2sbr" width="100%" height="260" style="border:0;display:block;margin-bottom:20px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <div style="text-align:center;font-size:16px;font-weight:700;">Verbo da Vida Jundiaí</div>
+      <div style="text-align:center;font-size:14px;color:#5b4d3d;margin-top:6px;">Av. Prof. Pedro Clarismundo Fornari, 190 — Engordadouro, Jundiaí - SP, 13214-660</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div style="background:#DDC9A8;color:#1C1712;padding:80px 24px;">
+    <div style="max-width:640px;margin:0 auto;">
+      <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;margin-bottom:44px;">Perguntas Frequentes</div>
+      <div style="display:flex;flex-direction:column;gap:1px;">
+        <sc-for list="{{ faqs }}" as="faq" hint-placeholder-count="5">
+          <div style="background:#DDC9A8;border-bottom:1px solid #c9b696;">
+            <button onClick="{{ faq.onClick }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:none;padding:20px 4px;text-align:left;cursor:pointer;font-family:'Roboto',sans-serif;">
+              <span style="font-size:15px;font-weight:700;color:#1C1712;">{{ faq.q }}</span>
+              <span style="font-family:'Anton',sans-serif;font-size:20px;color:#BD5533;">{{ faq.marker }}</span>
+            </button>
+            <sc-if value="{{ faq.isOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:0 4px 20px;font-size:14px;line-height:1.6;color:#3a2f24;">{{ faq.a }}</div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL CTA -->
+  <div style="background:#BD5533;padding:64px 24px;text-align:center;">
+    <div style="max-width:640px;margin:0 auto;">
+      <div style="font-family:'Anton',sans-serif;font-size:clamp(38px,9vw,60px);line-height:0.95;letter-spacing:0.5px;text-transform:uppercase;color:#1C1712;margin-bottom:20px;">Não fique<br>de fora.</div>
+      <div style="font-family:'Roboto',sans-serif;font-size:16px;line-height:1.6;color:#1C1712;margin-bottom:32px;max-width:420px;margin-left:auto;margin-right:auto;">Três dias de louvor, palavra e presença de Deus. As vagas de cada lote são limitadas.</div>
+      <a href="{{ ctaHref }}" target="_blank" rel="noopener" style="display:inline-block;font-family:'Roboto',sans-serif;font-weight:700;font-size:16px;letter-spacing:0.3px;text-transform:uppercase;background:#1C1712;color:#F4EAD8;padding:20px 36px;text-decoration:none;">Garantir meu ingresso</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="background:#1C1712;padding:48px 24px 32px;text-align:center;">
+    <img src="assets/fogo-icon.png" alt="INFLAME" style="width:64px;height:auto;margin:0 auto 16px;display:block;">
+    <a href="{{ instagramHref }}" style="font-size:13px;color:#DDC9A8;text-decoration:none;letter-spacing:0.5px;">Instagram</a>
+    <div style="font-size:11px;color:#5b4d3d;margin-top:28px;">Identidade visual · @miguelpessoa.ai</div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:900},&quot;ctaUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.instagram.com/verbodavidajundiai/&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showSpeakers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { now: Date.now(), openFaq: 0, activeDay: 0 };
+
+  componentDidMount() {
+    this._t = setInterval(() => this.setState({ now: Date.now() }), 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this._t);
+  }
+
+  renderVals() {
+    const target = new Date('2026-12-11T18:00:00-03:00').getTime();
+    const diff = Math.max(0, target - this.state.now);
+    const pad = n => String(n).padStart(2, '0');
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+
+    const countdownItems = [
+      { value: pad(days), label: 'Dias' },
+      { value: pad(hours), label: 'Horas' },
+      { value: pad(mins), label: 'Min' },
+      { value: pad(secs), label: 'Seg' },
+    ];
+
+    const scheduleByDay = [
+      [
+        { time: '19h30', title: 'Secret place' },
+        { time: '20h00', title: 'Inflame worship' },
+        { time: '20h30', title: 'Ministração (ministro a confirmar)' },
+        { time: '21h00', title: 'News' },
+        { time: '21h05', title: 'Break' },
+        { time: '21h35', title: 'Inflame Worship' },
+        { time: '21h40', title: 'Ministração (Isaac Guimarães)' },
+        { time: '22h30', title: 'Encerramento' },
+      ],
+      [
+        { time: '14h00', title: 'Sessão — Pioneiros' },
+        { time: '15h30', title: 'Break — Pioneiros' },
+        { time: '16h30', title: 'Sessão — Evangelismo (Isaac Guimarães)' },
+        { time: '17h30', title: 'Sessão — Sobrenatural (Bea)' },
+        { time: '18h00', title: 'Break' },
+        { time: '19h30', title: 'Lugar secreto' },
+        { time: '20h00', title: 'Inflame worship' },
+        { time: '20h30', title: 'Ministração (Isaac Guimarães)' },
+        { time: '21h00', title: 'News' },
+        { time: '21h05', title: 'Break' },
+        { time: '21h35', title: 'Inflame Worship' },
+        { time: '21h40', title: 'Ministração (Pr Elias Pessoa)' },
+        { time: '22h30', title: 'Encerramento' },
+      ],
+      [
+        { time: '09h30', title: 'Lugar secreto' },
+        { time: '10h00', title: 'Worship time' },
+        { time: '10h20', title: 'Avisos + ofertas' },
+        { time: '10h30', title: 'Worship' },
+        { time: '10h35', title: 'Ministração (Pr Elias Pessoa)' },
+        { time: '11h10', title: 'Worship' },
+        { time: '11h15', title: 'Ministração (Isaac Guimarães)' },
+        { time: '12h00', title: 'Encerramento' },
+      ],
+    ];
+
+    const dayLabels = [
+      { label: 'SEX', sub: 'Noite' },
+      { label: 'SÁB', sub: 'Dia e noite' },
+      { label: 'DOM', sub: 'Manhã' },
+    ];
+
+    const activeDay = this.state.activeDay;
+    const baseTab = 'font-family:Roboto,sans-serif;padding:12px 20px;border-radius:2px;border:none;cursor:pointer;text-align:center;';
+    const dayTabs = dayLabels.map((d, i) => ({
+      label: d.label,
+      sub: d.sub,
+      onClick: () => this.setState({ activeDay: i }),
+      tabStyle: baseTab + (i === activeDay
+        ? 'background:#1C1712;color:#F4EAD8;'
+        : 'background:transparent;color:#1C1712;border:1px solid #1C1712;'),
+    }));
+
+    const faqData = [
+      { q: 'Para quem é a conferência?', a: 'O INFLAME é voltado a jovens que querem buscar a Deus com profundidade e sem meio-termo.' },
+      { q: 'O ingresso dá direito a quantos dias?', a: 'O ingresso dá acesso às três noites do evento, de 11 a 13 de dezembro.' },
+      { q: 'Posso comprar a camisa separada?', a: 'Sim, a camisa está disponível avulsa por R$80, além das opções combinadas com ingresso no 1º lote.' },
+{ q: 'Onde vai acontecer?', a: 'Na Verbo da Vida Jundiaí — Av. Prof. Pedro Clarismundo Fornari, 190, Engordadouro, Jundiaí - SP, 13214-660.' },
+      { q: 'Como garanto meu ingresso?', a: 'Pelos links desta página, enquanto durarem as vagas de cada lote.' },
+    ];
+    const faqs = faqData.map((f, i) => ({
+      q: f.q,
+      a: f.a,
+      isOpen: this.state.openFaq === i,
+      marker: this.state.openFaq === i ? '–' : '+',
+      onClick: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i })),
+    }));
+
+    return {
+      countdownItems,
+      dayTabs,
+      activeItems: scheduleByDay[activeDay],
+      faqs,
+      showSpeakers: this.props.showSpeakers ?? true,
+      ctaHref: this.props.ctaUrl ?? 'https://tiketo.com.br/evento/5912',
+      instagramHref: this.props.instagramUrl ?? '#',
+    };
+  }
+}
+</script>
+</body>
+</html>
