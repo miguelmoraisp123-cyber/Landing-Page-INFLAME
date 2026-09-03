@@ -9,10 +9,10 @@
 <meta property="og:site_name" content="INFLAME 2026">
 <meta property="og:title" content="INFLAME 2026">
 <meta property="og:description" content="11 a 13 de dezembro de 2026. Verbo da Vida Jundiaí.">
+<meta property="og:url" content="https://miguelmoraisp123-cyber.github.io/Landing-Page-INFLAME/">
 <meta property="og:image" content="https://miguelmoraisp123-cyber.github.io/Landing-Page-INFLAME/assets/og-inflame.png">
 <meta property="og:image:secure_url" content="https://miguelmoraisp123-cyber.github.io/Landing-Page-INFLAME/assets/og-inflame.png">
 <meta property="og:image:type" content="image/png">
-<meta property="og:url" content="https://miguelmoraisp123-cyber.github.io/Landing-Page-INFLAME/">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="pt_BR">
@@ -32,17 +32,14 @@
 <meta property="og:site_name" content="INFLAME 2026">
 <meta property="og:title" content="INFLAME 2026">
 <meta property="og:description" content="11 a 13 de dezembro de 2026. Verbo da Vida Jundiaí.">
-<meta property="og:image" content="https://miguelmoraisp123-cyber.github.io/Landing-Page-INFLAME/assets/og-inflame.png">
-<meta property="og:image:secure_url" content="https://miguelmoraisp123-cyber.github.io/Landing-Page-INFLAME/assets/og-inflame.png">
-<meta property="og:image:type" content="image/png">
-<meta property="og:url" content="https://miguelmoraisp123-cyber.github.io/Landing-Page-INFLAME/">
+<meta property="og:image" content="assets/og-inflame.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="INFLAME 2026">
 <meta name="twitter:description" content="11 a 13 de dezembro de 2026. Verbo da Vida Jundiaí.">
-<meta name="twitter:image" content="https://miguelmoraisp123-cyber.github.io/Landing-Page-INFLAME/assets/og-inflame.png">
+<meta name="twitter:image" content="assets/og-inflame.png">
 <link rel="icon" href="assets/web/fogo-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Roboto:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
@@ -54,6 +51,15 @@
   html { scroll-behavior:smooth; }
   [id] { scroll-margin-top:80px; }
   @media (max-width:820px) { .inflame-nav { display:none; } }
+  @media (max-width:680px) {
+    .spk { flex-direction:column; }
+    .spk-media { width:100%; min-width:0; aspect-ratio:4/3; }
+    .spk-body { padding:22px 20px; }
+    .shirt-grid { grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:420px) {
+    .nowrap-price { white-space:normal; }
+  }
 </style>
 <script src="./image-slot.js"></script>
 </helmet>
@@ -139,7 +145,7 @@
               <div style="font-family:'Anton',sans-serif;font-size:36px;">R$140</div>
               <div style="font-size:13px;color:rgba(221,201,168,0.6);text-decoration:line-through;">R$200</div>
             </div>
-            <div style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1C1712;background:#DDC9A8;padding:5px 10px;border-radius:999px;margin-bottom:12px;">Camisa inclusa · economize R$60</div>
+            <div style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1C1712;background:#DDC9A8;padding:5px 10px;border-radius:999px;margin-bottom:12px;">Camisa inclusa · economize R$80</div>
             <div style="font-size:13px;line-height:1.6;color:#DDC9A8;padding-top:12px;border-top:1px solid rgba(189,85,51,0.35);text-wrap:pretty;">A camisa oficial do INFLAME já vem inclusa no valor do ingresso. Você garante entrada nos três dias de conferência e recebe a camisa na retirada da credencial.</div>
             <div style="font-size:12px;color:rgba(221,201,168,0.65);margin-top:12px;">70 vagas</div>
           </div>
@@ -154,7 +160,7 @@
           </div>
         </div>
         <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;margin-bottom:32px;">
-          <div style="font-size:14px;color:#DDC9A8;white-space:nowrap;">Camisa avulsa: <span style="color:#F4EAD8;font-weight:700;">R$80</span></div>
+          <div class="nowrap-price" style="font-size:14px;color:#DDC9A8;white-space:nowrap;">Camisa avulsa: <span style="color:#F4EAD8;font-weight:700;">R$80</span></div>
           <a href="{{ ctaHref }}" target="_blank" rel="noopener" style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;text-decoration:none;border:1px solid rgba(244,234,216,0.35);padding:9px 16px;border-radius:999px;transition:background .3s,border-color .3s;" style-hover="background:rgba(244,234,216,0.12);border-color:#BD5533;">Comprar camisa</a>
         </div>
         <div style="text-align:center;">
@@ -198,12 +204,12 @@
       <div style="text-align:center;font-size:13px;color:#DDC9A8;margin-bottom:44px;">Line-up completo em breve</div>
       <div style="display:flex;flex-direction:column;gap:20px;">
 
-        <div style="display:flex;background:#241D16;border-radius:2px;overflow:hidden;">
-          <div style="position:relative;width:38%;min-width:160px;flex-shrink:0;align-self:stretch;">
+        <div class="spk" style="display:flex;background:#241D16;border-radius:2px;overflow:hidden;">
+          <div class="spk-media" style="position:relative;width:38%;min-width:160px;flex-shrink:0;align-self:stretch;">
             <img src="assets/elias-pessoa.jpg" alt="Elias Pessoa" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;">
             <div style="position:absolute;top:12px;left:12px;background:rgba(28,23,18,0.85);color:#F4EAD8;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;">Ministro</div>
           </div>
-          <div style="min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px;">
+          <div class="spk-body" style="min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px;">
             <div style="font-family:'Anton',sans-serif;font-size:30px;letter-spacing:0.5px;color:#F4EAD8;text-transform:uppercase;line-height:1.05;margin-bottom:6px;">Elias Pessoa</div>
             <div style="font-size:13px;color:#BD5533;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Pastor da Igreja Verbo da Vida Jundiaí</div>
             <a href="https://www.instagram.com/eliasepessoa" style="font-size:13px;color:#DDC9A8;text-decoration:none;display:inline-block;margin-bottom:16px;">@eliasepessoa</a>
@@ -213,12 +219,12 @@
           </div>
         </div>
 
-        <div style="display:flex;background:#241D16;border-radius:2px;overflow:hidden;">
-          <div style="position:relative;width:38%;min-width:160px;flex-shrink:0;align-self:stretch;">
+        <div class="spk" style="display:flex;background:#241D16;border-radius:2px;overflow:hidden;">
+          <div class="spk-media" style="position:relative;width:38%;min-width:160px;flex-shrink:0;align-self:stretch;">
             <img src="assets/isaac-guimaraes.jpg" alt="Isaac Guimarães" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;">
             <div style="position:absolute;top:12px;left:12px;background:rgba(28,23,18,0.85);color:#F4EAD8;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;">Ministro</div>
           </div>
-          <div style="min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px;">
+          <div class="spk-body" style="min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px;">
             <div style="font-family:'Anton',sans-serif;font-size:30px;letter-spacing:0.5px;color:#F4EAD8;text-transform:uppercase;line-height:1.05;margin-bottom:6px;">Isaac Guimarães</div>
             <div style="font-size:13px;color:#BD5533;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Líder da supervisão de jovens e adolescentes do Ministério Verbo da Vida</div>
             <a href="https://www.instagram.com/isaacguimaraes" style="font-size:13px;color:#DDC9A8;text-decoration:none;display:inline-block;margin-bottom:16px;">@isaacguimaraes</a>
@@ -228,9 +234,9 @@
           </div>
         </div>
 
-        <div style="display:flex;background:#241D16;border-radius:2px;overflow:hidden;">
-          <div style="position:relative;width:38%;min-width:160px;flex-shrink:0;align-self:stretch;background:repeating-linear-gradient(45deg, #BD5533, #BD5533 10px, #1C1712 10px, #1C1712 20px);"></div>
-          <div style="min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px;">
+        <div class="spk" style="display:flex;background:#241D16;border-radius:2px;overflow:hidden;">
+          <div class="spk-media" style="position:relative;width:38%;min-width:160px;flex-shrink:0;align-self:stretch;background:repeating-linear-gradient(45deg, #BD5533, #BD5533 10px, #1C1712 10px, #1C1712 20px);"></div>
+          <div class="spk-body" style="min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px;">
             <div style="font-family:'Anton',sans-serif;font-size:30px;letter-spacing:0.5px;color:#8a8074;text-transform:uppercase;line-height:1.05;margin-bottom:16px;">A anunciar</div>
             <div style="border-top:1px solid #3a2f24;padding-top:16px;">
               <p style="font-size:14px;line-height:1.7;color:#c9bda9;margin:0;">O terceiro ministro será revelado em breve nas redes do evento.</p>
@@ -264,7 +270,7 @@
 
       <div style="margin-top:48px;">
         <div style="text-align:center;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(221,201,168,0.6);margin-bottom:20px;">Frente e costas</div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;">
+        <div class="shirt-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
           <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#1C1712;">
             <img src="assets/web/camisa-preta-frente.jpg" alt="Camisa preta, frente" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.3,1);" style-hover="transform:scale(1.05);">
             <div style="position:absolute;left:12px;bottom:12px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;pointer-events:none;">Preta · Frente</div>
