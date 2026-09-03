@@ -24,6 +24,7 @@
 <script src="./support.js"></script>
 </head>
 <body>
+
 <x-dc>
 <helmet>
 <title>INFLAME 2026</title>
@@ -44,16 +45,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Roboto:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
 <style>
-  body { margin:0; background:#1C1712; }
+  html, body { margin:0; background:#1C1712; max-width:100%; overflow-x:hidden; }
+  img, video, iframe { max-width:100%; }
   a { color:#BD5533; }
   a:hover { color:#DDC9A8; }
   ::selection { background:#BD5533; color:#F4EAD8; }
   html { scroll-behavior:smooth; }
   [id] { scroll-margin-top:80px; }
-  @media (max-width:820px) { .inflame-nav { display:none; } }
+  @media (max-width:900px) { .inflame-nav { display:none !important; } }
   @media (max-width:680px) {
     .spk { flex-direction:column; }
-    .spk-media { width:100%; min-width:0; aspect-ratio:4/3; }
+    .spk-media { width:100%; min-width:0; aspect-ratio:1/1; }
     .spk-body { padding:22px 20px; }
     .shirt-grid { grid-template-columns:1fr 1fr; }
   }
@@ -67,7 +69,7 @@
 <div style="font-family:'Roboto',sans-serif;background:#1C1712;color:#F4EAD8;width:100%;overflow:hidden;">
 
   <!-- STICKY HEADER -->
-  <div style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:#1C1712;border-bottom:1px solid #33291F;">
+  <div style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 24px;background:#1C1712;border-bottom:1px solid #33291F;">
     <img src="assets/web/fogo-icon.png" alt="INFLAME" style="height:32px;width:auto;display:block;">
     <nav class="inflame-nav" style="display:flex;align-items:center;gap:24px;">
       <a href="#ingressos" style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#DDC9A8;text-decoration:none;transition:color .25s;" style-hover="color:#F4EAD8;">Ingressos</a>
@@ -206,7 +208,7 @@
 
         <div class="spk" style="display:flex;background:#241D16;border-radius:2px;overflow:hidden;">
           <div class="spk-media" style="position:relative;width:38%;min-width:160px;flex-shrink:0;align-self:stretch;">
-            <img src="assets/elias-pessoa.jpg" alt="Elias Pessoa" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;">
+            <img src="assets/elias-pessoa.jpg" alt="Elias Pessoa" style="width:100%;height:100%;object-fit:cover;object-position:56% 18%;display:block;position:absolute;inset:0;">
             <div style="position:absolute;top:12px;left:12px;background:rgba(28,23,18,0.85);color:#F4EAD8;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;">Ministro</div>
           </div>
           <div class="spk-body" style="min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px;">
@@ -221,7 +223,7 @@
 
         <div class="spk" style="display:flex;background:#241D16;border-radius:2px;overflow:hidden;">
           <div class="spk-media" style="position:relative;width:38%;min-width:160px;flex-shrink:0;align-self:stretch;">
-            <img src="assets/isaac-guimaraes.jpg" alt="Isaac Guimarães" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;">
+            <img src="assets/isaac-guimaraes.jpg" alt="Isaac Guimarães" style="width:100%;height:100%;object-fit:cover;object-position:56% 14%;display:block;position:absolute;inset:0;">
             <div style="position:absolute;top:12px;left:12px;background:rgba(28,23,18,0.85);color:#F4EAD8;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;">Ministro</div>
           </div>
           <div class="spk-body" style="min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px;">
