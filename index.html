@@ -63,6 +63,15 @@
   @media (max-width:420px) {
     .nowrap-price { white-space:normal; }
   }
+  .tk-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; }
+  .tk-card { grid-column:span 2; }
+  .tk-c4 { grid-column:2 / span 2; }
+  .tk-grid > .tk-card:last-child { grid-column:4 / span 2; }
+  @media (max-width:760px) {
+    .tk-grid { grid-template-columns:repeat(2,1fr); }
+    .tk-card, .tk-c4, .tk-grid > .tk-card:last-child { grid-column:auto; }
+  }
+  @media (max-width:480px) { .tk-grid { grid-template-columns:1fr; } }
 </style>
 <script src="./image-slot.js"></script>
 </helmet>
@@ -128,43 +137,56 @@
         <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;margin-bottom:12px;">Ingressos</div>
         <div style="text-align:center;font-size:14px;color:#DDC9A8;margin-bottom:40px;">Vagas limitadas por lote</div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px;">
-          <div style="background:rgba(244,234,216,0.07);backdropFilter:blur(14px);WebkitBackdropFilter:blur(14px);border:1px solid rgba(244,234,216,0.16);border-radius:18px;padding:28px 22px;color:#F4EAD8;transition:transform 0.35s cubic-bezier(.2,.7,.3,1), background 0.35s, border-color 0.35s, box-shadow 0.35s;willChange:transform;" style-hover="transform:scale(1.045);background:rgba(244,234,216,0.12);border-color:rgba(189,85,51,0.55);boxShadow:0 18px 40px rgba(0,0,0,0.4);">
+        <div class="tk-grid" style="margin-bottom:24px;">
+          <div class="tk-card" style="box-sizing:border-box;background:rgba(244,234,216,0.07);backdropFilter:blur(14px);WebkitBackdropFilter:blur(14px);border:1px solid rgba(244,234,216,0.16);border-radius:18px;padding:28px 22px;color:#F4EAD8;transition:transform 0.35s cubic-bezier(.2,.7,.3,1), background 0.35s, border-color 0.35s, box-shadow 0.35s;willChange:transform;" style-hover="transform:scale(1.045);background:rgba(244,234,216,0.12);border-color:rgba(189,85,51,0.55);boxShadow:0 18px 40px rgba(0,0,0,0.4);">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;">
-              <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0764F;">Pré-venda · Pioneiros</div>
+              <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0764F;">1º Lote · Pioneiros</div>
               <div style="{{ badge0Style }}">{{ badge0Label }}</div>
             </div>
-            <div style="font-family:'Anton',sans-serif;font-size:36px;margin-bottom:6px;">R$100</div>
-            <div style="font-size:13px;line-height:1.5;color:#DDC9A8;">Ingresso + kit pioneiro</div>
-            <div style="font-size:13px;line-height:1.6;color:#DDC9A8;margin-top:12px;padding-top:12px;border-top:1px solid rgba(244,234,216,0.14);text-wrap:pretty;">50 primeiros que fizerem a inscrição terão um período exclusivo de ministracao específica sobre dons ministeriais e imposição de mãos - First Flame</div>
+            <div style="font-family:'Anton',sans-serif;font-size:36px;margin-bottom:6px;">R$110</div>
+            <div style="font-size:13px;line-height:1.5;color:#DDC9A8;">Até completar 50 inscrições</div>
+            <div style="font-size:13px;line-height:1.6;color:#DDC9A8;margin-top:12px;padding-top:12px;border-top:1px solid rgba(244,234,216,0.14);text-wrap:pretty;">50 primeiros que fizerem a inscrição terão um período exclusivo de ministração específica sobre dons ministeriais e imposição de mãos - First Flame</div>
             <div style="font-size:12px;color:rgba(221,201,168,0.65);margin-top:12px;">50 vagas</div>
           </div>
-          <div style="background:rgba(189,85,51,0.16);backdropFilter:blur(14px);WebkitBackdropFilter:blur(14px);border:1px solid rgba(189,85,51,0.6);border-radius:18px;padding:28px 22px;color:#F4EAD8;transition:transform 0.35s cubic-bezier(.2,.7,.3,1), background 0.35s, border-color 0.35s, box-shadow 0.35s;willChange:transform;" style-hover="transform:scale(1.045);background:rgba(189,85,51,0.26);border-color:#BD5533;boxShadow:0 18px 40px rgba(0,0,0,0.4);">
+          <div class="tk-card" style="box-sizing:border-box;background:rgba(244,234,216,0.07);backdropFilter:blur(14px);WebkitBackdropFilter:blur(14px);border:1px solid rgba(244,234,216,0.16);border-radius:18px;padding:28px 22px;color:#F4EAD8;transition:transform 0.35s cubic-bezier(.2,.7,.3,1), background 0.35s, border-color 0.35s, box-shadow 0.35s;willChange:transform;" style-hover="transform:scale(1.045);background:rgba(244,234,216,0.12);border-color:rgba(189,85,51,0.55);boxShadow:0 18px 40px rgba(0,0,0,0.4);">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;">
-              <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0764F;">1º Lote</div>
+              <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0764F;">1º Lote · Normal</div>
               <div style="{{ badge1Style }}">{{ badge1Label }}</div>
             </div>
-            <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:6px;">
-              <div style="font-family:'Anton',sans-serif;font-size:36px;">R$140</div>
-              <div style="font-size:13px;color:rgba(221,201,168,0.6);text-decoration:line-through;">R$200</div>
-            </div>
-            <div style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1C1712;background:#DDC9A8;padding:5px 10px;border-radius:999px;margin-bottom:12px;">Camisa inclusa · economize R$80</div>
-            <div style="font-size:13px;line-height:1.6;color:#DDC9A8;padding-top:12px;border-top:1px solid rgba(189,85,51,0.35);text-wrap:pretty;">A camisa oficial do INFLAME já vem inclusa no valor do ingresso. Você garante entrada nos três dias de conferência e recebe a camisa na retirada da credencial.</div>
-            <div style="font-size:12px;color:rgba(221,201,168,0.65);margin-top:12px;">70 vagas</div>
+            <div style="font-family:'Anton',sans-serif;font-size:36px;margin-bottom:6px;">R$110</div>
+            <div style="font-size:13px;line-height:1.5;color:#DDC9A8;">01/10 a 15/11</div>
+            <div style="font-size:13px;line-height:1.6;color:#DDC9A8;margin-top:12px;padding-top:12px;border-top:1px solid rgba(244,234,216,0.14);text-wrap:pretty;">Acesso aos três dias de conferência.</div>
           </div>
-          <div style="background:rgba(244,234,216,0.07);backdropFilter:blur(14px);WebkitBackdropFilter:blur(14px);border:1px solid rgba(244,234,216,0.16);border-radius:18px;padding:28px 22px;color:#F4EAD8;transition:transform 0.35s cubic-bezier(.2,.7,.3,1), background 0.35s, border-color 0.35s, box-shadow 0.35s;willChange:transform;" style-hover="transform:scale(1.045);background:rgba(244,234,216,0.12);border-color:rgba(189,85,51,0.55);boxShadow:0 18px 40px rgba(0,0,0,0.4);">
+          <div class="tk-card" style="box-sizing:border-box;background:rgba(244,234,216,0.07);backdropFilter:blur(14px);WebkitBackdropFilter:blur(14px);border:1px solid rgba(244,234,216,0.16);border-radius:18px;padding:28px 22px;color:#F4EAD8;transition:transform 0.35s cubic-bezier(.2,.7,.3,1), background 0.35s, border-color 0.35s, box-shadow 0.35s;willChange:transform;" style-hover="transform:scale(1.045);background:rgba(244,234,216,0.12);border-color:rgba(189,85,51,0.55);boxShadow:0 18px 40px rgba(0,0,0,0.4);">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;">
               <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0764F;">2º Lote</div>
               <div style="{{ badge2Style }}">{{ badge2Label }}</div>
             </div>
-            <div style="font-family:'Anton',sans-serif;font-size:36px;margin-bottom:6px;">R$120</div>
-            <div style="font-size:13px;line-height:1.5;color:#DDC9A8;">Ingresso</div>
-            <div style="font-size:13px;line-height:1.6;color:#DDC9A8;margin-top:12px;padding-top:12px;border-top:1px solid rgba(244,234,216,0.14);text-wrap:pretty;">Apenas o acesso à conferência. Não inclui camisa nem programações especiais.</div>
+            <div style="font-family:'Anton',sans-serif;font-size:36px;margin-bottom:6px;">R$130</div>
+            <div style="font-size:13px;line-height:1.5;color:#DDC9A8;">15/11 a 11/12</div>
+            <div style="font-size:13px;line-height:1.6;color:#DDC9A8;margin-top:12px;padding-top:12px;border-top:1px solid rgba(244,234,216,0.14);text-wrap:pretty;">Acesso aos três dias de conferência. Não inclui camisa.</div>
           </div>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;margin-bottom:32px;">
-          <div class="nowrap-price" style="font-size:14px;color:#DDC9A8;white-space:nowrap;">Camisa avulsa: <span style="color:#F4EAD8;font-weight:700;">R$80</span></div>
-          <a href="{{ ctaHref }}" target="_blank" rel="noopener" style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;text-decoration:none;border:1px solid rgba(244,234,216,0.35);padding:9px 16px;border-radius:999px;transition:background .3s,border-color .3s;" style-hover="background:rgba(244,234,216,0.12);border-color:#BD5533;">Comprar camisa</a>
+          <div class="tk-card tk-c4" style="box-sizing:border-box;background:rgba(189,85,51,0.16);backdropFilter:blur(14px);WebkitBackdropFilter:blur(14px);border:1px solid rgba(189,85,51,0.6);border-radius:18px;padding:28px 22px;color:#F4EAD8;transition:transform 0.35s cubic-bezier(.2,.7,.3,1), background 0.35s, border-color 0.35s, box-shadow 0.35s;willChange:transform;" style-hover="transform:scale(1.045);background:rgba(189,85,51,0.26);border-color:#BD5533;boxShadow:0 18px 40px rgba(0,0,0,0.4);">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0764F;">Combo · Ingresso + Camiseta</div>
+              <div style="{{ badge3Style }}">{{ badge3Label }}</div>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:6px;">
+              <div style="font-family:'Anton',sans-serif;font-size:36px;">R$150</div>
+              <div style="font-size:13px;color:rgba(221,201,168,0.6);text-decoration:line-through;">R$200</div>
+            </div>
+            <div style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1C1712;background:#DDC9A8;padding:5px 10px;border-radius:999px;margin-bottom:12px;">Economize R$50</div>
+            <div style="font-size:13px;line-height:1.6;color:#DDC9A8;padding-top:12px;border-top:1px solid rgba(189,85,51,0.35);text-wrap:pretty;">Ingresso do 1º lote com a camisa oficial do INFLAME inclusa. Disponível de 01/10 a 15/11 — a camisa é entregue na retirada da credencial.</div>
+          </div>
+          <div class="tk-card" style="box-sizing:border-box;background:rgba(244,234,216,0.07);backdropFilter:blur(14px);WebkitBackdropFilter:blur(14px);border:1px solid rgba(244,234,216,0.16);border-radius:18px;padding:28px 22px;color:#F4EAD8;transition:transform 0.35s cubic-bezier(.2,.7,.3,1), background 0.35s, border-color 0.35s, box-shadow 0.35s;willChange:transform;" style-hover="transform:scale(1.045);background:rgba(244,234,216,0.12);border-color:rgba(189,85,51,0.55);boxShadow:0 18px 40px rgba(0,0,0,0.4);">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0764F;min-width:0;">Camiseta Avulsa</div>
+              <div style="{{ badge4Style }}">{{ badge4Label }}</div>
+            </div>
+            <div style="font-family:'Anton',sans-serif;font-size:36px;margin-bottom:6px;">R$90</div>
+            <div style="font-size:13px;line-height:1.5;color:#DDC9A8;">Somente a camisa</div>
+            <div style="font-size:13px;line-height:1.6;color:#DDC9A8;margin-top:12px;padding-top:12px;border-top:1px solid rgba(244,234,216,0.14);text-wrap:pretty;">Camisa oficial do INFLAME sem ingresso. Disponível nas cores preta e branca.</div>
+          </div>
         </div>
         <div style="text-align:center;">
           <a href="{{ ctaHref }}" target="_blank" rel="noopener" style="display:inline-block;font-family:'Roboto',sans-serif;font-weight:700;font-size:15px;letter-spacing:0.5px;text-transform:uppercase;background:#BD5533;color:#F4EAD8;padding:18px 40px;border-radius:2px;text-decoration:none;transition:transform 0.3s, background 0.3s;" style-hover="transform:scale(1.04);background:#CE6440;">Garantir meu ingresso</a>
@@ -257,7 +279,7 @@
     <img src="assets/web/textura-riscos.png" alt="" style="position:absolute;right:-10%;top:-10%;width:80%;opacity:0.08;transform:rotate(8deg);pointer-events:none;user-select:none;">
     <div style="position:relative;max-width:1000px;margin:0 auto;">
       <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;margin-bottom:8px;">Camisas</div>
-      <div style="text-align:center;font-size:13px;color:#DDC9A8;margin-bottom:44px;">Duas cores. Inclusa no 1º lote ou avulsa por R$80</div>
+      <div style="text-align:center;font-size:13px;color:#DDC9A8;margin-bottom:44px;">Duas cores. No combo com ingresso ou avulsa por R$90</div>
       <div style="display:flex;flex-direction:column;gap:24px;">
         <div style="position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:2px;background:#1C1712;">
           <video ref="{{ videoPretaRef }}" src="assets/web/camisa-preta.mp4" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" preload="none" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.3,1);" style-hover="transform:scale(1.04);"></video>
@@ -329,6 +351,24 @@
     </div>
   </div>
 
+  <!-- INSTAGRAM -->
+  <div ref="{{ instaRef }}" style="{{ instaStyle }}">
+    <div style="max-width:520px;margin:0 auto;text-align:center;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#E0764F;margin-bottom:24px;">Siga o INFLAME</div>
+      <a href="{{ instagramHref }}" target="_blank" rel="noopener" style="display:inline-flex;flex-direction:column;align-items:center;gap:16px;text-decoration:none;color:#F4EAD8;">
+        <div style="width:108px;height:108px;border-radius:50%;background:#1C1712;border:2px solid #BD5533;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s;" style-hover="transform:scale(1.06);boxShadow:0 14px 34px rgba(189,85,51,0.45);">
+          <img src="assets/web/fogo-icon-lg.png" alt="INFLAME" style="width:52px;height:auto;display:block;">
+        </div>
+        <div style="font-family:'Anton',sans-serif;font-size:26px;letter-spacing:0.5px;text-transform:lowercase;color:#F4EAD8;">@inflame.conf</div>
+      </a>
+      <div style="font-size:14px;line-height:1.6;color:#DDC9A8;margin:16px auto 28px;max-width:380px;text-wrap:pretty;">Acompanhe os bastidores, avisos de lotes e novidades da conferência no Instagram oficial.</div>
+      <a href="{{ instagramHref }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;font-family:'Roboto',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;background:#BD5533;color:#F4EAD8;padding:16px 30px;border-radius:999px;text-decoration:none;transition:transform .3s,background .3s;" style-hover="transform:scale(1.04);background:#CE6440;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"></circle></svg>
+        Seguir no Instagram
+      </a>
+    </div>
+  </div>
+
   <!-- FINAL CTA -->
   <div ref="{{ ctaRef }}" style="{{ ctaStyle }}">
     <div style="max-width:640px;margin:0 auto;">
@@ -341,13 +381,13 @@
   <!-- FOOTER -->
   <div style="background:#1C1712;padding:48px 24px 32px;text-align:center;">
     <img src="assets/web/fogo-icon-lg.png" alt="INFLAME" style="width:64px;height:auto;margin:0 auto 16px;display:block;">
-    <a href="{{ instagramHref }}" style="font-size:13px;color:#DDC9A8;text-decoration:none;letter-spacing:0.5px;">Instagram</a>
+    <a href="{{ instagramHref }}" target="_blank" rel="noopener" style="font-size:13px;color:#DDC9A8;text-decoration:none;letter-spacing:0.5px;">@inflame.conf</a>
     <div style="font-size:11px;color:#5b4d3d;margin-top:28px;">Identidade visual · @miguelpessoa.ai</div>
   </div>
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:900},&quot;loteAtivo&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Pré-venda · Pioneiros&quot;,&quot;1º Lote&quot;,&quot;2º Lote&quot;],&quot;default&quot;:&quot;Pré-venda · Pioneiros&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ingressos&quot;},&quot;ctaUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://tiketo.com.br/evento/5912&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.instagram.com/verbodavidajundiai/&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showSpeakers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:900},&quot;loteAtivo&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;1º Lote · Pioneiros&quot;,&quot;1º Lote · Normal&quot;,&quot;2º Lote&quot;],&quot;default&quot;:&quot;1º Lote · Pioneiros&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ingressos&quot;},&quot;ctaUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://tiketo.com.br/evento/5912&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.instagram.com/inflame.conf/&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showSpeakers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
   state = { now: Date.now(), openFaq: 0, activeDay: 0, revealed: {} };
   _elMap = {};
@@ -497,11 +537,11 @@ class Component extends DCLogic {
     }));
 
     const faqData = [
-      { q: 'Para quem é a conferência?', a: 'O INFLAME é voltado a jovens que querem buscar a Deus com profundidade e sem meio-termo.' },
-      { q: 'O ingresso dá direito a quantos dias?', a: 'O ingresso dá acesso às três noites do evento, de 11 a 13 de dezembro.' },
-      { q: 'Posso comprar a camisa separada?', a: 'Sim, a camisa está disponível avulsa por R$80, além das opções combinadas com ingresso no 1º lote.' },
-      { q: 'Onde vai acontecer?', a: 'Na Verbo da Vida Jundiaí — Av. Prof. Pedro Clarismundo Fornari, 190, Engordadouro, Jundiaí - SP, 13214-660.' },
-      { q: 'Como garanto meu ingresso?', a: 'Pelos links desta página, enquanto durarem as vagas de cada lote.' },
+      { q: 'Para quem é a conferência?', a: 'O INFLAME é para jovens que desejam buscar a Deus com profundidade, viver uma fé genuína e ir além em uma vida cristã sem meio-termo. É para quem tem fome da presença de Deus, deseja crescer espiritualmente e quer viver tudo aquilo que Ele tem preparado.' },
+      { q: 'O ingresso dá direito a quantos dias?', a: 'O ingresso dá acesso aos três dias do INFLAME, que acontecerá de 11 a 13 de dezembro. Garanta sua inscrição e viva essa experiência completa com a gente!' },
+      { q: 'Posso comprar a camisa separada?', a: 'Sim! A camisa do INFLAME está disponível para compra avulsa por R$ 90,00. Além disso, você também pode optar pelos combos de ingresso + camisa disponíveis no 1º lote.' },
+      { q: 'Onde será o INFLAME?', a: 'O INFLAME será realizado na Igreja Verbo da Vida Jundiaí: Av. Prof. Pedro Clarismundo Fornari, 190 — Engordadouro, Jundiaí – SP, 13214-660.' },
+      { q: 'Como garanto meu ingresso?', a: 'Você pode garantir seu ingresso pelos links disponíveis nesta página, enquanto houver vagas disponíveis em cada lote. Não deixe para depois! Os lotes são limitados e podem mudar conforme as inscrições forem preenchidas.' },
     ];
     const faqs = faqData.map((f, i) => ({
       q: f.q,
@@ -511,20 +551,23 @@ class Component extends DCLogic {
       onClick: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i })),
     }));
 
-    const loteNames = ['Pré-venda · Pioneiros', '1º Lote', '2º Lote'];
-    const activeLote = Math.max(0, loteNames.indexOf(this.props.loteAtivo ?? 'Pré-venda · Pioneiros'));
+    const loteNames = ['1º Lote · Pioneiros', '1º Lote · Normal', '2º Lote'];
+    const activeLote = Math.max(0, loteNames.indexOf(this.props.loteAtivo ?? '1º Lote · Pioneiros'));
     const badgeBase = 'flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:999px;white-space:nowrap;';
-    const badgeFor = (i) => {
-      if (i === activeLote) return { label: 'Aberto agora', style: badgeBase + 'background:#BD5533;color:#F4EAD8;' };
-      if (i < activeLote) return { label: 'Encerrado', style: badgeBase + 'background:rgba(244,234,216,0.08);color:rgba(221,201,168,0.55);text-decoration:line-through;' };
-      return { label: 'Em breve', style: badgeBase + 'background:transparent;color:rgba(221,201,168,0.6);border:1px solid rgba(221,201,168,0.3);' };
-    };
+    const aberto = { label: 'Aberto agora', style: badgeBase + 'background:#BD5533;color:#F4EAD8;' };
+    const encerrado = { label: 'Encerrado', style: badgeBase + 'background:rgba(244,234,216,0.08);color:rgba(221,201,168,0.55);text-decoration:line-through;' };
+    const emBreve = { label: 'Em breve', style: badgeBase + 'background:transparent;color:rgba(221,201,168,0.6);border:1px solid rgba(221,201,168,0.3);' };
+    const badgeFor = (i) => i === activeLote ? aberto : (i < activeLote ? encerrado : emBreve);
     const badges = [0, 1, 2].map(badgeFor);
+    // Combo segue a janela do 1º lote (01/10 a 15/11); camiseta avulsa sempre disponível
+    const badgeCombo = activeLote <= 1 ? aberto : encerrado;
 
     return {
       badge0Label: badges[0].label, badge0Style: badges[0].style,
       badge1Label: badges[1].label, badge1Style: badges[1].style,
       badge2Label: badges[2].label, badge2Style: badges[2].style,
+      badge3Label: badgeCombo.label, badge3Style: badgeCombo.style,
+      badge4Label: aberto.label, badge4Style: aberto.style,
       videoPretaRef: this.vidRef('preta'),
       videoBrancaRef: this.vidRef('branca'),
       countdownItems,
@@ -533,7 +576,9 @@ class Component extends DCLogic {
       faqs,
       showSpeakers: this.props.showSpeakers ?? true,
       ctaHref: this.props.ctaUrl ?? 'https://tiketo.com.br/evento/5912',
-      instagramHref: this.props.instagramUrl ?? '#',
+      instagramHref: this.props.instagramUrl ?? 'https://www.instagram.com/inflame.conf/',
+      instaRef: this.refFor('insta'),
+      instaStyle: this._revealStyle('insta', 'background:#1C1712;border-top:1px solid #33291F;padding:72px 24px;'),
       aboutRef: this.refFor('about'),
       aboutStyle: this._revealStyle('about', 'background:#F4EAD8;color:#1C1712;padding:80px 24px;'),
       pricingRef: this.refFor('pricing'),
