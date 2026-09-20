@@ -51,12 +51,15 @@
   ::selection { background:#BD5533; color:#F4EAD8; }
   html { scroll-behavior:smooth; }
   [id] { scroll-margin-top:80px; }
+  .bio-mob { display:none; }
   @media (max-width:900px) { .inflame-nav { display:none !important; } }
   @media (max-width:680px) {
-    .spk { flex-direction:row !important; }
-    .spk-media { width:42% !important; min-width:0 !important; aspect-ratio:auto !important; }
+    .spk { flex-direction:row !important; align-items:stretch !important; background:rgba(244,234,216,0.07) !important; -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); border:1px solid rgba(244,234,216,0.16) !important; border-radius:18px !important; }
+    .spk-media { width:42% !important; min-width:0 !important; align-self:stretch !important; height:auto !important; min-height:190px !important; aspect-ratio:auto !important; }
     .spk-media img { object-position:50% 22% !important; }
     .spk-body { padding:20px 16px !important; }
+    .bio-full { display:none !important; }
+    .bio-mob { display:block !important; }
     .shirt-grid { grid-template-columns:1fr 1fr !important; gap:12px !important; }
     .shirt-label { font-size:12px !important; left:10px !important; bottom:10px !important; }
   }
@@ -239,9 +242,10 @@
             <div style="font-size:13px;color:#BD5533;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Co-Pastor da Igreja Verbo da Vida Jundiaí</div>
             <a href="https://www.instagram.com/eliasepessoa" style="font-size:13px;color:#DDC9A8;text-decoration:none;display:inline-block;margin-bottom:16px;">@eliasepessoa</a>
             <div style="border-top:1px solid #3a2f24;padding-top:16px;">
-              <p style="font-size:14px;line-height:1.7;color:#c9bda9;margin:0;">Co-Pastor da Igreja Verbo da Vida Jundiaí, é o idealizador do projeto INFLAME, um movimento que nasceu há anos no coração de Deus e já impactou mais de 1.500 jovens por meio de conferências, encontros e experiências transformadoras.</p>
-              <p style="font-size:14px;line-height:1.7;color:#c9bda9;margin:12px 0 0;">Casado com Amanda Cristina, é professor do Centro de Treinamento Bíblico Rhema e ministro da Palavra, dedicando sua vida à formação de discípulos e ao fortalecimento de uma geração apaixonada por Jesus.</p>
-              <p style="font-size:14px;line-height:1.7;color:#c9bda9;margin:12px 0 0;">Homem de Deus, de caráter firmado e convicções inegociáveis, tem sido levantado para despertar jovens ao propósito, à santidade e ao poder de uma vida rendida ao Senhor. Sua mensagem carrega o chamado de influenciar esta geração e deixar um legado que alcance as próximas.</p>
+              <p class="bio-mob" style="font-size:14px;line-height:1.7;color:#c9bda9;margin:0;">Co-Pastor da Igreja Verbo da Vida Jundiaí e idealizador do INFLAME, movimento que já impactou mais de 1.500 jovens. Professor do Centro de Treinamento Bíblico Rhema, dedica sua vida a despertar uma geração apaixonada por Jesus e comprometida com o propósito de Deus.</p>
+              <p class="bio-full" style="font-size:14px;line-height:1.7;color:#c9bda9;margin:0;">Co-Pastor da Igreja Verbo da Vida Jundiaí, é o idealizador do projeto INFLAME, um movimento que nasceu há anos no coração de Deus e já impactou mais de 1.500 jovens por meio de conferências, encontros e experiências transformadoras.</p>
+              <p class="bio-full" style="font-size:14px;line-height:1.7;color:#c9bda9;margin:12px 0 0;">Casado com Amanda Cristina, é professor do Centro de Treinamento Bíblico Rhema e ministro da Palavra, dedicando sua vida à formação de discípulos e ao fortalecimento de uma geração apaixonada por Jesus.</p>
+              <p class="bio-full" style="font-size:14px;line-height:1.7;color:#c9bda9;margin:12px 0 0;">Homem de Deus, de caráter firmado e convicções inegociáveis, tem sido levantado para despertar jovens ao propósito, à santidade e ao poder de uma vida rendida ao Senhor. Sua mensagem carrega o chamado de influenciar esta geração e deixar um legado que alcance as próximas.</p>
             </div>
           </div>
         </div>
@@ -256,9 +260,10 @@
             <div style="font-size:13px;color:#BD5533;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Líder da supervisão de jovens e adolescentes do Ministério Verbo da Vida</div>
             <a href="https://www.instagram.com/isaacguimaraes" style="font-size:13px;color:#DDC9A8;text-decoration:none;display:inline-block;margin-bottom:16px;">@isaacguimaraes</a>
             <div style="border-top:1px solid #3a2f24;padding-top:16px;">
-              <p style="font-size:14px;line-height:1.7;color:#c9bda9;margin:0;">Isaac Guimarães dedica sua vida integralmente ao ministério, levando a mensagem do Evangelho a diferentes nações, culturas e povos. Natural de Campina Grande, Paraíba, tem respondido ao chamado de Deus para anunciar a Palavra com paixão, ousadia e propósito.</p>
-              <p style="font-size:14px;line-height:1.7;color:#c9bda9;margin:12px 0 0;">À frente do projeto evangelístico <strong style="color:#DDC9A8;font-weight:700;">Avanço</strong>, tem inspirado e despertado uma geração de jovens a viver uma fé prática, relevante e comprometida com a missão de Cristo. Seu ministério tem alcançado vidas dentro e fora do Brasil, promovendo transformação, avivamento e um profundo compromisso com o Reino de Deus.</p>
-              <p style="font-size:14px;line-height:1.7;color:#c9bda9;margin:12px 0 0;">Com uma mensagem marcada por convicção, simplicidade e poder, Isaac tem sido uma voz para esta geração, encorajando jovens a viverem plenamente o propósito para o qual foram chamados.</p>
+              <p class="bio-mob" style="font-size:14px;line-height:1.7;color:#c9bda9;margin:0;">Natural de Campina Grande (PB), Isaac Guimarães dedica sua vida à pregação do Evangelho entre nações e povos. Líder do projeto evangelístico <strong style="color:#DDC9A8;font-weight:700;">Avanço</strong>, tem inspirado jovens a viverem uma fé ativa, alcançando vidas dentro e fora do Brasil.</p>
+              <p class="bio-full" style="font-size:14px;line-height:1.7;color:#c9bda9;margin:0;">Isaac Guimarães dedica sua vida integralmente ao ministério, levando a mensagem do Evangelho a diferentes nações, culturas e povos. Natural de Campina Grande, Paraíba, tem respondido ao chamado de Deus para anunciar a Palavra com paixão, ousadia e propósito.</p>
+              <p class="bio-full" style="font-size:14px;line-height:1.7;color:#c9bda9;margin:12px 0 0;">À frente do projeto evangelístico <strong style="color:#DDC9A8;font-weight:700;">Avanço</strong>, tem inspirado e despertado uma geração de jovens a viver uma fé prática, relevante e comprometida com a missão de Cristo. Seu ministério tem alcançado vidas dentro e fora do Brasil, promovendo transformação, avivamento e um profundo compromisso com o Reino de Deus.</p>
+              <p class="bio-full" style="font-size:14px;line-height:1.7;color:#c9bda9;margin:12px 0 0;">Com uma mensagem marcada por convicção, simplicidade e poder, Isaac tem sido uma voz para esta geração, encorajando jovens a viverem plenamente o propósito para o qual foram chamados.</p>
             </div>
           </div>
         </div>
@@ -489,7 +494,7 @@ class Component extends DCLogic {
       [
         { time: '19h30', title: 'Secret place' },
         { time: '20h00', title: 'Inflame worship' },
-        { time: '20h30', title: 'Ministração (A Anunciar)' },
+        { time: '20h30', title: 'Ministração' },
         { time: '21h00', title: 'News' },
         { time: '21h05', title: 'Break' },
         { time: '21h35', title: 'Inflame Worship' },
