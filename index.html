@@ -74,7 +74,7 @@
   .tv-list-wrap { position:relative; min-height:280px; }
   .tv-list { position:absolute; inset:0; overflow-y:auto; }
   @media (max-width:760px) {
-    .tv-grid { grid-template-columns:1fr; }
+    .tv-grid { grid-template-columns:minmax(0,1fr); }
     .tv-list-wrap { min-height:0; }
     .tv-list { position:static; max-height:360px; }
   }
@@ -83,6 +83,12 @@
     .tk-card, .tk-c4, .tk-grid > .tk-card:last-child { grid-column:auto; }
   }
   @media (max-width:480px) { .tk-grid { grid-template-columns:1fr; } }
+  .tv-mob { display:none; }
+  @media (max-width:680px) {
+    .tv-mob { display:block; }
+    .tv-grid { gap:14px; }
+    .tv-poster-cap, .tv-poster-play { display:none !important; }
+  }
 </style>
 <script src="./image-slot.js"></script>
 </helmet>
@@ -352,15 +358,50 @@
             <button type="button" onClick="{{ tvPlayCurrent }}" aria-label="Assistir" style="position:absolute;inset:0;border:0;padding:0;margin:0;cursor:pointer;background:#000;display:block;width:100%;height:100%;">
               <img src="{{ tvPosterSrc }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7;display:block;">
               <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,23,18,0) 40%,rgba(28,23,18,0.92) 100%);"></div>
-              <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:#BD5533;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(0,0,0,0.5);transition:transform .3s;" style-hover="transform:translate(-50%,-50%) scale(1.08);">
+              <div class="tv-poster-play" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:#BD5533;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(0,0,0,0.5);transition:transform .3s;" style-hover="transform:translate(-50%,-50%) scale(1.08);">
                 <div style="width:0;height:0;border-top:14px solid transparent;border-bottom:14px solid transparent;border-left:22px solid #F4EAD8;margin-left:6px;"></div>
               </div>
-              <div style="position:absolute;left:20px;right:20px;bottom:18px;text-align:left;font-family:'Roboto',sans-serif;">
+              <div class="tv-poster-cap" style="position:absolute;left:20px;right:20px;bottom:18px;text-align:left;font-family:'Roboto',sans-serif;">
                 <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0764F;margin-bottom:4px;">{{ tvMinisterName }}</div>
                 <div style="font-size:16px;font-weight:700;color:#F4EAD8;line-height:1.3;display:-webkit-box;WebkitLineClamp:2;WebkitBoxOrient:vertical;overflow:hidden;">{{ tvCurrentTitle }}</div>
               </div>
             </button>
           </sc-if>
+          <sc-if value="{{ tvNeedTap }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;left:50%;top:14px;transform:translateX(-50%);pointer-events:none;font-family:'Roboto',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;background:rgba(189,85,51,0.92);padding:9px 16px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 20px rgba(0,0,0,0.4);">Toque no vídeo para ouvir</div>
+          </sc-if>
+        </div>
+
+        <div class="tv-mob" style="min-width:0;background:rgba(244,234,216,0.08);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(244,234,216,0.2);border-radius:22px;padding:16px 18px 10px;box-shadow:0 18px 40px rgba(0,0,0,0.35);font-family:'Roboto',sans-serif;">
+          <div style="text-align:center;min-width:0;">
+            <div style="font-size:15px;font-weight:700;color:#F4EAD8;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ tvCurrentTitle }}</div>
+            <div style="font-size:13px;color:#DDC9A8;margin-top:2px;">{{ tvMinisterName }}</div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;margin-top:12px;">
+            <div style="font-size:11px;color:#DDC9A8;font-variant-numeric:tabular-nums;min-width:30px;">{{ tvElapsed }}</div>
+            <div onClick="{{ tvSeek }}" role="slider" aria-label="Posição da ministração" style="position:relative;height:22px;display:flex;align-items:center;cursor:pointer;">
+              <div style="position:relative;width:100%;height:4px;border-radius:4px;background:rgba(244,234,216,0.22);overflow:hidden;">
+                <div style="position:absolute;left:0;top:0;bottom:0;width:{{ tvPct }};background:#F4EAD8;border-radius:4px;"></div>
+              </div>
+            </div>
+            <div style="font-size:11px;color:#DDC9A8;font-variant-numeric:tabular-nums;min-width:30px;text-align:right;">{{ tvRemain }}</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:28px;margin-top:4px;">
+            <button type="button" onClick="{{ tvPrev }}" aria-label="Ministração anterior" style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;padding:0;color:#F4EAD8;cursor:pointer;">
+              <svg width="34" height="22" viewBox="0 0 34 22" fill="currentColor" aria-hidden="true"><path d="M16 2.2v17.6c0 .9-1 1.4-1.7.9L2.1 11.9a1.1 1.1 0 0 1 0-1.8L14.3 1.3c.7-.5 1.7 0 1.7.9z"></path><path d="M32 2.2v17.6c0 .9-1 1.4-1.7.9L18.1 11.9a1.1 1.1 0 0 1 0-1.8L30.3 1.3c.7-.5 1.7 0 1.7.9z"></path></svg>
+            </button>
+            <button type="button" onClick="{{ tvToggle }}" aria-label="Tocar ou pausar" style="width:64px;height:64px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;padding:0;color:#F4EAD8;cursor:pointer;">
+              <sc-if value="{{ tvIsPlaying }}" hint-placeholder-val="{{ false }}">
+                <svg width="28" height="34" viewBox="0 0 28 34" fill="currentColor" aria-hidden="true"><rect x="2" y="1" width="8" height="32" rx="2"></rect><rect x="18" y="1" width="8" height="32" rx="2"></rect></svg>
+              </sc-if>
+              <sc-if value="{{ tvIsPaused }}" hint-placeholder-val="{{ true }}">
+                <svg width="30" height="34" viewBox="0 0 30 34" fill="currentColor" aria-hidden="true"><path d="M4 2.6v28.8c0 1.5 1.7 2.5 3 1.7l22-14.4a2 2 0 0 0 0-3.4L7 .9C5.7.1 4 1.1 4 2.6z"></path></svg>
+              </sc-if>
+            </button>
+            <button type="button" onClick="{{ tvNext }}" aria-label="Próxima ministração" style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;padding:0;color:#F4EAD8;cursor:pointer;">
+              <svg width="34" height="22" viewBox="0 0 34 22" fill="currentColor" aria-hidden="true"><path d="M2 2.2v17.6c0 .9 1 1.4 1.7.9l12.2-8.8a1.1 1.1 0 0 0 0-1.8L3.7 1.3C3 .8 2 1.3 2 2.2z"></path><path d="M18 2.2v17.6c0 .9 1 1.4 1.7.9l12.2-8.8a1.1 1.1 0 0 0 0-1.8L19.7 1.3c-.7-.5-1.7 0-1.7.9z"></path></svg>
+            </button>
+          </div>
         </div>
 
         <div class="tv-list-wrap">
@@ -510,37 +551,91 @@ class Component extends DCLogic {
   _tvHostRef = (el) => {
     if (!el || this._tvHost === el) return;
     this._tvHost = el;
-    this._loadYT().then(() => this._tvEnsurePlayer(null));
+    this._loadYT().then(() => this._tvEnsurePlayer());
   };
 
-  _tvEnsurePlayer(firstId) {
+  _tvEnsurePlayer() {
     if (this._yt || !this._tvHost || !window.YT || !window.YT.Player) return;
     const mount = document.createElement('div');
     this._tvHost.appendChild(mount);
+    const firstId = this._tvVideos()[this.state.tvIndex];
     const opts = {
       width: '100%', height: '100%',
       playerVars: { autoplay: 0, rel: 0, playsinline: 1, modestbranding: 1 },
       events: {
         onReady: (e) => {
           this._ytReady = true;
-          if (this._tvPending) { const id = this._tvPending; this._tvPending = null; this._tvLoadWithSound(id); }
+          try { e.target.unMute(); e.target.setVolume(100); } catch (er) {}
+          if (this._tvPending) { const id = this._tvPending; this._tvPending = null; this._tvStart(id); }
+          else this._tvCueCurrent();
         },
         onStateChange: (e) => {
-          if (e.data === 1 && e.target.isMuted && e.target.isMuted()) { e.target.unMute(); e.target.setVolume(100); }
-          if (e.data === 0) this._tvPlay(this.state.tvIndex + 1);
+          if (e.data === 1) {
+            this._tvUnlocked = true;
+            clearTimeout(this._tvWatch);
+            try { if (e.target.isMuted()) { e.target.unMute(); e.target.setVolume(100); } } catch (er) {}
+            this.setState({ tvPlaying: true, tvNeedTap: false, tvStarted: true });
+          }
+          if (e.data === 2) this.setState({ tvPlaying: false });
+          if (e.data === 0) { this.setState({ tvPlaying: false }); this._tvPlay(this.state.tvIndex + 1); }
         },
         onError: () => { setTimeout(() => this._tvPlay(this.state.tvIndex + 1), 800); },
       },
     };
-    if (firstId) opts.videoId = firstId;
+    if (firstId) { opts.videoId = firstId; this._ytCued = firstId; }
     this._yt = new window.YT.Player(mount, opts);
   }
 
-  _tvLoadWithSound(id) {
+  _tvCueCurrent() {
+    if (!this._yt || !this._ytReady || this.state.tvStarted) return;
+    const id = this._tvVideos()[this.state.tvIndex];
+    if (!id || id === this._ytCued) return;
+    this._ytCued = id;
+    this._yt.cueVideoById(id);
+  }
+
+  // Runs synchronously inside the tap so mobile browsers treat it as user-initiated playback with sound.
+  _tvStart(id) {
     const p = this._yt;
     try { p.unMute(); p.setVolume(100); } catch (e) {}
-    p.loadVideoById(id);
+    if (id === this._ytCued) p.playVideo();
+    else {
+      if (!this._tvUnlocked) p.playVideo();
+      p.loadVideoById(id);
+      this._ytCued = id;
+    }
     try { p.unMute(); } catch (e) {}
+    clearTimeout(this._tvWatch);
+    if (!this._tvUnlocked) {
+      this._tvWatch = setTimeout(() => {
+        let st = -1, muted = false;
+        try { st = p.getPlayerState(); muted = p.isMuted(); } catch (e) {}
+        if (st !== 1 || muted) { try { p.pauseVideo(); p.unMute(); } catch (e) {} this.setState({ tvNeedTap: true, tvPlaying: false }); }
+      }, 2500);
+    }
+  }
+
+  _tvToggle = () => {
+    const p = this._yt;
+    if (!this.state.tvStarted || !p || !this._ytReady) { this._tvPlay(this.state.tvIndex); return; }
+    if (this.state.tvPlaying) p.pauseVideo();
+    else { try { p.unMute(); p.setVolume(100); } catch (e) {} p.playVideo(); if (this._hv && this._hv.pauseVideo) this._hv.pauseVideo(); }
+  };
+
+  _tvSeek = (e) => {
+    const p = this._yt, dur = this.state.tvDur;
+    if (!p || !dur || !p.seekTo) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX != null ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : r.left));
+    const t = Math.max(0, Math.min(1, (x - r.left) / r.width)) * dur;
+    p.seekTo(t, true);
+    this.setState({ tvCur: t });
+  };
+
+  _fmt(s) {
+    s = Math.max(0, Math.floor(s || 0));
+    const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), ss = String(s % 60).padStart(2, '0');
+    return h ? h + ':' + String(m).padStart(2, '0') + ':' + ss : m + ':' + ss;
   }
 
   _hvHostRef = (el) => {
@@ -668,15 +763,16 @@ class Component extends DCLogic {
     this.setState({ tvIndex: idx, tvStarted: true });
     if (this._hv && this._hv.pauseVideo) this._hv.pauseVideo();
     const id = vids[idx];
-    if (this._yt && this._ytReady) { this._tvLoadWithSound(id); return; }
+    this.setState({ tvCur: 0, tvDur: 0, tvNeedTap: false });
+    if (this._yt && this._ytReady) { this._tvStart(id); return; }
     this._tvPending = id;
-    this._loadYT().then(() => this._tvEnsurePlayer(null));
+    this._loadYT().then(() => this._tvEnsurePlayer());
   }
 
   _tvSelectMinister(i) {
     if (i === this.state.tvMinister) return;
     if (this._yt && this._yt.stopVideo) this._yt.stopVideo();
-    this.setState({ tvMinister: i, tvIndex: 0, tvStarted: false });
+    this.setState({ tvMinister: i, tvIndex: 0, tvStarted: false, tvPlaying: false, tvCur: 0, tvDur: 0, tvNeedTap: false });
     this._fetchChannel(i);
   }
   _elMap = {};
@@ -684,12 +780,21 @@ class Component extends DCLogic {
   _refs = {};
 
   componentDidMount() {
-    this._t = setInterval(() => this.setState({ now: Date.now() }), 1000);
+    this._t = setInterval(() => {
+      const upd = { now: Date.now() };
+      const p = this._yt;
+      if (p && this._ytReady && this.state.tvStarted && p.getCurrentTime) {
+        try { upd.tvCur = p.getCurrentTime() || 0; upd.tvDur = p.getDuration() || 0; } catch (e) {}
+      }
+      this.setState(upd);
+    }, 1000);
     requestAnimationFrame(() => this._initReveal());
     this._loadTitles();
   }
+  componentDidUpdate() { this._tvCueCurrent(); }
   componentWillUnmount() {
     clearInterval(this._t);
+    clearTimeout(this._tvWatch);
     if (this._io) this._io.disconnect();
     this._vidIos.forEach(io => io.disconnect());
     if (this._hvIo) this._hvIo.disconnect();
@@ -899,7 +1004,17 @@ class Component extends DCLogic {
       tvStyle: this._revealStyle('tv', 'background:#151210;border-top:1px solid #33291F;padding:80px 24px;'),
       tvTabs, tvItems,
       tvHostRef: this._tvHostRef,
-      tvShowPoster: !this.state.tvStarted && !!tvCurId,
+      tvShowPoster: !this.state.tvStarted && !!tvCurId && !this.state.tvNeedTap,
+      tvNeedTap: !!this.state.tvNeedTap,
+      tvIsPlaying: !!this.state.tvPlaying,
+      tvIsPaused: !this.state.tvPlaying,
+      tvToggle: this._tvToggle,
+      tvPrev: () => this._tvPlay(tvIdx - 1),
+      tvNext: () => this._tvPlay(tvIdx + 1),
+      tvSeek: this._tvSeek,
+      tvElapsed: this._fmt(this.state.tvCur),
+      tvRemain: '-' + this._fmt((this.state.tvDur || 0) - (this.state.tvCur || 0)),
+      tvPct: (this.state.tvDur ? Math.min(100, (this.state.tvCur / this.state.tvDur) * 100) : 0).toFixed(2) + '%',
       tvShowLoading: !tvCurId,
       tvLoadingMsg: this.state.tvLoading ? 'Carregando ministrações…' : 'Não foi possível carregar os vídeos agora.',
       tvPosterSrc: tvCurId ? 'https://i.ytimg.com/vi/' + tvCurId + '/hqdefault.jpg' : '',
