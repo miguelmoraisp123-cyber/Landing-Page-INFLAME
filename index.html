@@ -507,7 +507,41 @@ class Component extends DCLogic {
     { name: 'Isaac Guimarães', videos: [], lists: ['UULFhZXlv_C_bExJDeLoAz8PDw', 'UUhZXlv_C_bExJDeLoAz8PDw'] },
     { name: 'A anunciar', videos: [] },
   ];
-  _tvHostRef = (el) => { this._tvHost = el; };
+  _tvHostRef = (el) => {
+    if (!el || this._tvHost === el) return;
+    this._tvHost = el;
+    this._loadYT().then(() => this._tvEnsurePlayer(null));
+  };
+
+  _tvEnsurePlayer(firstId) {
+    if (this._yt || !this._tvHost || !window.YT || !window.YT.Player) return;
+    const mount = document.createElement('div');
+    this._tvHost.appendChild(mount);
+    const opts = {
+      width: '100%', height: '100%',
+      playerVars: { autoplay: 0, rel: 0, playsinline: 1, modestbranding: 1 },
+      events: {
+        onReady: (e) => {
+          this._ytReady = true;
+          if (this._tvPending) { const id = this._tvPending; this._tvPending = null; this._tvLoadWithSound(id); }
+        },
+        onStateChange: (e) => {
+          if (e.data === 1 && e.target.isMuted && e.target.isMuted()) { e.target.unMute(); e.target.setVolume(100); }
+          if (e.data === 0) this._tvPlay(this.state.tvIndex + 1);
+        },
+        onError: () => { setTimeout(() => this._tvPlay(this.state.tvIndex + 1), 800); },
+      },
+    };
+    if (firstId) opts.videoId = firstId;
+    this._yt = new window.YT.Player(mount, opts);
+  }
+
+  _tvLoadWithSound(id) {
+    const p = this._yt;
+    try { p.unMute(); p.setVolume(100); } catch (e) {}
+    p.loadVideoById(id);
+    try { p.unMute(); } catch (e) {}
+  }
 
   _hvHostRef = (el) => {
     if (!el || this._hvHost) return;
@@ -634,21 +668,9 @@ class Component extends DCLogic {
     this.setState({ tvIndex: idx, tvStarted: true });
     if (this._hv && this._hv.pauseVideo) this._hv.pauseVideo();
     const id = vids[idx];
-    if (this._yt && this._yt.loadVideoById) { this._yt.loadVideoById(id); return; }
-    this._loadYT().then(YT => {
-      if (!this._tvHost) return;
-      if (this._yt) { this._yt.loadVideoById(this._tvVideos()[this.state.tvIndex]); return; }
-      const mount = document.createElement('div');
-      this._tvHost.appendChild(mount);
-      this._yt = new YT.Player(mount, {
-        width: '100%', height: '100%', videoId: id,
-        playerVars: { autoplay: 1, rel: 0, playsinline: 1, modestbranding: 1 },
-        events: {
-          onStateChange: (e) => { if (e.data === 0) this._tvPlay(this.state.tvIndex + 1); },
-          onError: () => { setTimeout(() => this._tvPlay(this.state.tvIndex + 1), 800); },
-        },
-      });
-    });
+    if (this._yt && this._ytReady) { this._tvLoadWithSound(id); return; }
+    this._tvPending = id;
+    this._loadYT().then(() => this._tvEnsurePlayer(null));
   }
 
   _tvSelectMinister(i) {
