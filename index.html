@@ -84,7 +84,7 @@
   }
   @media (max-width:480px) { .tk-grid { grid-template-columns:1fr; } }
   .tv-mob { display:none; }
-  @media (max-width:680px) {
+  @media (max-width:760px) {
     .tv-mob { display:block; }
     .tv-grid { gap:14px; }
     .tv-poster-cap, .tv-poster-play { display:none !important; }
@@ -368,7 +368,12 @@
             </button>
           </sc-if>
           <sc-if value="{{ tvNeedTap }}" hint-placeholder-val="{{ false }}">
-            <div style="position:absolute;left:50%;top:14px;transform:translateX(-50%);pointer-events:none;font-family:'Roboto',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;background:rgba(189,85,51,0.92);padding:9px 16px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 20px rgba(0,0,0,0.4);">Toque no vídeo para ouvir</div>
+            <button type="button" onClick="{{ tvUnmuteTap }}" style="position:absolute;inset:0;width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;padding:0 0 18px;background:linear-gradient(180deg,rgba(28,23,18,0) 55%,rgba(28,23,18,0.55));border:none;cursor:pointer;">
+              <span style="display:inline-flex;align-items:center;gap:10px;font-family:'Roboto',sans-serif;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;background:#BD5533;padding:12px 20px;border-radius:999px;box-shadow:0 8px 20px rgba(0,0,0,0.4);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M19 5a10 10 0 0 1 0 14"></path></svg>
+                Toque para ouvir
+              </span>
+            </button>
           </sc-if>
         </div>
 
@@ -565,16 +570,17 @@ class Component extends DCLogic {
       events: {
         onReady: (e) => {
           this._ytReady = true;
-          try { e.target.unMute(); e.target.setVolume(100); } catch (er) {}
           if (this._tvPending) { const id = this._tvPending; this._tvPending = null; this._tvStart(id); }
           else this._tvCueCurrent();
+          this._tvWarmObserve();
         },
         onStateChange: (e) => {
+          if (this._tvWarming) { if (e.data === 0) { try { e.target.seekTo(0, true); } catch (er) {} } return; }
           if (e.data === 1) {
-            this._tvUnlocked = true;
-            clearTimeout(this._tvWatch);
-            try { if (e.target.isMuted()) { e.target.unMute(); e.target.setVolume(100); } } catch (er) {}
-            this.setState({ tvPlaying: true, tvNeedTap: false, tvStarted: true });
+            let muted = false;
+            try { muted = e.target.isMuted(); } catch (er) {}
+            if (!muted) { this._tvUnlocked = true; clearTimeout(this._tvWatch); }
+            this.setState({ tvPlaying: true, tvStarted: true, tvNeedTap: muted });
           }
           if (e.data === 2) this.setState({ tvPlaying: false });
           if (e.data === 0) { this.setState({ tvPlaying: false }); this._tvPlay(this.state.tvIndex + 1); }
@@ -595,29 +601,58 @@ class Component extends DCLogic {
   }
 
   // Runs synchronously inside the tap so mobile browsers treat it as user-initiated playback with sound.
+  // Silent warm-up: the player plays muted behind the cover while the section is on screen.
+  // Unmuting an already-playing player inside a tap is what mobile browsers accept (same as the hero video),
+  // so the first tap on a ministração starts it with sound.
+  _tvWarmObserve() {
+    if (!this._tvHost || this._tvWarmIo || !('IntersectionObserver' in window)) return;
+    this._tvWarmIo = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        const p = this._yt;
+        if (!p || !this._ytReady || this._tvUnlocked || this.state.tvStarted) return;
+        try {
+          if (en.isIntersecting) { this._tvWarming = true; p.mute(); p.playVideo(); }
+          else if (this._tvWarming) p.pauseVideo();
+        } catch (e) {}
+      });
+    }, { threshold: 0.2 });
+    this._tvWarmIo.observe(this._tvHost);
+  }
+
   _tvStart(id) {
     const p = this._yt;
+    const wasWarm = this._tvWarming;
+    this._tvWarming = false;
     try { p.unMute(); p.setVolume(100); } catch (e) {}
-    if (id === this._ytCued) p.playVideo();
+    if (id === this._ytCued) { if (wasWarm) p.seekTo(0, true); p.playVideo(); }
     else {
-      if (!this._tvUnlocked) p.playVideo();
+      if (!this._tvUnlocked && !wasWarm) p.playVideo();
       p.loadVideoById(id);
       this._ytCued = id;
     }
-    try { p.unMute(); } catch (e) {}
+    try { p.unMute(); p.setVolume(100); } catch (e) {}
     clearTimeout(this._tvWatch);
     if (!this._tvUnlocked) {
       this._tvWatch = setTimeout(() => {
         let st = -1, muted = false;
         try { st = p.getPlayerState(); muted = p.isMuted(); } catch (e) {}
-        if (st !== 1 || muted) { try { p.pauseVideo(); p.unMute(); } catch (e) {} this.setState({ tvNeedTap: true, tvPlaying: false }); }
-      }, 2500);
+        if (st !== 1) { try { p.mute(); p.playVideo(); } catch (e) {} }
+        if (st !== 1 || muted) this.setState({ tvNeedTap: true });
+      }, 1800);
     }
   }
+
+  _tvUnmuteTap = () => {
+    const p = this._yt;
+    if (!p) return;
+    try { p.unMute(); p.setVolume(100); p.playVideo(); } catch (e) {}
+    this.setState({ tvNeedTap: false });
+  };
 
   _tvToggle = () => {
     const p = this._yt;
     if (!this.state.tvStarted || !p || !this._ytReady) { this._tvPlay(this.state.tvIndex); return; }
+    if (this.state.tvNeedTap) { this._tvUnmuteTap(); return; }
     if (this.state.tvPlaying) p.pauseVideo();
     else { try { p.unMute(); p.setVolume(100); } catch (e) {} p.playVideo(); if (this._hv && this._hv.pauseVideo) this._hv.pauseVideo(); }
   };
@@ -795,6 +830,7 @@ class Component extends DCLogic {
   componentWillUnmount() {
     clearInterval(this._t);
     clearTimeout(this._tvWatch);
+    if (this._tvWarmIo) this._tvWarmIo.disconnect();
     if (this._io) this._io.disconnect();
     this._vidIos.forEach(io => io.disconnect());
     if (this._hvIo) this._hvIo.disconnect();
@@ -1006,6 +1042,7 @@ class Component extends DCLogic {
       tvHostRef: this._tvHostRef,
       tvShowPoster: !this.state.tvStarted && !!tvCurId && !this.state.tvNeedTap,
       tvNeedTap: !!this.state.tvNeedTap,
+      tvUnmuteTap: this._tvUnmuteTap,
       tvIsPlaying: !!this.state.tvPlaying,
       tvIsPaused: !this.state.tvPlaying,
       tvToggle: this._tvToggle,
