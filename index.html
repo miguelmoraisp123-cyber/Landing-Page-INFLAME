@@ -70,6 +70,14 @@
   .tk-card { grid-column:span 2; }
   .tk-c4 { grid-column:2 / span 2; }
   .tk-grid > .tk-card:last-child { grid-column:4 / span 2; }
+  .tv-grid { display:grid; grid-template-columns:minmax(0,1.75fr) minmax(0,1fr); gap:20px; align-items:stretch; }
+  .tv-list-wrap { position:relative; min-height:280px; }
+  .tv-list { position:absolute; inset:0; overflow-y:auto; }
+  @media (max-width:760px) {
+    .tv-grid { grid-template-columns:1fr; }
+    .tv-list-wrap { min-height:0; }
+    .tv-list { position:static; max-height:360px; }
+  }
   @media (max-width:760px) {
     .tk-grid { grid-template-columns:repeat(2,1fr); }
     .tk-card, .tk-c4, .tk-grid > .tk-card:last-child { grid-column:auto; }
@@ -88,6 +96,7 @@
       <a href="#ingressos" style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#DDC9A8;text-decoration:none;transition:color .25s;" style-hover="color:#F4EAD8;">Ingressos</a>
       <a href="#programacao" style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#DDC9A8;text-decoration:none;transition:color .25s;" style-hover="color:#F4EAD8;">Programação</a>
       <a href="#palestrantes" style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#DDC9A8;text-decoration:none;transition:color .25s;" style-hover="color:#F4EAD8;">Palestrantes</a>
+      <a href="#tv" style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#DDC9A8;text-decoration:none;transition:color .25s;" style-hover="color:#F4EAD8;">Ministrações</a>
       <a href="#camisas" style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#DDC9A8;text-decoration:none;transition:color .25s;" style-hover="color:#F4EAD8;">Camisetas</a>
     </nav>
     <a href="{{ ctaHref }}" target="_blank" rel="noopener" style="font-family:'Roboto',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.5px;text-transform:uppercase;background:#BD5533;color:#F4EAD8;padding:10px 18px;border-radius:2px;text-decoration:none;">Ingresso</a>
@@ -113,6 +122,35 @@
             <div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#1C1712;text-transform:uppercase;margin-top:6px;">{{ item.label }}</div>
           </div>
         </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- VÍDEO OFICIAL -->
+  <div id="video" style="background:#1C1712;padding:8px 24px 80px;">
+    <div style="max-width:960px;margin:0 auto;">
+      <div style="position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;border:1px solid rgba(244,234,216,0.16);box-shadow:0 24px 60px rgba(0,0,0,0.45);">
+        <div ref="{{ hvHostRef }}" style="position:absolute;inset:0;"></div>
+        <sc-if value="{{ hvShowPoster }}" hint-placeholder-val="{{ true }}">
+          <img src="https://i.ytimg.com/vi/afsuNrjLQmg/hqdefault.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;">
+        </sc-if>
+        <sc-if value="{{ hvMuted }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ hvUnmute }}" style="position:absolute;inset:0;width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;padding:0 0 22px;background:linear-gradient(180deg,rgba(28,23,18,0) 55%,rgba(28,23,18,0.55));border:none;cursor:pointer;">
+            <span style="display:inline-flex;align-items:center;gap:10px;font-family:'Roboto',sans-serif;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;background:rgba(28,23,18,0.72);border:1px solid rgba(244,234,216,0.3);padding:12px 20px;border-radius:999px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .25s;" style-hover="background:#BD5533;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M19 5a10 10 0 0 1 0 14"></path></svg>
+              Toque para ouvir
+            </span>
+          </button>
+        </sc-if>
+        <sc-if value="{{ hvEnded }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center;background:rgba(28,23,18,0.86);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);">
+            <div style="font-family:'Anton',sans-serif;font-size:clamp(24px,5vw,40px);line-height:1;letter-spacing:0.5px;text-transform:uppercase;color:#F4EAD8;">Te vemos no INFLAME</div>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+              <a href="{{ ctaHref }}" target="_blank" rel="noopener" style="font-family:'Roboto',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.5px;text-transform:uppercase;background:#BD5533;color:#F4EAD8;padding:15px 28px;border-radius:2px;text-decoration:none;">Garantir meu ingresso</a>
+              <button onClick="{{ hvReplay }}" style="font-family:'Roboto',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.5px;text-transform:uppercase;background:transparent;color:#F4EAD8;padding:15px 24px;border-radius:2px;border:1px solid rgba(244,234,216,0.4);cursor:pointer;">Assistir de novo</button>
+            </div>
+          </div>
+        </sc-if>
       </div>
     </div>
   </div>
@@ -283,6 +321,70 @@
   </div>
   </sc-if>
 
+  <!-- MINISTRAÇÕES -->
+  <div id="tv" ref="{{ tvRef }}" style="{{ tvStyle }}">
+    <div style="max-width:1040px;margin:0 auto;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px;">
+        <img src="assets/web/fogo-icon.png" alt="" style="height:30px;width:auto;display:block;">
+        <div style="font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;line-height:1;">Ouça quem vai ministrar</div>
+      </div>
+      <div style="text-align:center;font-size:13px;color:#DDC9A8;margin-bottom:32px;text-wrap:pretty;">Assista às ministrações de quem estará com a gente no INFLAME 2026. Ao terminar um vídeo, o próximo começa sozinho.</div>
+
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:28px;">
+        <sc-for list="{{ tvTabs }}" as="tab" hint-placeholder-count="3">
+          <button type="button" onClick="{{ tab.onClick }}" style="{{ tab.tabStyle }}">
+            <span style="display:block;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">{{ tab.label }}</span>
+            <span style="display:block;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-top:3px;opacity:0.8;">{{ tab.sub }}</span>
+          </button>
+        </sc-for>
+      </div>
+
+      <div class="tv-grid">
+        <div style="position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;border:1px solid rgba(244,234,216,0.16);box-shadow:0 24px 60px rgba(0,0,0,0.45);">
+          <div ref="{{ tvHostRef }}" style="position:absolute;inset:0;"></div>
+          <sc-if value="{{ tvShowLoading }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#1C1712;">
+              <img src="assets/web/fogo-icon.png" alt="" style="height:44px;width:auto;opacity:0.85;">
+              <div style="font-size:13px;color:#DDC9A8;letter-spacing:0.5px;">{{ tvLoadingMsg }}</div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ tvShowPoster }}" hint-placeholder-val="{{ true }}">
+            <button type="button" onClick="{{ tvPlayCurrent }}" aria-label="Assistir" style="position:absolute;inset:0;border:0;padding:0;margin:0;cursor:pointer;background:#000;display:block;width:100%;height:100%;">
+              <img src="{{ tvPosterSrc }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7;display:block;">
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,23,18,0) 40%,rgba(28,23,18,0.92) 100%);"></div>
+              <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:#BD5533;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(0,0,0,0.5);transition:transform .3s;" style-hover="transform:translate(-50%,-50%) scale(1.08);">
+                <div style="width:0;height:0;border-top:14px solid transparent;border-bottom:14px solid transparent;border-left:22px solid #F4EAD8;margin-left:6px;"></div>
+              </div>
+              <div style="position:absolute;left:20px;right:20px;bottom:18px;text-align:left;font-family:'Roboto',sans-serif;">
+                <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0764F;margin-bottom:4px;">{{ tvMinisterName }}</div>
+                <div style="font-size:16px;font-weight:700;color:#F4EAD8;line-height:1.3;display:-webkit-box;WebkitLineClamp:2;WebkitBoxOrient:vertical;overflow:hidden;">{{ tvCurrentTitle }}</div>
+              </div>
+            </button>
+          </sc-if>
+        </div>
+
+        <div class="tv-list-wrap">
+          <div class="tv-list" style="display:flex;flex-direction:column;gap:6px;padding:8px;background:rgba(244,234,216,0.05);border:1px solid rgba(244,234,216,0.12);border-radius:18px;box-sizing:border-box;">
+            <sc-for list="{{ tvItems }}" as="it" hint-placeholder-count="5">
+              <button type="button" onClick="{{ it.onClick }}" style="{{ it.itemStyle }}">
+                <div style="position:relative;width:112px;flex-shrink:0;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#241D16;">
+                  <img src="{{ it.thumb }}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+                  <sc-if value="{{ it.isActive }}" hint-placeholder-val="{{ false }}">
+                    <div style="position:absolute;inset:0;background:rgba(189,85,51,0.55);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;">Tocando</div>
+                  </sc-if>
+                </div>
+                <div style="min-width:0;flex:1;">
+                  <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0764F;margin-bottom:3px;">{{ it.num }}</div>
+                  <div style="font-size:13px;line-height:1.35;color:#F4EAD8;display:-webkit-box;WebkitLineClamp:2;WebkitBoxOrient:vertical;overflow:hidden;">{{ it.title }}</div>
+                </div>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- CAMISETAS -->
   <div id="camisas" ref="{{ shirtsRef }}" style="{{ shirtsStyle }}">
     <img src="assets/web/textura-riscos.png" alt="" style="position:absolute;right:-10%;top:-10%;width:80%;opacity:0.08;transform:rotate(8deg);pointer-events:none;user-select:none;">
@@ -398,7 +500,163 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:900},&quot;loteAtivo&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;1º Lote · Pioneiros&quot;,&quot;1º Lote · Normal&quot;,&quot;2º Lote&quot;],&quot;default&quot;:&quot;1º Lote · Pioneiros&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ingressos&quot;},&quot;ctaUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://tiketo.com.br/evento/5912&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.instagram.com/inflame.conf/&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showSpeakers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
-  state = { now: Date.now(), openFaq: 0, activeDay: 0, revealed: {} };
+  state = { now: Date.now(), openFaq: 0, activeDay: 0, revealed: {}, tvMinister: 0, tvIndex: 0, tvStarted: false, tvTitles: {}, tvDyn: {}, tvLoading: false, hvMuted: true, hvEnded: false, hvStarted: false };
+
+  tvMinisters = [
+    { name: 'Elias Pessoa', videos: ['uQnjwWCQzF0','QKoc40GScAQ','DIH6zval3Hc','tzX1YUtJs2Q','HV-wABxAAdU','R5SvBdbwC7w','2vCQDnadblk','QnA6FpGtPOU','N9gyX54rQWg','viNtc61dR4I','ptD-2Kak9aI','BGJJdu7789w','zqCYEhJytJc'] },
+    { name: 'Isaac Guimarães', videos: [], lists: ['UULFhZXlv_C_bExJDeLoAz8PDw', 'UUhZXlv_C_bExJDeLoAz8PDw'] },
+    { name: 'A anunciar', videos: [] },
+  ];
+  _tvHostRef = (el) => { this._tvHost = el; };
+
+  _hvHostRef = (el) => {
+    if (!el || this._hvHost) return;
+    this._hvHost = el;
+    this._loadYT().then(YT => {
+      const mount = document.createElement('div');
+      el.appendChild(mount);
+      this._hv = new YT.Player(mount, {
+        width: '100%', height: '100%', videoId: 'afsuNrjLQmg',
+        playerVars: { autoplay: 0, mute: 1, controls: 1, rel: 0, playsinline: 1, modestbranding: 1 },
+        events: {
+          onReady: (e) => {
+            e.target.mute();
+            if (!('IntersectionObserver' in window)) { e.target.playVideo(); return; }
+            this._hvIo = new IntersectionObserver((entries) => {
+              entries.forEach(en => {
+                this._hvVisible = en.isIntersecting;
+                if (en.isIntersecting) { if (!this.state.hvEnded) this._hv.playVideo(); }
+                else if (this._hv.pauseVideo) this._hv.pauseVideo();
+              });
+            }, { threshold: 0.5 });
+            this._hvIo.observe(el);
+          },
+          onStateChange: (e) => {
+            if (e.data === 1) { this.setState({ hvStarted: true }); if (!this.state.hvMuted && this._yt && this._yt.pauseVideo) this._yt.pauseVideo(); }
+            if (e.data === 0) this.setState({ hvEnded: true });
+          },
+        },
+      });
+    });
+  };
+
+  _hvUnmute = () => {
+    if (!this._hv || !this._hv.unMute) return;
+    this._hv.unMute(); this._hv.setVolume(100); this._hv.seekTo(0, true); this._hv.playVideo();
+    this.setState({ hvMuted: false, hvEnded: false });
+  };
+
+  _hvReplay = () => {
+    if (!this._hv) return;
+    this._hv.unMute(); this._hv.seekTo(0, true); this._hv.playVideo();
+    this.setState({ hvMuted: false, hvEnded: false });
+  };
+
+  _vidsFor(i) { const m = this.tvMinisters[i]; return m.videos.length ? m.videos : (this.state.tvDyn[i] || []); }
+  _tvVideos() { return this._vidsFor(this.state.tvMinister); }
+
+  _fetchChannel(i) {
+    const m = this.tvMinisters[i];
+    if (!m.lists || this.state.tvDyn[i] || this._fetching) return;
+    this._fetching = true;
+    this.setState({ tvLoading: true });
+    const finish = (ids) => {
+      this._fetching = false;
+      this.setState(s => ({ tvLoading: false, tvDyn: ids ? { ...s.tvDyn, [i]: ids } : s.tvDyn }));
+      if (ids) this._loadTitles(ids);
+    };
+    this._loadYT().then(YT => {
+      const tryList = (k) => {
+        if (k >= m.lists.length) { finish(null); return; }
+        const list = m.lists[k];
+        const box = document.createElement('div');
+        box.style.cssText = 'position:fixed;left:-9999px;top:0;width:200px;height:200px;pointer-events:none;';
+        const mount = document.createElement('div');
+        box.appendChild(mount);
+        document.body.appendChild(box);
+        let done = false;
+        const cleanup = (p) => { try { p && p.destroy && p.destroy(); } catch (e) {} box.remove(); };
+        const timer = setTimeout(() => { if (!done) { done = true; cleanup(p); tryList(k + 1); } }, 9000);
+        const p = new YT.Player(mount, {
+          width: '200', height: '200',
+          playerVars: { listType: 'playlist', list },
+          events: {
+            onReady: (e) => { try { e.target.cuePlaylist({ listType: 'playlist', list }); } catch (err) {} },
+            onStateChange: (e) => {
+              if (done || e.data !== 5) return;
+              const ids = e.target.getPlaylist && e.target.getPlaylist();
+              if (ids && ids.length) { done = true; clearTimeout(timer); cleanup(e.target); finish(ids); }
+            },
+            onError: () => { if (!done) { done = true; clearTimeout(timer); cleanup(p); tryList(k + 1); } },
+          },
+        });
+      };
+      tryList(0);
+    });
+  }
+
+  _loadTitles(ids) {
+    const queue = (ids || this.tvMinisters.flatMap(m => m.videos)).filter(id => !this.state.tvTitles[id]);
+    const worker = () => {
+      const id = queue.shift();
+      if (!id) return;
+      const w = encodeURIComponent('https://www.youtube.com/watch?v=' + id);
+      const set = (t) => { if (t) this.setState(s => ({ tvTitles: { ...s.tvTitles, [id]: t } })); };
+      fetch('https://www.youtube.com/oembed?format=json&url=' + w)
+        .then(r => r.ok ? r.json() : Promise.reject())
+        .then(d => set(d.title))
+        .catch(() => fetch('https://noembed.com/embed?url=' + w).then(r => r.json()).then(d => set(d.title)).catch(() => {}))
+        .finally(worker);
+    };
+    for (let n = 0; n < 6; n++) worker();
+  }
+
+  _loadYT() {
+    if (window.YT && window.YT.Player) return Promise.resolve(window.YT);
+    if (!this._ytPromise) {
+      this._ytPromise = new Promise(res => {
+        const prev = window.onYouTubeIframeAPIReady;
+        window.onYouTubeIframeAPIReady = () => { if (prev) prev(); res(window.YT); };
+        if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
+          const s = document.createElement('script');
+          s.src = 'https://www.youtube.com/iframe_api';
+          document.head.appendChild(s);
+        }
+      });
+    }
+    return this._ytPromise;
+  }
+
+  _tvPlay(i) {
+    const vids = this._tvVideos();
+    if (!vids.length) return;
+    const idx = ((i % vids.length) + vids.length) % vids.length;
+    this.setState({ tvIndex: idx, tvStarted: true });
+    if (this._hv && this._hv.pauseVideo) this._hv.pauseVideo();
+    const id = vids[idx];
+    if (this._yt && this._yt.loadVideoById) { this._yt.loadVideoById(id); return; }
+    this._loadYT().then(YT => {
+      if (!this._tvHost) return;
+      if (this._yt) { this._yt.loadVideoById(this._tvVideos()[this.state.tvIndex]); return; }
+      const mount = document.createElement('div');
+      this._tvHost.appendChild(mount);
+      this._yt = new YT.Player(mount, {
+        width: '100%', height: '100%', videoId: id,
+        playerVars: { autoplay: 1, rel: 0, playsinline: 1, modestbranding: 1 },
+        events: {
+          onStateChange: (e) => { if (e.data === 0) this._tvPlay(this.state.tvIndex + 1); },
+          onError: () => { setTimeout(() => this._tvPlay(this.state.tvIndex + 1), 800); },
+        },
+      });
+    });
+  }
+
+  _tvSelectMinister(i) {
+    if (i === this.state.tvMinister) return;
+    if (this._yt && this._yt.stopVideo) this._yt.stopVideo();
+    this.setState({ tvMinister: i, tvIndex: 0, tvStarted: false });
+    this._fetchChannel(i);
+  }
   _elMap = {};
   _elToKey = new Map();
   _refs = {};
@@ -406,11 +664,13 @@ class Component extends DCLogic {
   componentDidMount() {
     this._t = setInterval(() => this.setState({ now: Date.now() }), 1000);
     requestAnimationFrame(() => this._initReveal());
+    this._loadTitles();
   }
   componentWillUnmount() {
     clearInterval(this._t);
     if (this._io) this._io.disconnect();
     this._vidIos.forEach(io => io.disconnect());
+    if (this._hvIo) this._hvIo.disconnect();
   }
 
   _vidRefs = {};
@@ -572,7 +832,58 @@ class Component extends DCLogic {
     // Combo segue a janela do 1º lote (01/10 a 15/11); camiseta avulsa sempre disponível
     const badgeCombo = activeLote <= 1 ? aberto : encerrado;
 
+    const tvM = this.state.tvMinister;
+    const tvVids = this._vidsFor(tvM);
+    const tvIdx = this.state.tvIndex;
+    const pad2 = n => String(n).padStart(2, '0');
+    const tvTitle = (id, i) => this.state.tvTitles[id] || ('Ministração ' + pad2(i + 1));
+    const tabBase = 'font-family:Roboto,sans-serif;padding:11px 20px;border-radius:999px;text-align:center;transition:background .25s,border-color .25s,color .25s;';
+    const tvTabs = this.tvMinisters.map((m, i) => {
+      const n = this._vidsFor(i).length;
+      const has = n > 0 || !!m.lists;
+      const active = i === tvM;
+      return {
+        label: m.name,
+        sub: n ? (n + ' ministrações') : (m.lists ? 'Canal completo' : 'Em breve'),
+        onClick: has ? () => this._tvSelectMinister(i) : undefined,
+        tabStyle: tabBase + (active
+          ? 'background:#BD5533;color:#F4EAD8;border:1px solid #BD5533;cursor:pointer;'
+          : has
+            ? 'background:rgba(244,234,216,0.07);color:#F4EAD8;border:1px solid rgba(244,234,216,0.25);cursor:pointer;'
+            : 'background:transparent;color:rgba(221,201,168,0.5);border:1px dashed rgba(221,201,168,0.3);cursor:default;'),
+      };
+    });
+    const itemBase = 'display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:8px;border-radius:12px;cursor:pointer;font-family:Roboto,sans-serif;transition:background .25s,border-color .25s;box-sizing:border-box;';
+    const tvItems = tvVids.map((id, i) => ({
+      num: 'Nº ' + pad2(i + 1),
+      title: tvTitle(id, i),
+      thumb: 'https://i.ytimg.com/vi/' + id + '/mqdefault.jpg',
+      isActive: this.state.tvStarted && i === tvIdx,
+      onClick: () => this._tvPlay(i),
+      itemStyle: itemBase + (i === tvIdx
+        ? 'background:rgba(189,85,51,0.18);border:1px solid rgba(189,85,51,0.7);'
+        : 'background:transparent;border:1px solid transparent;'),
+    }));
+    const tvCurId = tvVids[tvIdx];
+
     return {
+      hvHostRef: this._hvHostRef,
+      hvShowPoster: !this.state.hvStarted,
+      hvMuted: this.state.hvMuted && !this.state.hvEnded,
+      hvEnded: this.state.hvEnded,
+      hvUnmute: this._hvUnmute,
+      hvReplay: this._hvReplay,
+      tvRef: this.refFor('tv'),
+      tvStyle: this._revealStyle('tv', 'background:#151210;border-top:1px solid #33291F;padding:80px 24px;'),
+      tvTabs, tvItems,
+      tvHostRef: this._tvHostRef,
+      tvShowPoster: !this.state.tvStarted && !!tvCurId,
+      tvShowLoading: !tvCurId,
+      tvLoadingMsg: this.state.tvLoading ? 'Carregando ministrações…' : 'Não foi possível carregar os vídeos agora.',
+      tvPosterSrc: tvCurId ? 'https://i.ytimg.com/vi/' + tvCurId + '/hqdefault.jpg' : '',
+      tvMinisterName: this.tvMinisters[tvM].name,
+      tvCurrentTitle: tvCurId ? tvTitle(tvCurId, tvIdx) : '',
+      tvPlayCurrent: () => this._tvPlay(tvIdx),
       badge0Label: badges[0].label, badge0Style: badges[0].style,
       badge1Label: badges[1].label, badge1Style: badges[1].style,
       badge2Label: badges[2].label, badge2Style: badges[2].style,
