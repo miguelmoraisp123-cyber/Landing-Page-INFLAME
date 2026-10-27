@@ -44,7 +44,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Roboto:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
 <style>
-  html, body { margin:0; background:#1C1712; max-width:100%; overflow-x:hidden; }
+  html, body { margin:0; background:#1C1712; max-width:100%; }
+  html { overflow-x:hidden; }
+  body { overflow-x:clip; }
+  @media (max-width:760px) { .ls-pin { height:240vh !important; } }
   img, video, iframe { max-width:100%; }
   a { color:#BD5533; }
   a:hover { color:#DDC9A8; }
@@ -60,16 +63,12 @@
     .spk-body { padding:20px 16px !important; }
     .bio-full { display:none !important; }
     .bio-mob { display:block !important; }
-    .shirt-grid { grid-template-columns:1fr 1fr !important; gap:12px !important; }
-    .shirt-label { font-size:12px !important; left:10px !important; bottom:10px !important; }
   }
   @media (max-width:420px) {
     .nowrap-price { white-space:normal; }
   }
   .tk-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; }
   .tk-card { grid-column:span 2; }
-  .tk-c4 { grid-column:2 / span 2; }
-  .tk-grid > .tk-card:last-child { grid-column:4 / span 2; }
   .tv-grid { display:grid; grid-template-columns:minmax(0,1.75fr) minmax(0,1fr); gap:20px; align-items:stretch; }
   .tv-list-wrap { position:relative; min-height:280px; }
   .tv-list { position:absolute; inset:0; overflow-y:auto; }
@@ -80,7 +79,7 @@
   }
   @media (max-width:760px) {
     .tk-grid { grid-template-columns:repeat(2,1fr); }
-    .tk-card, .tk-c4, .tk-grid > .tk-card:last-child { grid-column:auto; }
+    .tk-card { grid-column:auto; }
   }
   @media (max-width:480px) { .tk-grid { grid-template-columns:1fr; } }
   .tv-mob { display:none; }
@@ -89,11 +88,19 @@
     .tv-grid { gap:14px; }
     .tv-poster-cap, .tv-poster-play { display:none !important; }
   }
+  .me-stage { aspect-ratio:16/9; }
+  .me-img { object-position:50% 28%; }
+  .me-copy { left:6%; right:6%; bottom:14%; max-width:60%; }
+  @media (max-width:760px) {
+    .me-stage { aspect-ratio:4/5; }
+    .me-img { object-position:54% 26%; }
+    .me-copy { left:22px; right:22px; bottom:58px; max-width:none; }
+  }
 </style>
 <script src="./image-slot.js"></script>
 </helmet>
 
-<div style="font-family:'Roboto',sans-serif;background:#1C1712;color:#F4EAD8;width:100%;overflow:hidden;">
+<div style="font-family:'Roboto',sans-serif;background:#1C1712;color:#F4EAD8;width:100%;overflow:clip;">
 
   <!-- STICKY HEADER -->
   <div style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 24px;background:#1C1712;border-bottom:1px solid #33291F;">
@@ -103,7 +110,6 @@
       <a href="#programacao" style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#DDC9A8;text-decoration:none;transition:color .25s;" style-hover="color:#F4EAD8;">Programação</a>
       <a href="#palestrantes" style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#DDC9A8;text-decoration:none;transition:color .25s;" style-hover="color:#F4EAD8;">Palestrantes</a>
       <a href="#tv" style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#DDC9A8;text-decoration:none;transition:color .25s;" style-hover="color:#F4EAD8;">Ministrações</a>
-      <a href="#camisas" style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#DDC9A8;text-decoration:none;transition:color .25s;" style-hover="color:#F4EAD8;">Camisetas</a>
     </nav>
     <a href="{{ ctaHref }}" target="_blank" rel="noopener" style="font-family:'Roboto',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.5px;text-transform:uppercase;background:#BD5533;color:#F4EAD8;padding:10px 18px;border-radius:2px;text-decoration:none;">Ingresso</a>
   </div>
@@ -161,16 +167,19 @@
     </div>
   </div>
 
-  <!-- ABOUT / CONCEPT -->
-  <div ref="{{ aboutRef }}" style="{{ aboutStyle }}">
-    <div style="max-width:640px;margin:0 auto;text-align:center;">
-      <div style="width:24px;height:24px;margin:0 auto 24px;position:relative;">
-        <div style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:4px;height:24px;background:#BD5533;"></div>
-        <div style="position:absolute;top:50%;left:0;transform:translateY(-50%);width:24px;height:4px;background:#BD5533;"></div>
+  <!-- ABOUT / CONCEPT (scroll) -->
+  <div ref="{{ lsRef }}" class="ls-pin" style="position:relative;height:300vh;background:#1C1712;">
+    <div data-l="stick" style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:96px 24px 48px;box-sizing:border-box;">
+      <div data-l="light" style="position:absolute;left:50%;top:50%;width:260vmax;height:260vmax;margin:-130vmax 0 0 -130vmax;border-radius:50%;background:radial-gradient(circle, #F4EAD8 0%, #F4EAD8 62%, rgba(244,234,216,0) 71%);transform:scale(0);pointer-events:none;will-change:transform;"></div>
+      <div style="position:relative;z-index:1;width:100%;max-width:900px;text-align:center;">
+        <div data-l="cross" style="width:28px;height:28px;margin:0 auto 32px;position:relative;transform-origin:50% 100%;will-change:transform,filter;">
+          <div style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:4px;height:28px;background:#BD5533;"></div>
+          <div style="position:absolute;top:50%;left:0;transform:translateY(-50%);width:28px;height:4px;background:#BD5533;"></div>
+        </div>
+        <div data-l="title" style="font-family:'Anton',sans-serif;font-size:clamp(30px,6vw,44px);letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;margin-bottom:28px;">O Lugar Secreto</div>
+        <p data-l="p1" style="font-size:clamp(24px,3.6vw,44px);font-weight:700;line-height:1.28;letter-spacing:-0.01em;margin:0 0 28px;text-wrap:pretty;"><sc-for list="{{ lsWords }}" as="w" hint-placeholder-count="0"><span data-w="{{ $index }}" data-hl="{{ w.hl }}" style="color:#F4EAD8;opacity:0.16;">{{ w.t }}</span></sc-for></p>
+        <p data-l="p2" style="font-size:17px;line-height:1.75;margin:0 auto;max-width:640px;color:#1C1712;opacity:0;">Uma mensagem de consagração e entrega, individual e coletiva, na presença de Deus — buscando esse lugar secreto de intimidade com Ele.</p>
       </div>
-      <div style="font-family:'Anton',sans-serif;font-size:clamp(30px,6vw,44px);letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;">O Lugar Secreto</div>
-      <p style="font-size:17px;line-height:1.75;margin:0 0 20px;">INFLAME é uma conferência para jovens construída sobre uma promessa: buscar a Deus em segredo para ser respondido em público.</p>
-      <p style="font-size:17px;line-height:1.75;margin:0;color:#1C1712;">Uma mensagem de consagração e entrega, individual e coletiva, na presença de Deus — buscando esse lugar secreto de intimidade com Ele.</p>
     </div>
   </div>
 
@@ -211,28 +220,7 @@
             </div>
             <div style="font-family:'Anton',sans-serif;font-size:36px;margin-bottom:6px;">R$130</div>
             <div style="font-size:13px;line-height:1.5;color:#DDC9A8;">15/11 a 11/12</div>
-            <div style="font-size:13px;line-height:1.6;color:#DDC9A8;margin-top:12px;padding-top:12px;border-top:1px solid rgba(244,234,216,0.14);text-wrap:pretty;">Acesso aos três dias de conferência. Não inclui camisa.</div>
-          </div>
-          <div class="tk-card tk-c4" style="box-sizing:border-box;background:rgba(189,85,51,0.16);backdropFilter:blur(14px);WebkitBackdropFilter:blur(14px);border:1px solid rgba(189,85,51,0.6);border-radius:18px;padding:28px 22px;color:#F4EAD8;transition:transform 0.35s cubic-bezier(.2,.7,.3,1), background 0.35s, border-color 0.35s, box-shadow 0.35s;willChange:transform;" style-hover="transform:scale(1.045);background:rgba(189,85,51,0.26);border-color:#BD5533;boxShadow:0 18px 40px rgba(0,0,0,0.4);">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;">
-              <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0764F;">Combo · Ingresso + Camiseta</div>
-              <div style="{{ badge3Style }}">{{ badge3Label }}</div>
-            </div>
-            <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:6px;">
-              <div style="font-family:'Anton',sans-serif;font-size:36px;">R$150</div>
-              <div style="font-size:13px;color:rgba(221,201,168,0.6);text-decoration:line-through;">R$200</div>
-            </div>
-            <div style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1C1712;background:#DDC9A8;padding:5px 10px;border-radius:999px;margin-bottom:12px;">Economize R$50</div>
-            <div style="font-size:13px;line-height:1.6;color:#DDC9A8;padding-top:12px;border-top:1px solid rgba(189,85,51,0.35);text-wrap:pretty;">Ingresso do 1º lote com a camiseta oficial do INFLAME inclusa. Disponível de 01/10 a 15/11 — a camiseta é entregue na retirada da credencial.</div>
-          </div>
-          <div class="tk-card" style="box-sizing:border-box;background:rgba(244,234,216,0.07);backdropFilter:blur(14px);WebkitBackdropFilter:blur(14px);border:1px solid rgba(244,234,216,0.16);border-radius:18px;padding:28px 22px;color:#F4EAD8;transition:transform 0.35s cubic-bezier(.2,.7,.3,1), background 0.35s, border-color 0.35s, box-shadow 0.35s;willChange:transform;" style-hover="transform:scale(1.045);background:rgba(244,234,216,0.12);border-color:rgba(189,85,51,0.55);boxShadow:0 18px 40px rgba(0,0,0,0.4);">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;">
-              <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0764F;min-width:0;">Camiseta Avulsa</div>
-              <div style="{{ badge4Style }}">{{ badge4Label }}</div>
-            </div>
-            <div style="font-family:'Anton',sans-serif;font-size:36px;margin-bottom:6px;">R$90</div>
-            <div style="font-size:13px;line-height:1.5;color:#DDC9A8;">Somente a camiseta</div>
-            <div style="font-size:13px;line-height:1.6;color:#DDC9A8;margin-top:12px;padding-top:12px;border-top:1px solid rgba(244,234,216,0.14);text-wrap:pretty;">Camiseta oficial do INFLAME sem ingresso. Disponível nas cores preta e branca.</div>
+            <div style="font-size:13px;line-height:1.6;color:#DDC9A8;margin-top:12px;padding-top:12px;border-top:1px solid rgba(244,234,216,0.14);text-wrap:pretty;">Acesso aos três dias de conferência.</div>
           </div>
         </div>
         <div style="text-align:center;">
@@ -278,7 +266,10 @@
 
         <div class="spk" style="display:flex;background:#241D16;border-radius:2px;overflow:hidden;">
           <div class="spk-media" style="position:relative;width:38%;min-width:160px;flex-shrink:0;align-self:stretch;">
-            <img src="assets/elias-pessoa.jpg" alt="Elias Pessoa" style="width:100%;height:100%;object-fit:cover;object-position:56% 18%;display:block;position:absolute;inset:0;">
+            <img data-photo="1" src="assets/elias-pessoa.jpg" alt="Elias Pessoa" style="width:100%;height:100%;object-fit:cover;object-position:56% 18%;display:block;position:absolute;inset:0;transition:opacity .7s ease;">
+            <div data-reel="0" style="position:absolute;inset:0;opacity:0;transition:opacity .7s ease;background:#000;overflow:hidden;pointer-events:none;">
+              <div data-reel-host="0" style="position:absolute;left:50%;top:50%;height:100%;aspect-ratio:16/9;min-width:100%;transform:translate(-50%,-50%) scale(1.15);"><div data-reel-slot="0-0" style="position:absolute;inset:0;opacity:0;transition:opacity .6s ease;"></div><div data-reel-slot="0-1" style="position:absolute;inset:0;opacity:0;transition:opacity .6s ease;"></div></div>
+            </div>
             <div style="position:absolute;top:12px;left:12px;background:rgba(28,23,18,0.85);color:#F4EAD8;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;">Ministro</div>
           </div>
           <div class="spk-body" style="min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px;">
@@ -296,7 +287,10 @@
 
         <div class="spk" style="display:flex;background:#241D16;border-radius:2px;overflow:hidden;">
           <div class="spk-media" style="position:relative;width:38%;min-width:160px;flex-shrink:0;align-self:stretch;">
-            <img src="assets/isaac-guimaraes.jpg" alt="Isaac Guimarães" style="width:100%;height:100%;object-fit:cover;object-position:56% 14%;display:block;position:absolute;inset:0;">
+            <img data-photo="1" src="assets/isaac-guimaraes.jpg" alt="Isaac Guimarães" style="width:100%;height:100%;object-fit:cover;object-position:56% 14%;display:block;position:absolute;inset:0;transition:opacity .7s ease;">
+            <div data-reel="1" style="position:absolute;inset:0;opacity:0;transition:opacity .7s ease;background:#000;overflow:hidden;pointer-events:none;">
+              <div data-reel-host="1" style="position:absolute;left:50%;top:50%;height:100%;aspect-ratio:16/9;min-width:100%;transform:translate(-50%,-50%) scale(1.15);"><div data-reel-slot="1-0" style="position:absolute;inset:0;opacity:0;transition:opacity .6s ease;"></div><div data-reel-slot="1-1" style="position:absolute;inset:0;opacity:0;transition:opacity .6s ease;"></div></div>
+            </div>
             <div style="position:absolute;top:12px;left:12px;background:rgba(28,23,18,0.85);color:#F4EAD8;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;">Ministro</div>
           </div>
           <div class="spk-body" style="min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px;">
@@ -313,12 +307,22 @@
         </div>
 
         <div class="spk" style="display:flex;background:#241D16;border-radius:2px;overflow:hidden;">
-          <div class="spk-media" style="position:relative;width:38%;min-width:160px;flex-shrink:0;align-self:stretch;background:repeating-linear-gradient(45deg, #BD5533, #BD5533 10px, #1C1712 10px, #1C1712 20px);"></div>
+          <div class="spk-media" style="position:relative;width:38%;min-width:160px;flex-shrink:0;align-self:stretch;">
+            <img src="assets/amanda-cristina.png" alt="Amanda Cristina" style="width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block;position:absolute;inset:0;">
+            <div style="position:absolute;top:12px;left:12px;background:rgba(28,23,18,0.85);color:#F4EAD8;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;">Ministra</div>
+          </div>
           <div class="spk-body" style="min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px;">
-            <div style="font-family:'Anton',sans-serif;font-size:30px;letter-spacing:0.5px;color:#8a8074;text-transform:uppercase;line-height:1.05;margin-bottom:16px;">A anunciar</div>
+            <div style="font-family:'Anton',sans-serif;font-size:30px;letter-spacing:0.5px;color:#F4EAD8;text-transform:uppercase;line-height:1.05;margin-bottom:6px;">Amanda Cristina</div>
+            <div style="font-size:13px;color:#BD5533;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px;">Ministra | INFLAME</div>
             <div style="border-top:1px solid #3a2f24;padding-top:16px;">
-              <p style="font-size:14px;line-height:1.7;color:#c9bda9;margin:0;">O terceiro ministro será revelado em breve nas redes do evento.</p>
+              <p class="bio-mob" style="font-size:14px;line-height:1.7;color:#c9bda9;margin:0;">Esposa de Elias Pessoa e ministra, Amanda Cristina serve ao Senhor com amor, sensibilidade e firmeza. Carrega um coração voltado para pessoas e para a Palavra, dedicando sua vida a inspirar uma geração a viver com fé, identidade, propósito e uma entrega verdadeira a Jesus.</p>
+              <p class="bio-full" style="font-size:14px;line-height:1.7;color:#c9bda9;margin:0;">Esposa de Elias Pessoa, Amanda Cristina carrega em sua vida um profundo amor por Deus, pela Sua Palavra e por pessoas. Ao lado de Elias, tem participado da construção de uma história marcada por fé, serviço e pelo desejo de ver uma geração vivendo de forma genuína para Jesus.</p>
+              <p class="bio-full" style="font-size:14px;line-height:1.7;color:#c9bda9;margin:12px 0 0;">Com sensibilidade, firmeza e um coração disponível ao Senhor, Amanda tem sido instrumento para encorajar pessoas a desenvolverem uma vida de intimidade com Deus, identidade e propósito. Sua maneira de comunicar une verdade, leveza e uma fé prática que alcança a realidade de quem a ouve.</p>
+              <p class="bio-full" style="font-size:14px;line-height:1.7;color:#c9bda9;margin:12px 0 0;">Mulher de Deus, esposa e ministra, carrega a convicção de que uma geração transformada começa no secreto e se manifesta em uma vida completamente rendida a Cristo. No INFLAME, sua presença representa esse chamado: pessoas incendiadas por Deus para viver algo que vai muito além de um evento.</p>
             </div>
+          </div>
+        </div>
+
           </div>
         </div>
 
@@ -327,14 +331,96 @@
   </div>
   </sc-if>
 
+  <!-- MINISTRO ESPECIAL -->
+  <div id="ministro-especial" style="background:#1C1712;font-family:'Roboto',sans-serif;color:#F4EAD8;">
+  <div ref="{{ meStageRef }}" class="me-stage" style="position:relative;width:100%;overflow:hidden;background:#000;isolation:isolate;">
+
+    <div data-a="cam" style="position:absolute;inset:0;transform-origin:50% 26%;will-change:transform,filter;">
+      <img class="me-img" src="assets/ministro-especial.jpg" alt="Ministro a anunciar" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+
+    <div data-a="strip" data-i="0" style="position:absolute;inset:0;display:none;pointer-events:none;">
+      <div data-a="stripcam" style="position:absolute;inset:0;transform-origin:50% 26%;"><img class="me-img" src="assets/ministro-especial.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"></div>
+    </div>
+    <div data-a="strip" data-i="1" style="position:absolute;inset:0;display:none;pointer-events:none;filter:hue-rotate(-25deg) saturate(1.6);">
+      <div data-a="stripcam" style="position:absolute;inset:0;transform-origin:50% 26%;"><img class="me-img" src="assets/ministro-especial.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"></div>
+    </div>
+    <div data-a="strip" data-i="2" style="position:absolute;inset:0;display:none;pointer-events:none;">
+      <div data-a="stripcam" style="position:absolute;inset:0;transform-origin:50% 26%;"><img class="me-img" src="assets/ministro-especial.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"></div>
+    </div>
+
+    <div data-a="flick" style="position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(60% 70% at 52% 40%, rgba(255,128,40,0.55), rgba(255,80,20,0) 70%);opacity:0.3;"></div>
+
+    <div style="position:absolute;inset:0;pointer-events:none;">
+      <sc-for list="{{ meEmbers }}" as="e" hint-placeholder-count="0">
+        <div data-a="ember" style="position:absolute;left:0;top:0;width:{{ e.size }};height:{{ e.size }};border-radius:50%;background:#FFB060;box-shadow:0 0 8px 2px rgba(255,120,40,0.8);opacity:0;"></div>
+      </sc-for>
+    </div>
+
+    <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg, rgba(12,8,6,0.82) 0%, rgba(12,8,6,0.45) 38%, rgba(12,8,6,0) 64%), linear-gradient(0deg, rgba(12,8,6,0.75) 0%, rgba(12,8,6,0) 42%);"></div>
+    <div style="position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 180px 40px rgba(0,0,0,0.7);"></div>
+
+    <div style="position:absolute;left:6%;right:6%;top:6%;display:flex;justify-content:space-between;align-items:center;gap:16px;pointer-events:none;">
+      <div data-a="chrome" style="display:flex;align-items:center;gap:10px;">
+        <img src="assets/web/fogo-icon.png" alt="" style="height:26px;width:auto;display:block;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;white-space:nowrap;">INFLAME 2026</div>
+      </div>
+      <div data-a="chrome" style="display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;font-variant-numeric:tabular-nums;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#D7261E;box-shadow:0 0 10px #D7261E;"></span>
+        <span data-a="counter">01 / 04</span>
+      </div>
+    </div>
+
+    <div class="me-copy" style="position:absolute;pointer-events:none;">
+      <div data-a="part" data-p="1" style="position:absolute;left:0;right:0;bottom:0;">
+        <div style="overflow:hidden;margin-bottom:18px;"><div data-line="1" data-p="1" data-d="0" style="display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;"><span data-rule="1" style="display:block;width:36px;height:2px;background:#D7261E;transform-origin:left;"></span>Ministro convidado · INFLAME 2026</div></div>
+        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="1" data-d="0.08" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;">Ele está</div></div>
+        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="1" data-d="0.16" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;color:#D7261E;">chegando</div></div>
+      </div>
+
+      <div data-a="part" data-p="2" style="position:absolute;left:0;right:0;bottom:0;">
+        <div style="overflow:hidden;margin-bottom:18px;"><div data-line="1" data-p="2" data-d="0" style="display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;"><span data-rule="2" style="display:block;width:36px;height:2px;background:#D7261E;transform-origin:left;"></span>Ministro 04</div></div>
+        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="2" data-d="0.08" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;">Você sabe</div></div>
+        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="2" data-d="0.16" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;color:#D7261E;">quem é ele?</div></div>
+      </div>
+
+      <div data-a="part" data-p="3" style="position:absolute;left:0;right:0;bottom:0;">
+        <div style="overflow:hidden;margin-bottom:10px;"><div data-line="1" data-p="3" data-d="0" style="display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;"><span data-rule="3" style="display:block;width:36px;height:2px;background:#D7261E;transform-origin:left;"></span>Verbo da Vida Jundiaí</div></div>
+        <div style="overflow:hidden;font-size:clamp(64px,11vw,190px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="3" data-d="0.08" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(64px,11vw,190px);line-height:0.95;">11—13</div></div>
+        <div style="overflow:hidden;font-size:clamp(22px,3vw,48px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="3" data-d="0.16" style="font-family:'Anton',sans-serif;font-size:clamp(22px,3vw,48px);letter-spacing:6px;line-height:1.1;text-transform:uppercase;color:#D7261E;">Dezembro 2026</div></div>
+      </div>
+
+      <div data-a="part" data-p="4" style="position:absolute;left:0;right:0;bottom:0;">
+        <div style="overflow:hidden;margin-bottom:18px;"><div data-line="1" data-p="4" data-d="0" style="display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;"><span data-rule="4" style="display:block;width:36px;height:2px;background:#D7261E;transform-origin:left;"></span>Anúncio oficial · INFLAME 2026</div></div>
+        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="4" data-d="0.08" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;">Revelação</div></div>
+        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="4" data-d="0.16" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;color:#D7261E;">em breve</div></div>
+      </div>
+    </div>
+
+    
+      <div data-a="chrome" style="position:absolute;left:6%;right:6%;bottom:5%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;pointer-events:none;">
+        <div style="height:2px;background:rgba(244,234,216,0.22);overflow:hidden;"><div data-seg="0" style="height:100%;width:0;background:#F4EAD8;"></div></div>
+        <div style="height:2px;background:rgba(244,234,216,0.22);overflow:hidden;"><div data-seg="1" style="height:100%;width:0;background:#F4EAD8;"></div></div>
+        <div style="height:2px;background:rgba(244,234,216,0.22);overflow:hidden;"><div data-seg="2" style="height:100%;width:0;background:#F4EAD8;"></div></div>
+        <div style="height:2px;background:rgba(244,234,216,0.22);overflow:hidden;"><div data-seg="3" style="height:100%;width:0;background:#F4EAD8;"></div></div>
+      </div>
+
+    <div data-a="sweep" style="position:absolute;top:-20%;height:140%;width:34%;left:0;background:#D7261E;transform:skewX(-18deg);display:none;pointer-events:none;"></div>
+    <div data-a="sweep2" style="position:absolute;top:-20%;height:140%;width:6%;left:0;background:#F4EAD8;transform:skewX(-18deg);display:none;pointer-events:none;"></div>
+    <div data-a="flash" style="position:absolute;inset:0;background:#FFE2C2;mix-blend-mode:screen;opacity:0;pointer-events:none;"></div>
+    <div data-a="lbT" style="position:absolute;left:0;right:0;top:0;height:50%;background:#000;pointer-events:none;"></div>
+    <div data-a="lbB" style="position:absolute;left:0;right:0;bottom:0;height:50%;background:#000;pointer-events:none;"></div>
+  </div>
+  </div>
+
   <!-- MINISTRAÇÕES -->
   <div id="tv" ref="{{ tvRef }}" style="{{ tvStyle }}">
     <div style="max-width:1040px;margin:0 auto;">
       <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px;">
-        <img src="assets/web/fogo-icon.png" alt="" style="height:30px;width:auto;display:block;">
-        <div style="font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;line-height:1;">Ouça quem vai ministrar</div>
+        <img src="assets/web/fogo-icon.png" alt="" style="height:30px;width:auto;display:block;filter:brightness(0) saturate(100%);opacity:0.88;">
+        <div style="font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;color:#1C1712;line-height:1;">Ouça quem vai ministrar</div>
       </div>
-      <div style="text-align:center;font-size:13px;color:#DDC9A8;margin-bottom:32px;text-wrap:pretty;">Assista às ministrações de quem estará com a gente no INFLAME 2026. Ao terminar um vídeo, o próximo começa sozinho.</div>
+      <div style="text-align:center;font-size:13px;color:#5b4d3d;margin-bottom:32px;text-wrap:pretty;">Assista às ministrações de quem estará com a gente no INFLAME 2026. Ao terminar um vídeo, o próximo começa sozinho.</div>
 
       <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:28px;">
         <sc-for list="{{ tvTabs }}" as="tab" hint-placeholder-count="3">
@@ -346,7 +432,7 @@
       </div>
 
       <div class="tv-grid">
-        <div style="position:relative;width:100%;height:0;padding-top:56.25%;align-self:start;border-radius:18px;overflow:hidden;background:#000;border:1px solid rgba(244,234,216,0.16);box-shadow:0 24px 60px rgba(0,0,0,0.45);">
+        <div style="position:relative;width:100%;height:0;padding-top:56.25%;align-self:start;border-radius:18px;overflow:hidden;background:#000;border:1px solid rgba(28,23,18,0.12);box-shadow:0 24px 50px rgba(28,23,18,0.25);">
           <div ref="{{ tvHostRef }}" style="position:absolute;inset:0;"></div>
           <sc-if value="{{ tvShowLoading }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#1C1712;">
@@ -377,25 +463,25 @@
           </sc-if>
         </div>
 
-        <div class="tv-mob" style="min-width:0;background:rgba(244,234,216,0.08);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(244,234,216,0.2);border-radius:22px;padding:16px 18px 10px;box-shadow:0 18px 40px rgba(0,0,0,0.35);font-family:'Roboto',sans-serif;">
+        <div class="tv-mob" style="min-width:0;background:rgba(28,23,18,0.05);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(28,23,18,0.14);border-radius:22px;padding:16px 18px 10px;box-shadow:0 18px 40px rgba(28,23,18,0.12);font-family:'Roboto',sans-serif;">
           <div style="text-align:center;min-width:0;">
-            <div style="font-size:15px;font-weight:700;color:#F4EAD8;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ tvCurrentTitle }}</div>
-            <div style="font-size:13px;color:#DDC9A8;margin-top:2px;">{{ tvMinisterName }}</div>
+            <div style="font-size:15px;font-weight:700;color:#1C1712;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ tvCurrentTitle }}</div>
+            <div style="font-size:13px;color:#5b4d3d;margin-top:2px;">{{ tvMinisterName }}</div>
           </div>
           <div style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;margin-top:12px;">
-            <div style="font-size:11px;color:#DDC9A8;font-variant-numeric:tabular-nums;min-width:30px;">{{ tvElapsed }}</div>
+            <div style="font-size:11px;color:#5b4d3d;font-variant-numeric:tabular-nums;min-width:30px;">{{ tvElapsed }}</div>
             <div onClick="{{ tvSeek }}" role="slider" aria-label="Posição da ministração" style="position:relative;height:22px;display:flex;align-items:center;cursor:pointer;">
-              <div style="position:relative;width:100%;height:4px;border-radius:4px;background:rgba(244,234,216,0.22);overflow:hidden;">
-                <div style="position:absolute;left:0;top:0;bottom:0;width:{{ tvPct }};background:#F4EAD8;border-radius:4px;"></div>
+              <div style="position:relative;width:100%;height:4px;border-radius:4px;background:rgba(28,23,18,0.15);overflow:hidden;">
+                <div style="position:absolute;left:0;top:0;bottom:0;width:{{ tvPct }};background:#BD5533;border-radius:4px;"></div>
               </div>
             </div>
-            <div style="font-size:11px;color:#DDC9A8;font-variant-numeric:tabular-nums;min-width:30px;text-align:right;">{{ tvRemain }}</div>
+            <div style="font-size:11px;color:#5b4d3d;font-variant-numeric:tabular-nums;min-width:30px;text-align:right;">{{ tvRemain }}</div>
           </div>
           <div style="display:flex;align-items:center;justify-content:center;gap:28px;margin-top:4px;">
-            <button type="button" onClick="{{ tvPrev }}" aria-label="Ministração anterior" style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;padding:0;color:#F4EAD8;cursor:pointer;">
+            <button type="button" onClick="{{ tvPrev }}" aria-label="Ministração anterior" style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;padding:0;color:#1C1712;cursor:pointer;">
               <svg width="34" height="22" viewBox="0 0 34 22" fill="currentColor" aria-hidden="true"><path d="M16 2.2v17.6c0 .9-1 1.4-1.7.9L2.1 11.9a1.1 1.1 0 0 1 0-1.8L14.3 1.3c.7-.5 1.7 0 1.7.9z"></path><path d="M32 2.2v17.6c0 .9-1 1.4-1.7.9L18.1 11.9a1.1 1.1 0 0 1 0-1.8L30.3 1.3c.7-.5 1.7 0 1.7.9z"></path></svg>
             </button>
-            <button type="button" onClick="{{ tvToggle }}" aria-label="Tocar ou pausar" style="width:64px;height:64px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;padding:0;color:#F4EAD8;cursor:pointer;">
+            <button type="button" onClick="{{ tvToggle }}" aria-label="Tocar ou pausar" style="width:64px;height:64px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;padding:0;color:#1C1712;cursor:pointer;">
               <sc-if value="{{ tvIsPlaying }}" hint-placeholder-val="{{ false }}">
                 <svg width="28" height="34" viewBox="0 0 28 34" fill="currentColor" aria-hidden="true"><rect x="2" y="1" width="8" height="32" rx="2"></rect><rect x="18" y="1" width="8" height="32" rx="2"></rect></svg>
               </sc-if>
@@ -403,75 +489,28 @@
                 <svg width="30" height="34" viewBox="0 0 30 34" fill="currentColor" aria-hidden="true"><path d="M4 2.6v28.8c0 1.5 1.7 2.5 3 1.7l22-14.4a2 2 0 0 0 0-3.4L7 .9C5.7.1 4 1.1 4 2.6z"></path></svg>
               </sc-if>
             </button>
-            <button type="button" onClick="{{ tvNext }}" aria-label="Próxima ministração" style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;padding:0;color:#F4EAD8;cursor:pointer;">
+            <button type="button" onClick="{{ tvNext }}" aria-label="Próxima ministração" style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;padding:0;color:#1C1712;cursor:pointer;">
               <svg width="34" height="22" viewBox="0 0 34 22" fill="currentColor" aria-hidden="true"><path d="M2 2.2v17.6c0 .9 1 1.4 1.7.9l12.2-8.8a1.1 1.1 0 0 0 0-1.8L3.7 1.3C3 .8 2 1.3 2 2.2z"></path><path d="M18 2.2v17.6c0 .9 1 1.4 1.7.9l12.2-8.8a1.1 1.1 0 0 0 0-1.8L19.7 1.3c-.7-.5-1.7 0-1.7.9z"></path></svg>
             </button>
           </div>
         </div>
 
         <div class="tv-list-wrap">
-          <div class="tv-list" style="display:flex;flex-direction:column;gap:6px;padding:8px;background:rgba(244,234,216,0.05);border:1px solid rgba(244,234,216,0.12);border-radius:18px;box-sizing:border-box;">
+          <div class="tv-list" style="display:flex;flex-direction:column;gap:6px;padding:8px;background:rgba(28,23,18,0.04);border:1px solid rgba(28,23,18,0.12);border-radius:18px;box-sizing:border-box;">
             <sc-for list="{{ tvItems }}" as="it" hint-placeholder-count="5">
               <button type="button" onClick="{{ it.onClick }}" style="{{ it.itemStyle }}">
-                <div style="position:relative;width:112px;flex-shrink:0;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#241D16;">
+                <div style="position:relative;width:112px;flex-shrink:0;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#c9b696;">
                   <img src="{{ it.thumb }}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
                   <sc-if value="{{ it.isActive }}" hint-placeholder-val="{{ false }}">
                     <div style="position:absolute;inset:0;background:rgba(189,85,51,0.55);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;">Tocando</div>
                   </sc-if>
                 </div>
                 <div style="min-width:0;flex:1;">
-                  <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0764F;margin-bottom:3px;">{{ it.num }}</div>
-                  <div style="font-size:13px;line-height:1.35;color:#F4EAD8;display:-webkit-box;WebkitLineClamp:2;WebkitBoxOrient:vertical;overflow:hidden;">{{ it.title }}</div>
+                  <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#BD5533;margin-bottom:3px;">{{ it.num }}</div>
+                  <div style="font-size:13px;line-height:1.35;color:#1C1712;display:-webkit-box;WebkitLineClamp:2;WebkitBoxOrient:vertical;overflow:hidden;">{{ it.title }}</div>
                 </div>
               </button>
             </sc-for>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CAMISETAS -->
-  <div id="camisas" ref="{{ shirtsRef }}" style="{{ shirtsStyle }}">
-    <img src="assets/web/textura-riscos.png" alt="" style="position:absolute;right:-10%;top:-10%;width:80%;opacity:0.08;transform:rotate(8deg);pointer-events:none;user-select:none;">
-    <div style="position:relative;max-width:1000px;margin:0 auto;">
-      <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;margin-bottom:8px;">Camisetas</div>
-      <div style="text-align:center;font-size:13px;color:#DDC9A8;margin-bottom:44px;">Duas cores. No combo com ingresso ou avulsa por R$90</div>
-      <div style="display:flex;flex-direction:column;gap:24px;">
-        <div style="position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:2px;background:#1C1712;">
-          <video ref="{{ videoPretaRef }}" src="assets/web/camisa-preta.mp4" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" preload="none" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.3,1);" style-hover="transform:scale(1.04);"></video>
-          <div style="position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(180deg,rgba(28,23,18,0),rgba(28,23,18,0.7));pointer-events:none;"></div>
-          <div style="position:absolute;left:24px;bottom:20px;font-family:'Anton',sans-serif;font-size:clamp(18px,2.4vw,26px);letter-spacing:0.5px;color:#F4EAD8;text-transform:uppercase;pointer-events:none;">Camisa Preta</div>
-        </div>
-        <div style="position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:2px;background:#F4EAD8;">
-          <video ref="{{ videoBrancaRef }}" src="assets/web/camisa-branca.mp4" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" preload="none" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.3,1);" style-hover="transform:scale(1.04);"></video>
-          <div style="position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(180deg,rgba(28,23,18,0),rgba(28,23,18,0.7));pointer-events:none;"></div>
-          <div style="position:absolute;left:24px;bottom:20px;font-family:'Anton',sans-serif;font-size:clamp(18px,2.4vw,26px);letter-spacing:0.5px;color:#F4EAD8;text-transform:uppercase;pointer-events:none;">Camisa Branca</div>
-        </div>
-      </div>
-
-      <div style="margin-top:48px;">
-        <div style="text-align:center;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(221,201,168,0.6);margin-bottom:20px;">Frente e costas</div>
-        <div class="shirt-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
-          <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#1C1712;">
-            <img src="assets/web/camisa-preta-frente.jpg" alt="Camisa preta, frente" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.3,1);" style-hover="transform:scale(1.05);">
-            <div style="position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(180deg,rgba(28,23,18,0),rgba(28,23,18,0.75));pointer-events:none;"></div>
-            <div class="shirt-label" style="position:absolute;left:12px;bottom:12px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;white-space:nowrap;pointer-events:none;">Preta · Frente</div>
-          </div>
-          <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#1C1712;">
-            <img src="assets/web/camisa-preta-costas.jpg" alt="Camisa preta, costas" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.3,1);" style-hover="transform:scale(1.05);">
-            <div style="position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(180deg,rgba(28,23,18,0),rgba(28,23,18,0.75));pointer-events:none;"></div>
-            <div class="shirt-label" style="position:absolute;left:12px;bottom:12px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;white-space:nowrap;pointer-events:none;">Preta · Costas</div>
-          </div>
-          <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#F4EAD8;">
-            <img src="assets/web/camisa-branca-frente.jpg" alt="Camisa branca, frente" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.3,1);" style-hover="transform:scale(1.05);">
-            <div style="position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(180deg,rgba(28,23,18,0),rgba(28,23,18,0.75));pointer-events:none;"></div>
-            <div class="shirt-label" style="position:absolute;left:12px;bottom:12px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;white-space:nowrap;pointer-events:none;">Branca · Frente</div>
-          </div>
-          <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#F4EAD8;">
-            <img src="assets/web/camisa-branca-costas.jpg" alt="Camisa branca, costas" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.3,1);" style-hover="transform:scale(1.05);">
-            <div style="position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(180deg,rgba(28,23,18,0),rgba(28,23,18,0.75));pointer-events:none;"></div>
-            <div class="shirt-label" style="position:absolute;left:12px;bottom:12px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F4EAD8;white-space:nowrap;pointer-events:none;">Branca · Costas</div>
           </div>
         </div>
       </div>
@@ -546,11 +585,347 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:900},&quot;loteAtivo&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;1º Lote · Pioneiros&quot;,&quot;1º Lote · Normal&quot;,&quot;2º Lote&quot;],&quot;default&quot;:&quot;1º Lote · Pioneiros&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ingressos&quot;},&quot;ctaUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://tiketo.com.br/evento/5912&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.instagram.com/inflame.conf/&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showSpeakers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
+  _reelInit() {
+    const q = (s) => document.querySelector(s);
+    this._reels = [0, 1].map(i => {
+      const layer = q('[data-reel="' + i + '"]'); if (!layer) return null;
+      const slots = [0, 1].map(k => ({ k, wrap: q('[data-reel-slot="' + i + '-' + k + '"]'), player: null, ready: false, id: null, target: 0, goodSince: 0, state: 'idle' }));
+      return { i, layer, slots, photo: layer.parentElement.querySelector('[data-photo]'), card: layer.closest('.spk'),
+        ratio: 0, active: false, showing: -1, shownAt: 0, used: [] };
+    }).filter(Boolean);
+    if (!this._reels.length || !window.IntersectionObserver) return;
+    this._reelDur = {};
+    this._reelIo = new IntersectionObserver((ens) => ens.forEach(en => { const r = this._reels.find(x => x.card === en.target); if (r) r.ratio = en.intersectionRatio; }), { threshold: [0, 0.3, 0.6, 0.85, 1] });
+    this._reels.forEach(r => this._reelIo.observe(r.card));
+    this._reelLast = Date.now();
+    this._reelMove = () => { this._reelLast = Date.now(); this._reels.forEach(r => { if (r.active) this._reelStop(r); }); };
+    ['scroll', 'wheel', 'touchmove', 'keydown'].forEach(ev => window.addEventListener(ev, this._reelMove, { passive: true }));
+    this._reelTick = setInterval(() => {
+      this._reels.forEach(r => { if (r.active || r.warm) this._reelPoll(r); });
+      this._reels.forEach(r => { if (r.ratio >= 0.6 && !r.warm) this._reelWarm(r); else if (r.ratio < 0.3 && r.warm && !r.active) this._reelCool(r); });
+      if (Date.now() - this._reelLast < 3000 || this._reels.some(r => r.active)) return;
+      const best = this._reels.filter(r => r.ratio >= 0.6).sort((a, b) => b.ratio - a.ratio)[0];
+      if (best) this._reelStart(best);
+    }, 250);
+  }
+  _reelDestroy() {
+    if (!this._reels) return;
+    clearInterval(this._reelTick); this._reelIo && this._reelIo.disconnect();
+    if (this._reelMove) ['scroll', 'wheel', 'touchmove', 'keydown'].forEach(ev => window.removeEventListener(ev, this._reelMove));
+  }
+  _reelIds(r) {
+    const cues = this.tvMinisters[r.i].reel;
+    if (cues && cues.length) return cues.map(x => x.id);
+    const ids = this._vidsFor(r.i);
+    if (!ids.length && this.tvMinisters[r.i].lists) this._fetchChannel(r.i);
+    if (r.i !== 1) return ids.slice(0, 6);
+    // Isaac: evita podcasts/entrevistas/participações e prioriza pregações (mesmo antigas)
+    const T = this.state.tvTitles || {};
+    const bad = /podcast|\bcast\b|entrevista|conversa|bate.?papo|react|feat|particip|casal|esposa|namorad|m[aã]e para|vlog|viagem|jap[aã]o|evangelismo|\brua\b|perguntas|respost|responde|minuto com|\bsend\b|bastidor|ao vivo|shorts?\b|curado/i;
+    const good = /[-–|]\s*isaac guimar[aã]es\s*$/i;
+    const pick = ids.filter(id => T[id] && good.test(T[id].trim()) && !bad.test(T[id]));
+    return pick.slice(0, 10);
+  }
+  _reelWarm(r) {
+    r.warm = true;
+    this._loadYT().then(() => { if (!r.warm) return; r.slots.forEach(s => this._reelEnsure(r, s)); if (r.slots.every(s => s.state === 'idle')) this._reelPrep(r, r.slots[0]); });
+  }
+  _reelCool(r) {
+    r.warm = false;
+    r.slots.forEach(s => { s.state = 'idle'; s.goodSince = 0; s.want = false; try { s.player && s.player.pauseVideo(); } catch (e) {} });
+  }
+  _reelStart(r) {
+    r.active = true; r.showing = -1;
+    if (!r.warm) this._reelWarm(r);
+  }
+  _reelEnsure(r, s) {
+    if (s.player) return;
+    const mount = document.createElement('div'); s.wrap.appendChild(mount);
+    s.player = new window.YT.Player(mount, {
+      width: '100%', height: '100%',
+      playerVars: { autoplay: 0, mute: 1, controls: 0, disablekb: 1, fs: 0, rel: 0, playsinline: 1, modestbranding: 1, iv_load_policy: 3, cc_load_policy: 0 },
+      events: {
+        onReady: () => { s.ready = true; try { s.player.mute(); const f = s.player.getIframe(); f.style.pointerEvents = 'none'; f.setAttribute('tabindex', '-1'); } catch (e) {} if (s.want) this._reelPrep(r, s); },
+        onStateChange: (e) => { if (e.data === 0 && (r.active || r.warm)) { s.state = 'idle'; this._reelPrep(r, s); } },
+      },
+    });
+  }
+  _reelPrep(r, s) {
+    if (!r.active && !r.warm) return;
+    if (!s.ready) { s.want = true; return; }
+    s.want = false;
+    let ids = this._reelIds(r);
+    if (!ids.length) { s.state = 'wait'; return; }
+    const other = r.slots[1 - s.k].id;
+    this._reelLong = this._reelLong || {};
+    const okIds = ids.filter(x => !this._reelLong[x]);
+    if (okIds.length) ids = okIds;
+    let pool = ids.filter(x => x !== other && !r.used.includes(x));
+    if (!pool.length) { r.used = []; pool = ids.filter(x => x !== other); if (!pool.length) pool = ids; }
+    let id;
+    if (r.i === 1) {
+      const recent = pool.filter(x => ids.indexOf(x) < 4), older = pool.filter(x => ids.indexOf(x) >= 4);
+      const src = recent.length && (Math.random() < 0.75 || !older.length) ? recent : older;
+      id = src[Math.floor(Math.random() * src.length)];
+      s.hold = ids.indexOf(id) < 4 ? 6000 : 2500;
+    } else {
+      id = pool[Math.floor(Math.random() * Math.min(pool.length, 4))];
+      s.hold = 4000;
+    }
+    r.used.push(id);
+    s.id = id; s.goodSince = 0; s.state = 'load'; s.loadAt = Date.now();
+    const d = this._reelDur[id];
+    const cue = (this.tvMinisters[r.i].reel || []).find(x => x.id === id);
+    s.target = cue ? Math.floor(cue.from + Math.random() * Math.max(0, cue.to - cue.from - 6)) : (d ? Math.floor(d * (0.4 + Math.random() * 0.2)) : 0);
+    try { s.player.mute(); s.player.loadVideoById({ videoId: id, startSeconds: s.target || 300 }); } catch (e) {}
+  }
+  _reelPoll(r) {
+    const now = Date.now();
+    r.slots.forEach(s => {
+      if (s.state === 'wait') { this._reelPrep(r, s); return; }
+      if (!s.player || !s.ready || (s.state !== 'load' && s.state !== 'good')) return;
+      let st, cur, d, vid;
+      try { st = s.player.getPlayerState(); cur = s.player.getCurrentTime(); d = s.player.getDuration(); vid = (s.player.getVideoData() || {}).video_id; } catch (e) { return; }
+      if (s.state === 'load' && now - s.loadAt > 12000) { this._reelPrep(r, s); return; }
+      if (st !== 1 || (vid && vid !== s.id)) { s.goodSince = 0; return; }
+      if (d && !this._reelDur[s.id]) this._reelDur[s.id] = d;
+      if (d > 7200) { this._reelLong = this._reelLong || {}; if (!this._reelLong[s.id]) { this._reelLong[s.id] = true; if (this._reelIds(r).some(x => !this._reelLong[x])) { this._reelPrep(r, s); return; } } }
+      if (!s.target && d) { s.target = Math.floor(d * (0.4 + Math.random() * 0.2)); try { s.player.seekTo(s.target, true); } catch (e) {} s.goodSince = 0; return; }
+      if (Math.abs(cur - s.target) > 10 && cur < s.target) { s.goodSince = 0; return; }
+      if (!s.goodSince) s.goodSince = now;
+      if (now - s.goodSince > 900) s.state = 'good';
+    });
+    if (!r.active) return;
+    const cur = r.showing >= 0 ? r.slots[r.showing] : null;
+    const nxt = r.slots.find(s => s.state === 'good' && s !== cur);
+    if (!cur) {
+      if (nxt) { this._reelShow(r, nxt); this._reelPrep(r, r.slots[1 - nxt.k]); }
+      return;
+    }
+    if (now - r.shownAt >= (cur.hold || 4000) && nxt) {
+      this._reelShow(r, nxt);
+      const old = cur; setTimeout(() => { if (r.showing !== old.k) { try { old.player.pauseVideo(); } catch (e) {} this._reelPrep(r, old); } }, 700);
+    }
+  }
+  _reelShow(r, s) {
+    r.slots.forEach(x => { x.wrap.style.opacity = x === s ? '1' : '0'; });
+    r.showing = s.k; r.shownAt = Date.now();
+    r.layer.style.opacity = '1'; if (r.photo) r.photo.style.opacity = '0';
+  }
+  _reelStop(r) {
+    const shown = r.showing >= 0 ? r.slots[r.showing] : null;
+    r.active = false; r.showing = -1;
+    r.layer.style.opacity = '0'; if (r.photo) r.photo.style.opacity = '1';
+    setTimeout(() => {
+      if (r.active) return;
+      r.slots.forEach(s => { s.wrap.style.opacity = '0'; });
+      if (shown) { try { shown.player.pauseVideo(); } catch (e) {} shown.state = 'idle'; shown.goodSince = 0; if (r.warm) this._reelPrep(r, shown); }
+    }, 750);
+  }
+
+
+  lsRef = (el) => { this._ls = el; };
+  _lsWords = (() => {
+    const w = 'INFLAME é uma conferência para jovens construída sobre uma promessa: buscar a Deus em segredo para ser respondido em público.'.split(' ');
+    const hl = new Set(); w.forEach((x, i) => { if (x === 'segredo' || x === 'público.') { hl.add(i); hl.add(i - 1); } });
+    return w.map((x, i) => ({ t: x + (i < w.length - 1 ? ' ' : ''), hl: hl.has(i) ? '1' : '0' }));
+  })();
+  _lsMount() {
+    const h = this._ls; if (!h) return;
+    const q = (k) => h.querySelector('[data-l="' + k + '"]');
+    this._lsEl = { stick: q('stick'), light: q('light'), cross: q('cross'), title: q('title'), p2: q('p2'), words: Array.from(h.querySelectorAll('[data-w]')) };
+    if (window.CSS && CSS.supports && CSS.supports('height', '100svh')) this._lsEl.stick.style.height = '100svh';
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      h.style.height = 'auto'; this._lsEl.stick.style.position = 'relative'; this._lsEl.stick.style.height = 'auto'; this._lsApply(1); return;
+    }
+    this._lsCur = this._lsTarget(); this._lsApply(this._lsCur);
+    this._lsOnScroll = () => { if (!this._lsRaf) this._lsRaf = requestAnimationFrame(this._lsTick); };
+    window.addEventListener('scroll', this._lsOnScroll, { passive: true });
+    window.addEventListener('resize', this._lsOnScroll);
+  }
+  _lsUnmount() {
+    if (this._lsOnScroll) { window.removeEventListener('scroll', this._lsOnScroll); window.removeEventListener('resize', this._lsOnScroll); }
+    cancelAnimationFrame(this._lsRaf);
+  }
+  _lsTarget() {
+    const h = this._ls, span = h.offsetHeight - this._lsEl.stick.offsetHeight;
+    return span > 0 ? Math.min(1, Math.max(0, -h.getBoundingClientRect().top / span)) : 1;
+  }
+  _lsTick = () => {
+    this._lsRaf = 0;
+    if (this._lsEl.words.length === 0) this._lsEl.words = Array.from(this._ls.querySelectorAll('[data-w]'));
+    const tgt = this._lsTarget();
+    this._lsCur += (tgt - this._lsCur) * 0.16;
+    if (Math.abs(tgt - this._lsCur) < 0.0008) this._lsCur = tgt;
+    this._lsApply(this._lsCur);
+    if (this._lsCur !== tgt) this._lsRaf = requestAnimationFrame(this._lsTick);
+  };
+  _lsApply(p) {
+    const e = this._lsEl; if (!e) return;
+    const cl = (x) => x < 0 ? 0 : x > 1 ? 1 : x;
+    const seg = (a, b) => cl((p - a) / (b - a));
+    const lerp = (a, b, k) => a + (b - a) * k;
+    const inout = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+    const out3 = (x) => 1 - Math.pow(1 - x, 3);
+    const mix = (c1, c2, k) => { const a = c1.match(/\w\w/g).map(x => parseInt(x, 16)), b = c2.match(/\w\w/g).map(x => parseInt(x, 16)); return 'rgb(' + a.map((v, i) => Math.round(lerp(v, b[i], k))).join(',') + ')'; };
+    const L = inout(seg(0.6, 0.78));
+    const grow = inout(seg(0, 0.16)), shrink = inout(seg(0.58, 0.8));
+    const cs = lerp(lerp(1, 2.4, grow), 1, shrink);
+    const glow = grow * (1 - shrink);
+    e.cross.style.transform = 'translate3d(0,' + (-8 * glow).toFixed(1) + 'px,0) scale(' + cs.toFixed(3) + ')';
+    e.cross.style.filter = glow > 0.01 ? 'drop-shadow(0 0 ' + (6 + 14 * glow).toFixed(1) + 'px rgba(224,118,79,' + (0.9 * glow).toFixed(2) + '))' : 'none';
+    const to = out3(seg(0.03, 0.15)) * (1 - grow * 0.0);
+    e.title.style.opacity = to.toFixed(3);
+    e.title.style.transform = 'translate3d(0,' + ((1 - to) * 18).toFixed(1) + 'px,0)';
+    e.title.style.letterSpacing = lerp(14, 1, to).toFixed(1) + 'px';
+    e.title.style.color = mix('F4EAD8', '1C1712', L);
+    const N = e.words.length || 1;
+    e.words.forEach((w, i) => {
+      const a = 0.16 + (i / N) * 0.38, v = seg(a, a + 0.05);
+      const hl = w.dataset.hl === '1';
+      w.style.opacity = lerp(0.16, 1, v).toFixed(3);
+      w.style.color = hl ? mix('E0764F', 'BD5533', L) : mix('F4EAD8', '1C1712', L);
+    });
+    e.light.style.transform = 'scale(' + out3(seg(0.58, 0.8)).toFixed(4) + ')';
+    const o2 = out3(seg(0.8, 0.94));
+    e.p2.style.opacity = o2.toFixed(3);
+    e.p2.style.transform = 'translate3d(0,' + ((1 - o2) * 20).toFixed(1) + 'px,0)';
+  }
+
+  ME_LOOP = 20;
+  ME_CUTS = [5, 10, 15];
+  _meT = 0;
+  _meVisible = true;
+  _meEmbers = Array.from({ length: 26 }, (_, i) => {
+    const h = (n) => { const x = Math.sin(i * 127.1 + n * 311.7) * 43758.5453; return x - Math.floor(x); };
+    return { x: 8 + h(1) * 88, sp: 0.05 + h(2) * 0.09, ph: h(3), sw: 0.6 + h(4) * 1.8, f: 0.6 + h(5) * 1.2, size: (2 + Math.round(h(6) * 3)) + 'px' };
+  });
+  meStageRef = (el) => { this._meStage = el; };
+
+  _meMount() {
+    const q = (s) => Array.from(this._meStage.querySelectorAll(s));
+    this._meEl = {
+      cam: q('[data-a="cam"]')[0], strips: q('[data-a="strip"]'), stripcams: q('[data-a="stripcam"]'),
+      flick: q('[data-a="flick"]')[0], embers: q('[data-a="ember"]'), parts: q('[data-a="part"]'),
+      lines: q('[data-line]').map(n => ({ n, p: +n.dataset.p, d: +n.dataset.d, track: !!n.dataset.track })),
+      rules: q('[data-rule]'), counter: q('[data-a="counter"]')[0], sweep: q('[data-a="sweep"]')[0], sweep2: q('[data-a="sweep2"]')[0],
+      flash: q('[data-a="flash"]')[0], lbT: q('[data-a="lbT"]')[0], lbB: q('[data-a="lbB"]')[0],
+    };
+    this._meIo = new IntersectionObserver(([en]) => { this._meVisible = en.isIntersecting; }, { threshold: 0.05 });
+    this._meIo.observe(this._meStage);
+    this._meReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let last = performance.now();
+    const tick = (now) => {
+      const dt = Math.min(0.05, (now - last) / 1000); last = now;
+      const freeze = this._meReduced;
+      if (freeze) this._meT = 7;
+      else if (this._meVisible) this._meT = (this._meT + dt) % this.ME_LOOP;
+      this._meDraw(this._meT);
+      this._meRaf = requestAnimationFrame(tick);
+    };
+    this._meRaf = requestAnimationFrame(tick);
+  }
+  _meUnmount() { cancelAnimationFrame(this._meRaf); this._meIo && this._meIo.disconnect(); }
+
+  _meDraw(t) {
+    const el = this._meEl; if (!el || !el.cam) return;
+    const cl = (x) => x < 0 ? 0 : x > 1 ? 1 : x;
+    const seg = (a, b) => cl((t - a) / (b - a));
+    const lerp = (a, b, k) => a + (b - a) * k;
+    const expo = (x) => x >= 1 ? 1 : 1 - Math.pow(2, -10 * x);
+    const inout = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+    const in3 = (x) => x * x * x;
+    const part = t < 5 ? 1 : t < 10 ? 2 : t < 15 ? 3 : 4;
+
+    let s, tx = 0, ty = 0, rot = 0;
+    if (part === 1) s = lerp(1.32, 1.1, expo(seg(0, 1.8))) + 0.04 * seg(1.8, 5);
+    else if (part === 2) { const k = expo(seg(5, 5.7)); s = lerp(1.14, 1.62, k) + 0.05 * seg(5.7, 10); ty = lerp(0, 4, k); rot = lerp(-1.2, 0, inout(seg(5, 10))); }
+    else if (part === 3) { s = lerp(1.67, 1.08, expo(seg(10, 10.9))); tx = lerp(-2.5, 2.5, inout(seg(10, 15))); }
+    else { s = lerp(1.08, 1.22, inout(seg(15, 20))); tx = lerp(2.5, 0, inout(seg(15, 17))); }
+    const camT = `translate3d(${tx}%,${ty}%,0) scale(${s.toFixed(4)}) rotate(${rot.toFixed(3)}deg)`;
+    const blur = 14 * (1 - expo(seg(0, 1.4)));
+    let bright = lerp(0.15, 1, expo(seg(0, 1.2))) * (1 - inout(seg(18.9, 19.85)));
+    let flash = 0;
+    for (const c of this.ME_CUTS) if (t >= c) flash = Math.max(flash, 1 - seg(c, c + 0.28));
+    bright += flash * 0.5;
+    el.cam.style.transform = camT;
+    el.cam.style.filter = `${blur > 0.2 ? `blur(${blur.toFixed(1)}px) ` : ''}brightness(${bright.toFixed(3)}) contrast(1.08) saturate(1.1)`;
+    el.flash.style.opacity = (flash * 0.45).toFixed(3);
+
+    const n = Math.sin(t * 7.3) * 0.5 + Math.sin(t * 13.1 + 1.3) * 0.3 + Math.sin(t * 23.7 + 2.1) * 0.2;
+    el.flick.style.opacity = ((0.28 + n * 0.14) * bright).toFixed(3);
+
+    let g = -1;
+    for (const c of this.ME_CUTS) if (t > c - 0.12 && t < c + 0.3) g = c;
+    if (t > 1.05 && t < 1.3) g = 1.05;
+    const fr = Math.floor(t * 30);
+    const hs = (i, k) => { const x = Math.sin((fr + i * 17) * 91.7 + k * 13.3) * 43758.5; return x - Math.floor(x); };
+    const bands = [[16, 66], [44, 40], [70, 16]];
+    el.strips.forEach((st, i) => {
+      if (g < 0) { st.style.display = 'none'; return; }
+      st.style.display = 'block';
+      const top = bands[i][0] + (hs(i, 1) - 0.5) * 10, bot = bands[i][1] + (hs(i, 2) - 0.5) * 10;
+      st.style.clipPath = `inset(${top}% 0 ${bot}% 0)`;
+      st.style.transform = `translateX(${((hs(i, 3) - 0.5) * 9).toFixed(2)}%)`;
+      st.style.opacity = (0.6 + hs(i, 4) * 0.4).toFixed(2);
+      el.stripcams[i].style.transform = camT;
+      el.stripcams[i].style.filter = `brightness(${(bright * 1.15).toFixed(2)})`;
+    });
+
+    let sw = -1;
+    for (const c of this.ME_CUTS) { const p = seg(c - 0.38, c + 0.38); if (p > 0 && p < 1) sw = p; }
+    const swp = (p, w) => { if (p <= 0 || p >= 1) return null; return lerp(-60, 140, inout(p)); };
+    const x1 = sw < 0 ? null : swp(sw), x2 = sw < 0 ? null : swp(cl(sw - 0.07));
+    el.sweep.style.display = x1 == null ? 'none' : 'block'; if (x1 != null) el.sweep.style.left = x1 + '%';
+    el.sweep2.style.display = x2 == null ? 'none' : 'block'; if (x2 != null) el.sweep2.style.left = (x2 + 30) + '%';
+
+    const open = expo(seg(0.15, 1.35)), close = inout(seg(19.0, 19.85));
+    const lb = Math.max(50 * (1 - open), 50 * close);
+    el.lbT.style.height = lb + '%'; el.lbB.style.height = lb + '%';
+
+    const W = this._meStage.clientWidth, H = this._meStage.clientHeight;
+    el.embers.forEach((e, i) => {
+      const m = this._meEmbers[i]; const k = (t * m.sp + m.ph) % 1;
+      const x = (m.x + Math.sin(t * m.f + i) * m.sw) / 100 * W, y = (1.05 - k * 1.15) * H;
+      e.style.transform = `translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,0)`;
+      e.style.opacity = (Math.sin(k * Math.PI) * 0.9 * bright).toFixed(3);
+    });
+
+    const win = (p) => {
+      const S = (p - 1) * 5;
+      const inS = p === 1 ? 1.1 : S + 0.32;
+      const outE = p === 4 ? 18.9 : S + 5;
+      return { inS, outE };
+    };
+    el.lines.forEach(({ n: nd, p, d, track }) => {
+      const { inS, outE } = win(p);
+      const a = expo(seg(inS + d, inS + d + 0.9));
+      const o = in3(seg(outE - 0.5 + d * 0.5, outE - 0.08 + d * 0.5));
+      const y = (1 - a) * 145 - o * 145;
+      nd.style.transform = `translate3d(0,${y.toFixed(2)}%,0) skewY(${((1 - a) * 5).toFixed(2)}deg)`;
+      if (track) nd.style.letterSpacing = lerp(0.14, 0.01, a).toFixed(3) + 'em';
+    });
+    el.rules.forEach((r) => {
+      const p = +r.dataset.rule; const { inS, outE } = win(p);
+      r.style.transform = `scaleX(${(expo(seg(inS + 0.2, inS + 1.1)) * (1 - in3(seg(outE - 0.5, outE - 0.1)))).toFixed(3)})`;
+    });
+    el.parts.forEach((pe) => { pe.style.visibility = +pe.dataset.p === part ? 'visible' : 'hidden'; });
+
+    if (el.counter) el.counter.textContent = '0' + part + ' / 04';
+    const chromeA = (open * (1 - close)).toFixed(3);
+    this._meStage.querySelectorAll('[data-a="chrome"]').forEach(c => { c.style.opacity = chromeA; });
+    this._meStage.querySelectorAll('[data-seg]').forEach((sg) => {
+      const i = +sg.dataset.seg; sg.style.width = (cl((t - i * 5) / 5) * 100).toFixed(2) + '%';
+    });
+  }
+
+
   state = { now: Date.now(), openFaq: 0, activeDay: 0, revealed: {}, tvMinister: 0, tvIndex: 0, tvStarted: false, tvTitles: {}, tvDyn: {}, tvLoading: false, hvMuted: true, hvEnded: false, hvStarted: false };
 
   tvMinisters = [
     { name: 'Elias Pessoa', videos: ['uQnjwWCQzF0','QKoc40GScAQ','DIH6zval3Hc','tzX1YUtJs2Q','HV-wABxAAdU','R5SvBdbwC7w','2vCQDnadblk','QnA6FpGtPOU','N9gyX54rQWg','viNtc61dR4I','ptD-2Kak9aI','BGJJdu7789w','zqCYEhJytJc'] },
-    { name: 'Isaac Guimarães', videos: [], lists: ['UULFhZXlv_C_bExJDeLoAz8PDw', 'UUhZXlv_C_bExJDeLoAz8PDw'] },
+    // reel: trechos fixos para o card (id do vídeo + intervalo em segundos onde ele aparece sozinho e centralizado)
+    { name: 'Isaac Guimarães', videos: [], lists: ['UULFhZXlv_C_bExJDeLoAz8PDw', 'UUhZXlv_C_bExJDeLoAz8PDw'], reel: [] },
     { name: 'A anunciar', videos: [] },
   ];
   _tvHostRef = (el) => {
@@ -815,6 +1190,9 @@ class Component extends DCLogic {
   _refs = {};
 
   componentDidMount() {
+    this._reelInit();
+    this._lsMount();
+    this._meMount();
     this._t = setInterval(() => {
       const upd = { now: Date.now() };
       const p = this._yt;
@@ -828,6 +1206,9 @@ class Component extends DCLogic {
   }
   componentDidUpdate() { this._tvCueCurrent(); }
   componentWillUnmount() {
+    this._reelDestroy();
+    this._lsUnmount();
+    this._meUnmount();
     clearInterval(this._t);
     clearTimeout(this._tvWatch);
     if (this._tvWarmIo) this._tvWarmIo.disconnect();
@@ -972,7 +1353,6 @@ class Component extends DCLogic {
       { q: 'Para quem é a conferência?', a: 'O INFLAME é para jovens que desejam buscar a Deus com profundidade, viver uma fé genuína e ir além em uma vida cristã sem meio-termo. É para quem tem fome da presença de Deus, deseja crescer espiritualmente e quer viver tudo aquilo que Ele tem preparado.' },
       { q: 'O ingresso dá direito a quantos dias?', a: 'O ingresso dá acesso aos três dias do INFLAME, que acontecerá de 11 a 13 de dezembro. Garanta sua inscrição e viva essa experiência completa com a gente!' },
       { q: 'O que é o lote Pioneiros?', a: 'É o lote de abertura, limitado às 50 primeiras inscrições, por R$ 110,00. Além do acesso aos três dias de conferência, os Pioneiros participam do First Flame: um momento exclusivo de ministração sobre dons ministeriais e imposição de mãos. Quando as 50 vagas acabarem, o lote é encerrado.' },
-      { q: 'Posso comprar a camiseta separada?', a: 'Sim! A camiseta do INFLAME está disponível para compra avulsa por R$ 90,00. Além disso, você também pode optar pelos combos de ingresso + camiseta disponíveis no 1º lote.' },
       { q: 'Onde será o INFLAME?', a: 'O INFLAME será realizado na Igreja Verbo da Vida Jundiaí: Av. Prof. Pedro Clarismundo Fornari, 190 — Engordadouro, Jundiaí – SP, 13214-660.' },
       { q: 'Como garanto meu ingresso?', a: 'Você pode garantir seu ingresso pelos links disponíveis nesta página, enquanto houver vagas disponíveis em cada lote. Não deixe para depois! Os lotes são limitados e podem mudar conforme as inscrições forem preenchidas.' },
     ];
@@ -992,8 +1372,6 @@ class Component extends DCLogic {
     const emBreve = { label: 'Em breve', style: badgeBase + 'background:transparent;color:rgba(221,201,168,0.6);border:1px solid rgba(221,201,168,0.3);' };
     const badgeFor = (i) => i === activeLote ? aberto : (i < activeLote ? encerrado : emBreve);
     const badges = [0, 1, 2].map(badgeFor);
-    // Combo segue a janela do 1º lote (01/10 a 15/11); camiseta avulsa sempre disponível
-    const badgeCombo = activeLote <= 1 ? aberto : encerrado;
 
     const tvM = this.state.tvMinister;
     const tvVids = this._vidsFor(tvM);
@@ -1012,8 +1390,8 @@ class Component extends DCLogic {
         tabStyle: tabBase + (active
           ? 'background:#BD5533;color:#F4EAD8;border:1px solid #BD5533;cursor:pointer;'
           : has
-            ? 'background:rgba(244,234,216,0.07);color:#F4EAD8;border:1px solid rgba(244,234,216,0.25);cursor:pointer;'
-            : 'background:transparent;color:rgba(221,201,168,0.5);border:1px dashed rgba(221,201,168,0.3);cursor:default;'),
+            ? 'background:rgba(28,23,18,0.05);color:#1C1712;border:1px solid rgba(28,23,18,0.25);cursor:pointer;'
+            : 'background:transparent;color:rgba(28,23,18,0.45);border:1px dashed rgba(28,23,18,0.3);cursor:default;'),
       };
     });
     const itemBase = 'display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:8px;border-radius:12px;cursor:pointer;font-family:Roboto,sans-serif;transition:background .25s,border-color .25s;box-sizing:border-box;';
@@ -1024,12 +1402,14 @@ class Component extends DCLogic {
       isActive: this.state.tvStarted && i === tvIdx,
       onClick: () => this._tvPlay(i),
       itemStyle: itemBase + (i === tvIdx
-        ? 'background:rgba(189,85,51,0.18);border:1px solid rgba(189,85,51,0.7);'
+        ? 'background:rgba(189,85,51,0.12);border:1px solid rgba(189,85,51,0.7);'
         : 'background:transparent;border:1px solid transparent;'),
     }));
     const tvCurId = tvVids[tvIdx];
 
     return {
+      lsRef: this.lsRef, lsWords: this._lsWords,
+      meStageRef: this.meStageRef, meEmbers: this._meEmbers,
       hvHostRef: this._hvHostRef,
       hvShowPoster: !this.state.hvStarted,
       hvMuted: this.state.hvMuted && !this.state.hvEnded,
@@ -1037,7 +1417,7 @@ class Component extends DCLogic {
       hvUnmute: this._hvUnmute,
       hvReplay: this._hvReplay,
       tvRef: this.refFor('tv'),
-      tvStyle: this._revealStyle('tv', 'background:#151210;border-top:1px solid #33291F;padding:80px 24px;'),
+      tvStyle: this._revealStyle('tv', 'background:#DDC9A8;color:#1C1712;padding:80px 24px;'),
       tvTabs, tvItems,
       tvHostRef: this._tvHostRef,
       tvShowPoster: !this.state.tvStarted && !!tvCurId && !this.state.tvNeedTap,
@@ -1061,10 +1441,6 @@ class Component extends DCLogic {
       badge0Label: badges[0].label, badge0Style: badges[0].style,
       badge1Label: badges[1].label, badge1Style: badges[1].style,
       badge2Label: badges[2].label, badge2Style: badges[2].style,
-      badge3Label: badgeCombo.label, badge3Style: badgeCombo.style,
-      badge4Label: aberto.label, badge4Style: aberto.style,
-      videoPretaRef: this.vidRef('preta'),
-      videoBrancaRef: this.vidRef('branca'),
       countdownItems,
       dayTabs,
       activeItems: scheduleByDay[activeDay],
@@ -1082,8 +1458,6 @@ class Component extends DCLogic {
       programStyle: this._revealStyle('program', 'background:#F4EAD8;color:#1C1712;padding:80px 24px;'),
       speakersRef: this.refFor('speakers'),
       speakersStyle: this._revealStyle('speakers', 'background:#1C1712;padding:80px 24px;'),
-      shirtsRef: this.refFor('shirts'),
-      shirtsStyle: this._revealStyle('shirts', 'background:#1C1712;padding:80px 24px;position:relative;overflow:hidden;'),
       localRef: this.refFor('local'),
       localStyle: this._revealStyle('local', 'background:#F4EAD8;color:#1C1712;padding:80px 24px;'),
       faqRef: this.refFor('faq'),
