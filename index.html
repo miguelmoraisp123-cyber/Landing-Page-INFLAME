@@ -517,36 +517,6 @@
     </div>
   </div>
 
-  <!-- LOCAL -->
-  <div ref="{{ localRef }}" style="{{ localStyle }}">
-    <div style="max-width:640px;margin:0 auto;">
-      <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;margin-bottom:32px;">Local</div>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.470525932702!2d-46.915769999999995!3d-23.153021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf21b930a4c8cd%3A0x782c0649460f794!2sVerbo%20da%20Vida%20Jundia%C3%AD!5e0!3m2!1spt-BR!2sbr!4v1787015060622!5m2!1spt-BR!2sbr" width="100%" height="260" style="border:0;display:block;margin-bottom:20px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      <div style="text-align:center;font-size:16px;font-weight:700;">Verbo da Vida Jundiaí</div>
-      <div style="text-align:center;font-size:14px;color:#5b4d3d;margin-top:6px;">Av. Prof. Pedro Clarismundo Fornari, 190 — Engordadouro, Jundiaí - SP, 13214-660</div>
-    </div>
-  </div>
-
-  <!-- FAQ -->
-  <div ref="{{ faqRef }}" style="{{ faqStyle }}">
-    <div style="max-width:640px;margin:0 auto;">
-      <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;margin-bottom:44px;">Perguntas Frequentes</div>
-      <div style="display:flex;flex-direction:column;gap:1px;">
-        <sc-for list="{{ faqs }}" as="faq" hint-placeholder-count="5">
-          <div style="background:#DDC9A8;border-bottom:1px solid #c9b696;">
-            <button onClick="{{ faq.onClick }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:none;padding:20px 4px;text-align:left;cursor:pointer;font-family:'Roboto',sans-serif;">
-              <span style="font-size:15px;font-weight:700;color:#1C1712;">{{ faq.q }}</span>
-              <span style="font-family:'Anton',sans-serif;font-size:20px;color:#BD5533;">{{ faq.marker }}</span>
-            </button>
-            <sc-if value="{{ faq.isOpen }}" hint-placeholder-val="{{ false }}">
-              <div style="padding:0 4px 20px;font-size:14px;line-height:1.6;color:#3a2f24;">{{ faq.a }}</div>
-            </sc-if>
-          </div>
-        </sc-for>
-      </div>
-    </div>
-  </div>
-
   <!-- INSTAGRAM -->
   <div ref="{{ instaRef }}" style="{{ instaStyle }}">
     <img src="assets/web/textura-riscos.png" alt="" style="position:absolute;left:50%;top:52%;width:min(1100px,120%);transform:translate(-50%,-50%) rotate(-3deg);opacity:0.1;pointer-events:none;user-select:none;">
@@ -585,6 +555,36 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"></circle></svg>
         Seguir no Instagram
       </a>
+    </div>
+  </div>
+
+  <!-- LOCAL -->
+  <div ref="{{ localRef }}" style="{{ localStyle }}">
+    <div style="max-width:640px;margin:0 auto;">
+      <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;margin-bottom:32px;">Local</div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.470525932702!2d-46.915769999999995!3d-23.153021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf21b930a4c8cd%3A0x782c0649460f794!2sVerbo%20da%20Vida%20Jundia%C3%AD!5e0!3m2!1spt-BR!2sbr!4v1787015060622!5m2!1spt-BR!2sbr" width="100%" height="260" style="border:0;display:block;margin-bottom:20px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <div style="text-align:center;font-size:16px;font-weight:700;">Verbo da Vida Jundiaí</div>
+      <div style="text-align:center;font-size:14px;color:#5b4d3d;margin-top:6px;">Av. Prof. Pedro Clarismundo Fornari, 190 — Engordadouro, Jundiaí - SP, 13214-660</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div ref="{{ faqRef }}" style="{{ faqStyle }}">
+    <div style="max-width:640px;margin:0 auto;">
+      <div style="text-align:center;font-family:'Anton',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:1px;text-transform:uppercase;margin-bottom:44px;">Perguntas Frequentes</div>
+      <div style="display:flex;flex-direction:column;gap:1px;">
+        <sc-for list="{{ faqs }}" as="faq" hint-placeholder-count="5">
+          <div style="background:#DDC9A8;border-bottom:1px solid #c9b696;">
+            <button onClick="{{ faq.onClick }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:none;padding:20px 4px;text-align:left;cursor:pointer;font-family:'Roboto',sans-serif;">
+              <span style="font-size:15px;font-weight:700;color:#1C1712;">{{ faq.q }}</span>
+              <span style="font-family:'Anton',sans-serif;font-size:20px;color:#BD5533;">{{ faq.marker }}</span>
+            </button>
+            <sc-if value="{{ faq.isOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:0 4px 20px;font-size:14px;line-height:1.6;color:#3a2f24;">{{ faq.a }}</div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
     </div>
   </div>
 
