@@ -89,11 +89,11 @@
     .tv-poster-cap, .tv-poster-play { display:none !important; }
   }
   .me-stage { aspect-ratio:16/9; }
-  .me-img { object-position:50% 28%; }
-  .me-copy { left:6%; right:6%; bottom:14%; max-width:60%; }
+  .me-img { object-position:50% 50%; }
+  .me-copy { left:6%; right:6%; bottom:14%; max-width:44%; }
   @media (max-width:760px) {
     .me-stage { aspect-ratio:4/5; }
-    .me-img { object-position:54% 26%; }
+    .me-img { object-position:14% 30%; }
     .me-copy { left:22px; right:22px; bottom:58px; max-width:none; }
   }
 </style>
@@ -336,17 +336,17 @@
   <div ref="{{ meStageRef }}" class="me-stage" style="position:relative;width:100%;overflow:hidden;background:#000;isolation:isolate;">
 
     <div data-a="cam" style="position:absolute;inset:0;transform-origin:50% 26%;will-change:transform,filter;">
-      <img class="me-img" src="assets/ministro-especial.jpg" alt="Ministro a anunciar" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+      <img class="me-img" src="assets/filipe-levak.jpg" alt="Filipe Levak — confirmado no INFLAME 2026" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
     </div>
 
     <div data-a="strip" data-i="0" style="position:absolute;inset:0;display:none;pointer-events:none;">
-      <div data-a="stripcam" style="position:absolute;inset:0;transform-origin:50% 26%;"><img class="me-img" src="assets/ministro-especial.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"></div>
+      <div data-a="stripcam" style="position:absolute;inset:0;transform-origin:50% 26%;"><img class="me-img" src="assets/filipe-levak.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"></div>
     </div>
     <div data-a="strip" data-i="1" style="position:absolute;inset:0;display:none;pointer-events:none;filter:hue-rotate(-25deg) saturate(1.6);">
-      <div data-a="stripcam" style="position:absolute;inset:0;transform-origin:50% 26%;"><img class="me-img" src="assets/ministro-especial.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"></div>
+      <div data-a="stripcam" style="position:absolute;inset:0;transform-origin:50% 26%;"><img class="me-img" src="assets/filipe-levak.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"></div>
     </div>
     <div data-a="strip" data-i="2" style="position:absolute;inset:0;display:none;pointer-events:none;">
-      <div data-a="stripcam" style="position:absolute;inset:0;transform-origin:50% 26%;"><img class="me-img" src="assets/ministro-especial.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"></div>
+      <div data-a="stripcam" style="position:absolute;inset:0;transform-origin:50% 26%;"><img class="me-img" src="assets/filipe-levak.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"></div>
     </div>
 
     <div data-a="flick" style="position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(60% 70% at 52% 40%, rgba(255,128,40,0.55), rgba(255,80,20,0) 70%);opacity:0.3;"></div>
@@ -357,7 +357,7 @@
       </sc-for>
     </div>
 
-    <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg, rgba(12,8,6,0.82) 0%, rgba(12,8,6,0.45) 38%, rgba(12,8,6,0) 64%), linear-gradient(0deg, rgba(12,8,6,0.75) 0%, rgba(12,8,6,0) 42%);"></div>
+    <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg, rgba(12,8,6,0.5) 0%, rgba(12,8,6,0.2) 30%, rgba(12,8,6,0) 50%), linear-gradient(0deg, rgba(12,8,6,0.85) 0%, rgba(12,8,6,0.35) 30%, rgba(12,8,6,0) 50%);"></div>
     <div style="position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 180px 40px rgba(0,0,0,0.7);"></div>
 
     <div style="position:absolute;left:6%;right:6%;top:6%;display:flex;justify-content:space-between;align-items:center;gap:16px;pointer-events:none;">
@@ -373,15 +373,15 @@
 
     <div class="me-copy" style="position:absolute;pointer-events:none;">
       <div data-a="part" data-p="1" style="position:absolute;left:0;right:0;bottom:0;">
-        <div style="overflow:hidden;margin-bottom:18px;"><div data-line="1" data-p="1" data-d="0" style="display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;"><span data-rule="1" style="display:block;width:36px;height:2px;background:#D7261E;transform-origin:left;"></span>Ministro convidado · INFLAME 2026</div></div>
-        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="1" data-d="0.08" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;">Ele está</div></div>
-        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="1" data-d="0.16" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;color:#D7261E;">chegando</div></div>
+        <div style="overflow:hidden;margin-bottom:18px;"><div data-line="1" data-p="1" data-d="0" style="display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;"><span data-rule="1" style="display:block;width:36px;height:2px;background:#D7261E;transform-origin:left;"></span>Ministro 04 · INFLAME 2026</div></div>
+        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="1" data-d="0.08" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;">O mistério</div></div>
+        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="1" data-d="0.16" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;color:#D7261E;">acabou!</div></div>
       </div>
 
       <div data-a="part" data-p="2" style="position:absolute;left:0;right:0;bottom:0;">
-        <div style="overflow:hidden;margin-bottom:18px;"><div data-line="1" data-p="2" data-d="0" style="display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;"><span data-rule="2" style="display:block;width:36px;height:2px;background:#D7261E;transform-origin:left;"></span>Ministro 04</div></div>
-        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="2" data-d="0.08" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;">Você sabe</div></div>
-        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="2" data-d="0.16" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;color:#D7261E;">quem é ele?</div></div>
+        <div style="overflow:hidden;margin-bottom:18px;"><div data-line="1" data-p="2" data-d="0" style="display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;"><span data-rule="2" style="display:block;width:36px;height:2px;background:#D7261E;transform-origin:left;"></span>Comunidade da Fé</div></div>
+        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="2" data-d="0.08" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;">Filipe</div></div>
+        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="2" data-d="0.16" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;color:#D7261E;">Levak</div></div>
       </div>
 
       <div data-a="part" data-p="3" style="position:absolute;left:0;right:0;bottom:0;">
@@ -391,9 +391,9 @@
       </div>
 
       <div data-a="part" data-p="4" style="position:absolute;left:0;right:0;bottom:0;">
-        <div style="overflow:hidden;margin-bottom:18px;"><div data-line="1" data-p="4" data-d="0" style="display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;"><span data-rule="4" style="display:block;width:36px;height:2px;background:#D7261E;transform-origin:left;"></span>Anúncio oficial · INFLAME 2026</div></div>
-        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="4" data-d="0.08" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;">Revelação</div></div>
-        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="4" data-d="0.16" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;color:#D7261E;">em breve</div></div>
+        <div style="overflow:hidden;margin-bottom:18px;"><div data-line="1" data-p="4" data-d="0" style="display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;"><span data-rule="4" style="display:block;width:36px;height:2px;background:#D7261E;transform-origin:left;"></span>Confirmado na Conferência INFLAME</div></div>
+        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="4" data-d="0.08" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;">Garanta</div></div>
+        <div style="overflow:hidden;font-size:clamp(46px,7.6vw,128px);padding:0.2em 0 0.12em;margin:-0.2em 0 -0.12em;"><div data-line="1" data-p="4" data-d="0.16" data-track="1" style="font-family:'Anton',sans-serif;font-size:clamp(46px,7.6vw,128px);line-height:0.95;text-transform:uppercase;color:#D7261E;">seu lugar</div></div>
       </div>
     </div>
 
@@ -549,7 +549,8 @@
 
   <!-- INSTAGRAM -->
   <div ref="{{ instaRef }}" style="{{ instaStyle }}">
-    <div style="max-width:520px;margin:0 auto;text-align:center;">
+    <img src="assets/web/textura-riscos.png" alt="" style="position:absolute;left:50%;top:52%;width:min(1100px,120%);transform:translate(-50%,-50%) rotate(-3deg);opacity:0.1;pointer-events:none;user-select:none;">
+    <div style="position:relative;max-width:520px;margin:0 auto;text-align:center;">
       <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#E0764F;margin-bottom:24px;">Siga o INFLAME</div>
       <a href="{{ instagramHref }}" target="_blank" rel="noopener" style="display:inline-flex;flex-direction:column;align-items:center;gap:16px;text-decoration:none;color:#F4EAD8;">
         <div style="width:108px;height:108px;border-radius:50%;background:#1C1712;border:2px solid #BD5533;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s;" style-hover="transform:scale(1.06);boxShadow:0 14px 34px rgba(189,85,51,0.45);">
@@ -557,7 +558,29 @@
         </div>
         <div style="font-family:'Anton',sans-serif;font-size:26px;letter-spacing:0.5px;text-transform:lowercase;color:#F4EAD8;">@inflame.conf</div>
       </a>
-      <div style="font-size:14px;line-height:1.6;color:#DDC9A8;margin:16px auto 28px;max-width:380px;text-wrap:pretty;">Acompanhe os bastidores, avisos de lotes e novidades da conferência no Instagram oficial.</div>
+      <div style="font-size:14px;line-height:1.6;color:#DDC9A8;margin:16px auto 0;max-width:380px;text-wrap:pretty;">Acompanhe os bastidores, avisos de lotes e novidades da conferência no Instagram oficial.</div>
+    </div>
+
+    <div onMouseEnter="{{ instaPause }}" onMouseLeave="{{ instaResume }}" onPointerDown="{{ instaDown }}" onPointerMove="{{ instaMove }}" onPointerUp="{{ instaUp }}" onPointerCancel="{{ instaUp }}" onWheel="{{ instaWheel }}" onClickCapture="{{ instaClick }}" onDragStart="{{ instaNoDrag }}" style="position:relative;margin:24px -24px 20px;padding:36px 0;overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);">
+      <div ref="{{ instaTrackRef }}" style="display:flex;gap:24px;width:max-content;padding:0 12px;will-change:transform;">
+        <sc-for list="{{ instaPosts }}" as="p" hint-placeholder-count="6">
+          <a href="{{ p.href }}" target="_blank" rel="noopener" aria-label="{{ p.alt }}" style="flex:0 0 auto;display:block;box-sizing:border-box;width:clamp(210px,21vw,290px);padding:7px;border-radius:24px;text-decoration:none;background:linear-gradient(150deg,rgba(244,234,216,0.26) 0%,rgba(244,234,216,0.05) 38%,rgba(244,234,216,0.03) 62%,rgba(244,234,216,0.16) 100%);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);border:1px solid rgba(244,234,216,0.24);box-shadow:inset 0 1px 0 rgba(255,255,255,0.32), inset 0 -1px 0 rgba(0,0,0,0.3), 0 18px 40px rgba(0,0,0,0.38);transition:transform .45s cubic-bezier(.2,.7,.3,1), border-color .35s, box-shadow .35s;" style-hover="transform:scale(1.07);border-color:rgba(224,118,79,0.75);box-shadow:inset 0 1px 0 rgba(255,255,255,0.4), inset 0 -1px 0 rgba(0,0,0,0.3), 0 28px 60px rgba(0,0,0,0.55), 0 0 32px rgba(189,85,51,0.28);">
+            <div style="position:relative;aspect-ratio:3/4;border-radius:17px;overflow:hidden;background:#2A221B;">
+              <img src="{{ p.src }}" alt="{{ p.alt }}" loading="lazy" draggable="false" style="pointer-events:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+              <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,255,255,0.14) 0%,rgba(255,255,255,0) 30%);pointer-events:none;"></div>
+              <div style="position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:18px;background:linear-gradient(0deg,rgba(28,23,18,0.85) 0%,rgba(28,23,18,0) 50%);opacity:0;transition:opacity .35s;" style-hover="opacity:1;">
+                <span style="display:inline-flex;align-items:center;gap:8px;font-family:'Roboto',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#F4EAD8;padding:10px 16px;border-radius:999px;background:rgba(244,234,216,0.14);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(244,234,216,0.3);">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"></circle></svg>
+                  Ver no Instagram
+                </span>
+              </div>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="position:relative;text-align:center;">
       <a href="{{ instagramHref }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;font-family:'Roboto',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;background:#BD5533;color:#F4EAD8;padding:16px 30px;border-radius:999px;text-decoration:none;transition:transform .3s,background .3s;" style-hover="transform:scale(1.04);background:#CE6440;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"></circle></svg>
         Seguir no Instagram
@@ -839,7 +862,7 @@ class Component extends DCLogic {
 
     let s, tx = 0, ty = 0, rot = 0;
     if (part === 1) s = lerp(1.32, 1.1, expo(seg(0, 1.8))) + 0.04 * seg(1.8, 5);
-    else if (part === 2) { const k = expo(seg(5, 5.7)); s = lerp(1.14, 1.62, k) + 0.05 * seg(5.7, 10); ty = lerp(0, 4, k); rot = lerp(-1.2, 0, inout(seg(5, 10))); }
+    else if (part === 2) { const k = expo(seg(5, 5.9)); s = lerp(1.2, 1.85, k) + 0.08 * seg(5.9, 10); tx = lerp(0, 6, k); ty = lerp(0, 3, k); rot = lerp(-1.2, 0, inout(seg(5, 10))); }
     else if (part === 3) { s = lerp(1.67, 1.08, expo(seg(10, 10.9))); tx = lerp(-2.5, 2.5, inout(seg(10, 15))); }
     else { s = lerp(1.08, 1.22, inout(seg(15, 20))); tx = lerp(2.5, 0, inout(seg(15, 17))); }
     const camT = `translate3d(${tx}%,${ty}%,0) scale(${s.toFixed(4)}) rotate(${rot.toFixed(3)}deg)`;
@@ -848,6 +871,8 @@ class Component extends DCLogic {
     let flash = 0;
     for (const c of this.ME_CUTS) if (t >= c) flash = Math.max(flash, 1 - seg(c, c + 0.28));
     bright += flash * 0.5;
+    const origin = part === 2 ? (window.matchMedia('(max-width:760px)').matches ? '23% 27%' : '18% 27%') : '50% 26%';
+    el.cam.style.transformOrigin = origin;
     el.cam.style.transform = camT;
     el.cam.style.filter = `${blur > 0.2 ? `blur(${blur.toFixed(1)}px) ` : ''}brightness(${bright.toFixed(3)}) contrast(1.08) saturate(1.1)`;
     el.flash.style.opacity = (flash * 0.45).toFixed(3);
@@ -868,6 +893,7 @@ class Component extends DCLogic {
       st.style.clipPath = `inset(${top}% 0 ${bot}% 0)`;
       st.style.transform = `translateX(${((hs(i, 3) - 0.5) * 9).toFixed(2)}%)`;
       st.style.opacity = (0.6 + hs(i, 4) * 0.4).toFixed(2);
+      el.stripcams[i].style.transformOrigin = origin;
       el.stripcams[i].style.transform = camT;
       el.stripcams[i].style.filter = `brightness(${(bright * 1.15).toFixed(2)})`;
     });
@@ -926,7 +952,7 @@ class Component extends DCLogic {
     { name: 'Elias Pessoa', videos: ['uQnjwWCQzF0','QKoc40GScAQ','DIH6zval3Hc','tzX1YUtJs2Q','HV-wABxAAdU','R5SvBdbwC7w','2vCQDnadblk','QnA6FpGtPOU','N9gyX54rQWg','viNtc61dR4I','ptD-2Kak9aI','BGJJdu7789w','zqCYEhJytJc'] },
     // reel: trechos fixos para o card (id do vídeo + intervalo em segundos onde ele aparece sozinho e centralizado)
     { name: 'Isaac Guimarães', videos: [], lists: ['UULFhZXlv_C_bExJDeLoAz8PDw', 'UUhZXlv_C_bExJDeLoAz8PDw'], reel: [] },
-    { name: 'A anunciar', videos: [] },
+    { name: 'Filipe Levak', videos: [], lists: ['UULFxRBve-4F8yVkSkSc_zb-mw', 'UUxRBve-4F8yVkSkSc_zb-mw'] },
   ];
   _tvHostRef = (el) => {
     if (!el || this._tvHost === el) return;
@@ -1188,8 +1214,70 @@ class Component extends DCLogic {
   _elMap = {};
   _elToKey = new Map();
   _refs = {};
+  INSTA_FEED_URL = '';
+  _instaLoadFeed() {
+    if (!this.INSTA_FEED_URL) return;
+    fetch(this.INSTA_FEED_URL).then(r => r.json()).then(d => {
+      const list = Array.isArray(d) ? d : (d.posts || []);
+      const feed = list.map(p => ({
+        src: (p.sizes && (p.sizes.medium || p.sizes.large || {}).mediaUrl) || (p.mediaType === 'VIDEO' ? p.thumbnailUrl : p.mediaUrl) || p.thumbnailUrl,
+        href: p.permalink, alt: (p.prunedCaption || p.caption || 'Postagem do @inflame.conf').slice(0, 120)
+      })).filter(p => p.src && p.href).slice(0, 10);
+      if (feed.length) this.setState({ instaFeed: feed });
+    }).catch(() => {});
+  }
+  INSTA_POSTS = ['ig-1', 'ig-2', 'ig-3', 'ig-4', 'ig-5', 'ig-6', 'ig-7'];
+  _instaTrackRef = React.createRef();
+  _insta = { x: 0, v: 1, target: 1, last: 0, fling: 0, drag: null, moved: false };
+  _instaStart() {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const tick = (ts) => {
+      const m = this._insta, el = this._instaTrackRef.current;
+      const dt = m.last ? Math.min(0.05, (ts - m.last) / 1000) : 0; m.last = ts;
+      if (el && !reduce) {
+        m.v += (m.target - m.v) * Math.min(1, dt * 5);
+        m.x -= 46 * m.v * dt;
+        if (!m.drag) { m.x += m.fling * dt; m.fling *= Math.exp(-dt * 4); if (Math.abs(m.fling) < 5) m.fling = 0; }
+        const loopW = el.scrollWidth / 3;
+        if (loopW > 0) { while (-m.x >= loopW) m.x += loopW; while (m.x > 0) m.x -= loopW; }
+        el.style.transform = 'translate3d(' + m.x.toFixed(2) + 'px,0,0)';
+      }
+      this._instaRaf = requestAnimationFrame(tick);
+    };
+    this._instaRaf = requestAnimationFrame(tick);
+  }
+  _instaPause = () => { clearTimeout(this._instaTO); this._insta.target = 0; };
+  _instaResume = () => { clearTimeout(this._instaTO); this._insta.drag = null; this._insta.target = 1; };
+  _instaDown = (e) => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    const m = this._insta; m.target = 0; m.fling = 0; m.moved = false;
+    m.drag = { x: e.clientX, y: e.clientY, t: performance.now(), vx: 0, axis: null };
+  };
+  _instaMove = (e) => {
+    const m = this._insta, d = m.drag; if (!d) return;
+    const dx = e.clientX - d.x, dy = e.clientY - d.y;
+    if (!d.axis) { if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return; d.axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y'; }
+    if (d.axis !== 'x') { m.drag = null; return; }
+    const now = performance.now(), dt = Math.max(1, now - d.t) / 1000;
+    m.x += dx; m.moved = true; d.vx = d.vx * 0.6 + (dx / dt) * 0.4;
+    d.x = e.clientX; d.y = e.clientY; d.t = now;
+  };
+  _instaUp = (e) => {
+    const m = this._insta, d = m.drag; m.drag = null;
+    if (d && m.moved) m.fling = Math.max(-2500, Math.min(2500, d.vx));
+    if (e.pointerType !== 'mouse') { clearTimeout(this._instaTO); this._instaTO = setTimeout(() => { m.target = 1; }, 400); }
+  };
+  _instaWheel = (e) => {
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    this._insta.x -= e.deltaX; this._insta.fling = 0;
+  };
+  _instaClick = (e) => { if (this._insta.moved) { e.preventDefault(); e.stopPropagation(); this._insta.moved = false; } };
+  _instaNoDrag = (e) => e.preventDefault();
+  _instaResumeLater = () => { clearTimeout(this._instaTO); this._instaTO = setTimeout(() => { this._insta.target = 1; }, 2500); };
 
   componentDidMount() {
+    this._instaStart();
+    this._instaLoadFeed();
     this._reelInit();
     this._lsMount();
     this._meMount();
@@ -1206,6 +1294,7 @@ class Component extends DCLogic {
   }
   componentDidUpdate() { this._tvCueCurrent(); }
   componentWillUnmount() {
+    cancelAnimationFrame(this._instaRaf); clearTimeout(this._instaTO);
     this._reelDestroy();
     this._lsUnmount();
     this._meUnmount();
@@ -1449,7 +1538,11 @@ class Component extends DCLogic {
       ctaHref: this.props.ctaUrl ?? 'https://tiketo.com.br/evento/5912',
       instagramHref: this.props.instagramUrl ?? 'https://www.instagram.com/inflame.conf/',
       instaRef: this.refFor('insta'),
-      instaStyle: this._revealStyle('insta', 'background:#1C1712;border-top:1px solid #33291F;padding:72px 24px;'),
+      instaTrackRef: this._instaTrackRef,
+      instaPause: this._instaPause, instaResume: this._instaResume, instaResumeLater: this._instaResumeLater,
+      instaDown: this._instaDown, instaMove: this._instaMove, instaUp: this._instaUp, instaWheel: this._instaWheel, instaClick: this._instaClick, instaNoDrag: this._instaNoDrag,
+      instaPosts: [0, 1, 2].flatMap(r => (this.state.instaFeed || this.INSTA_POSTS.map((p, i) => ({ src: 'assets/insta/' + p + '.jpg', alt: 'Postagem ' + (i + 1) + ' do @inflame.conf', href: this.props.instagramUrl ?? 'https://www.instagram.com/inflame.conf/' }))).map((p, i) => ({ ...p, key: r + '-' + i }))),
+      instaStyle: this._revealStyle('insta', 'background:#1C1712;border-top:1px solid #33291F;padding:72px 24px;position:relative;overflow:hidden;'),
       aboutRef: this.refFor('about'),
       aboutStyle: this._revealStyle('about', 'background:#F4EAD8;color:#1C1712;padding:80px 24px;'),
       pricingRef: this.refFor('pricing'),
